@@ -1,4 +1,9 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-export 'src/searching/searching.dart';
+/// A collection of all available algorithms.
+library algorithmic;
+
+export 'searching.dart';
+
+export 'src/utils/comparators.dart';

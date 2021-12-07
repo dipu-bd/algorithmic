@@ -1,7 +1,6 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import 'package:algorithmic/src/utils/extractors.dart';
 import 'package:algorithmic/src/utils/comparators.dart';
 
 /// Returns the first occurrence of the [value] in the [list].
@@ -18,28 +17,19 @@ import 'package:algorithmic/src/utils/comparators.dart';
 /// * [count] represents the number of items to search starting from the [offset].
 ///   - If [count] is negative, it will search 0 items.
 ///   - if [count]+[offset] may exceed the number of items in the [list].
-/// * [valueOf] function transforms the [value] and [list] items before matching. Default is [identity].
-/// * [isEqual] is a custom comparator function to check if two values are equal. Default is [identical].
+/// * [compare] is a custom comparator function between a list element and the value.
+///   - If it is not provided, the equality will be checked using default operator.
 ///
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
 int linearSearch<E, V>(
   List<E> list,
-  E value, {
+  V value, {
   int? offset,
   int? count,
-  ValueExtractor<E, V>? valueOf,
-  IdentityComparator<V, V>? isEqual,
+  Comparator<E, V>? compare,
 }) {
-  valueOf ??= identity;
-  isEqual ??= identical;
-
   final int n = list.length;
-  final V e = valueOf(value);
-  if (!isEqual(e, e)) {
-    // isEqual function is not valid
-    return -1;
-  }
 
   // start index
   int i = offset ?? 0;
@@ -62,9 +52,17 @@ int linearSearch<E, V>(
   }
 
   // Search forwards
-  for (; i < j; i++) {
-    if (isEqual(valueOf(list[i]), e)) {
-      return i;
+  if (compare != null) {
+    for (; i < j; i++) {
+      if (compare(list[i], value) == 0) {
+        return i;
+      }
+    }
+  } else {
+    for (; i < j; i++) {
+      if (list[i] == value) {
+        return i;
+      }
     }
   }
 
@@ -85,28 +83,19 @@ int linearSearch<E, V>(
 /// * [count] represents the number of items to search starting from the [offset].
 ///   - If [count] is negative, it will search 0 items.
 ///   - if [offset] - [count] may produce a negative value.
-/// * [valueOf] function transforms the [value] and [list] items before matching. Default is [identity].
-/// * [isEqual] is a custom comparator function to check if two values are equal. Default is [identical].
+/// * [compare] is a custom comparator function between a list element and the value.
+///   - If it is not provided, the equality will be checked using default operator.
 ///
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
 int linearSearchReversed<E, V>(
   List<E> list,
-  E value, {
+  V value, {
   int? offset,
   int? count,
-  ValueExtractor<E, V>? valueOf,
-  IdentityComparator<V, V>? isEqual,
+  Comparator<E, V>? compare,
 }) {
-  valueOf ??= identity;
-  isEqual ??= identical;
-
   final int n = list.length;
-  final V e = valueOf(value);
-  if (!isEqual(e, e)) {
-    // isEqual function is not valid
-    return -1;
-  }
 
   // start index
   int i = offset ?? (n - 1);
@@ -129,9 +118,17 @@ int linearSearchReversed<E, V>(
   }
 
   // Search backwards
-  for (; i > j; i--) {
-    if (isEqual(e, valueOf(list[i]))) {
-      return i;
+  if (compare != null) {
+    for (; i > j; i--) {
+      if (compare(list[i], value) == 0) {
+        return i;
+      }
+    }
+  } else {
+    for (; i > j; i--) {
+      if (list[i] == value) {
+        return i;
+      }
     }
   }
 

@@ -1,18 +1,18 @@
-import 'package:algorithmic/algorithmic.dart';
 import 'package:test/test.dart';
+import 'package:algorithmic/searching.dart';
 
 void main() {
   group('linearSearch()', () {
     test('Find items from an integer array', () {
       expect(linearSearch([1, 2, 3], 2), 1);
-      expect(linearSearch([1, 2, 3], 2.0), -1);
+      expect(linearSearch([1, 2, 3], 2.0), 1);
       expect(linearSearch([0, 1, 3], true), -1);
     });
     test('Find items from a floating point array', () {
       expect(linearSearch([1.2, 4.6, 2.5, 4.5], 2.5), 2);
-      expect(linearSearch([1.5, 2.0, 3.1], 2), -1);
+      expect(linearSearch([1.5, 2.0, 3.1], 2), 1);
       expect(linearSearch([0.0, -1.0, 3.1], true), -1);
-      expect(linearSearch([-0.0, 0.0, 3.1], 0.0), 1);
+      expect(linearSearch([-0.0, 0.0, 3.1], 0.0), 0);
       expect(linearSearch([0.0, 0.0, 3.1], 0.0), 0);
     });
     test('Find items from a string array', () {
@@ -75,13 +75,8 @@ void main() {
         [3],
       ];
       expect(linearSearch(arr, [3]), -1);
-      expect(linearSearch(arr, [3], valueOf: (List e) => e[0]), 2);
       expect(
-          linearSearch(arr, [3], isEqual: (List a, List b) => a[0] == b[0]), 2);
-      expect(
-        linearSearch(arr, [3], isEqual: (List a, List b) => a[0] + 1 == b[0]),
-        -1,
-      );
+          linearSearch(arr, [3], compare: (List a, List b) => a[0] - b[0]), 2);
     });
   });
   test('Find items using an array of objects', () {
@@ -92,14 +87,15 @@ void main() {
     ];
     expect(linearSearch(arr, {'v': 3}), -1);
     expect(linearSearch(arr, arr[2]), 2);
-    expect(linearSearch(arr, {'v': 3}, isEqual: (a, b) => a == b), -1);
-    expect(linearSearch<Map, int>(arr, {'v': 3}, valueOf: (e) => e['v']), 2);
+    expect(
+        linearSearch(arr, {'v': 3}, compare: (Map a, Map b) => a['v'] - b['v']),
+        2);
   });
 
   group('linearSearchReversed()', () {
     test('Find items from an integer array', () {
       expect(linearSearchReversed([1, 2, 2, 3], 2), 2);
-      expect(linearSearchReversed([1, 2, 2, 3], 2.0), -1);
+      expect(linearSearchReversed([1, 2, 2, 3], 2.0), 2);
       expect(linearSearchReversed([0, 1, 3, 0], true), -1);
     });
     test('Find items from a floating point array', () {
