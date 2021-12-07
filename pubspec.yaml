@@ -1,0 +1,11 @@
+name: algorithmic
+description: A collection of popular algorithms in Dart.
+version: 0.0.1
+homepage: https://github.com/dipu-bd/algorithmic
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.16.0
