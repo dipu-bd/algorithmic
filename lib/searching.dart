@@ -5,3 +5,4 @@
 library algorithmic.searching;
 
 export 'src/searching/linear.dart';
+export 'src/searching/binary.dart';

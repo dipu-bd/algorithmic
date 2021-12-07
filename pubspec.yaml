@@ -1,5 +1,5 @@
 name: algorithmic
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/dipu-bd/algorithmic
 description: A collection of some popular algorithms to give yourself superpower.
 
@@ -10,3 +10,4 @@ dev_dependencies:
   lints: ^1.0.0
   test: ^1.16.0
   benchmark: ^0.3.0
+  collection: ^1.15.0
