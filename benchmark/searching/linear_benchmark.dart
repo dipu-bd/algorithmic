@@ -3,15 +3,16 @@ import 'package:algorithmic/algorithmic.dart';
 
 void main() {
   List<int> list = [];
+  int size = 10 * 1000 * 1000;
 
   setUp(() {
-    list = List<int>.generate(500000, (i) => i);
+    list = List<int>.generate(size, (i) => i);
     list.shuffle();
   });
 
   tearDown(() => list = []);
 
-  group('List(500k).indexOf', () {
+  group('List.indexOf: list size = $size', () {
     benchmark('list.indexOf(-1)', () {
       list.indexOf(-1);
     });
@@ -29,7 +30,7 @@ void main() {
     });
   });
 
-  group('Linear searching in List(500k)', () {
+  group('* Linear searching: list size = $size', () {
     benchmark('linearSearch(list, -1)', () {
       linearSearch(list, -1);
     });
@@ -42,46 +43,49 @@ void main() {
       linearSearch(list, -1, compare: (int a, int b) => a - b);
     });
 
-    benchmark('linearSearch(list, -1, offset: 100, compare: (a, b) => a - b)',
-        () {
+    benchmark('linearSearch(... offset: 100, compare: (a, b) => a - b)', () {
       linearSearch(list, -1, offset: 100, compare: (int a, int b) => a - b);
     });
   });
 
-  group('List(500k).lastIndexOf', () {
+  group('List.lastIndexOf: list size = $size', () {
     benchmark('list.lastIndexOf(-1)', () {
       list.lastIndexOf(-1);
     });
 
-    benchmark('list.lastIndexOf(100000)', () {
-      list.lastIndexOf(-1, 100000);
+    benchmark('list.lastIndexOf(list.length - 100)', () {
+      list.lastIndexOf(-1, list.length - 100);
     });
 
     benchmark('list.indexWhere((e) => e == -1)', () {
       list.lastIndexWhere((e) => e == -1);
     });
 
-    benchmark('list.lastIndexOf((e) => e == -1, 100000)', () {
-      list.lastIndexWhere((e) => e == -1, 100000);
+    benchmark('list.lastIndexOf((e) => e == -1, list.length - 100)', () {
+      list.lastIndexWhere((e) => e == -1, list.length - 100);
     });
   });
 
-  group('Reverse linear searching in List(500k)', () {
+  group('* Reverse linear searching: list size = $size', () {
     benchmark('linearSearchReversed(list, -1)', () {
       linearSearchReversed(list, -1);
     });
 
-    benchmark('linearSearchReversed(list, -1, offset: 100000)', () {
-      linearSearchReversed(list, -1, offset: 100000);
+    benchmark('linearSearchReversed(list, -1, offset: list.length - 100)', () {
+      linearSearchReversed(list, -1, offset: list.length - 100);
     });
 
     benchmark('linearSearchReversed(list, -1, compare: (a, b) => a - b)', () {
       linearSearchReversed(list, -1, compare: (int a, int b) => a - b);
     });
 
-    benchmark('linearSearchReversed(... 100000, compare: (a, b) => a - b)', () {
-      linearSearchReversed(list, -1,
-          offset: 100000, compare: (int a, int b) => a - b);
+    benchmark('linearSearchReversed(... - 100, compare: (a, b) => a - b)', () {
+      linearSearchReversed(
+        list,
+        -1,
+        offset: list.length - 100,
+        compare: (int a, int b) => a - b,
+      );
     });
   });
 }
