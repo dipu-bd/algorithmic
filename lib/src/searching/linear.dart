@@ -3,120 +3,158 @@
 
 import 'package:algorithmic/src/utils/comparators.dart';
 
-/// Returns the first occurrence of the [value] in the [list].
+/// Returns the first index of the [value] in the [list], otherwise -1.
 ///
-/// It starts from the first item of the [list] and compares the [value] with
-/// each items one by one. If the [value] matches with an item, the index is
-/// returned. If [value] does not match with any items, -1 is returned.
-///
-/// -------------------------------------------------------------------------
-/// The other optional arguments are listed below:
-/// * [offset] is the index where the search starts.
-///   - If [offset] is null or negative, search starts at 0.
-///   - if [offset] exceeds the length of the [list], -1 is returned.
-/// * [count] is the number if items to search for.
-///   - If [count] is null, it will search of all available items.
-///   - If [count] is negative, -1 is returned.
-///   - If [count] + [offset] is negative, -1 is returned.
-///   - If [count] + [offset] is greather than or equal to the length of the list,
-///     it will search all available items.
-/// * [compare] is a custom comparator function between a list element and the value.
-///   If it is null, the default == operator will be used to measure equality.
+/// You can control the range to search using the [start] and [count] parameters.
+/// * If [start] is given, search start there and go towards the end of the [list].
+/// * If [start] is not below the length of the [list], -1 will be returned.
+/// * If [start] is negative, search starts at [start] + [count] or 0, whichever is greater.
+/// * If the [count] parameter is given, it will check up to [count] numbers of items.
+/// * If [count] is negative, -1 will be returned.
 ///
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
-int linearSearch<E, V>(
+int linearSearch<E>(
   final List<E> list,
-  final V value, {
-  final int? offset,
+  final E value, {
+  final int? start,
   final int? count,
-  final EntryComparator<E, V>? compare,
 }) {
-  int i, j, m;
+  int i, j;
   final int n = list.length;
 
-  // Determine the lookup range [i, j)
-  i = offset ?? 0;
-  if (i >= n) return -1;
-  m = count ?? ((i < 0 ? -i : 0) + n);
-  if (m <= 0) return -1;
-  j = i + m;
+  // determine range [i, j)
+  i = start ?? 0;
+  j = n;
+  if (count != null) {
+    if (count < 0) return -1;
+    j = i + count;
+    if (j > n) j = n;
+  }
   if (i < 0) i = 0;
-  if (i >= j) return -1;
-  if (j > n) j = n;
 
-  // Search forwards
-  if (compare != null) {
-    for (; i < j; i++) {
-      if (compare(list[i], value) == 0) {
-        return i;
-      }
-    }
-  } else {
-    for (; i < j; i++) {
-      if (list[i] == value) {
-        return i;
-      }
+  // forward loop in range [i, j)
+  for (; i < j; ++i) {
+    if (list[i] == value) {
+      return i;
     }
   }
 
   return -1;
 }
 
-/// Returns the last occurrence of the [value] in the [list].
+/// Returns the first index where the [test] is true in the [list], otherwise -1.
 ///
-/// It starts from the last item of the [list] and compares the [value] with
-/// each items one by one. If the [value] matches with an item, the index is
-/// returned. If [value] does not match with any items, -1 is returned.
-///
-/// -------------------------------------------------------------------------
-/// The other optional arguments are listed below:
-/// * [offset] is the index where the search starts.
-///   - If [offset] is null or negative, search starts at 0.
-///   - if [offset] exceeds the length of the [list], -1 is returned.
-/// * [count] is the number if items to search for.
-///   - If [count] is null, it will search of all available items.
-///   - If [count] is negative, -1 is returned.
-///   - If [count] + [offset] is negative, -1 is returned.
-///   - If [count] + [offset] is greather than or equal to the length of the list,
-///     it will search all available items.
-/// * [compare] is a custom comparator function between a list element and the value.
-///   If it is null, the default == operator will be used to measure equality.
+/// You can control the range to search using the [start] and [count] parameters.
+/// * If [start] is given, search start there and go towards the end of the [list].
+/// * If [start] is not below the length of the [list], -1 will be returned.
+/// * If [start] is negative, search starts at [start] + [count] or 0, whichever is greater.
+/// * If the [count] parameter is given, it will check up to [count] numbers of items.
+/// * If [count] is negative, -1 will be returned.
 ///
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
-int linearSearchReversed<E, V>(
+int linearSearchBy<E>(
   final List<E> list,
-  final V value, {
-  final int? offset,
+  final EqualityTest<E> test, {
+  final int? start,
   final int? count,
-  final EntryComparator<E, V>? compare,
 }) {
-  int i, j, m;
+  int i, j;
   final int n = list.length;
 
-  // Determine the lookup range [i, j)
-  i = offset ?? (n - 1);
-  if (i <= 0) return -1;
-  m = count ?? (i > n ? i : n);
-  if (m <= 0) return -1;
-  j = i - m;
-  if (j < 0) j = -1;
-  if (i <= j) return -1;
-  if (i >= n) i = n - 1;
+  // determine range [i, j)
+  i = start ?? 0;
+  j = n;
+  if (count != null) {
+    if (count < 0) return -1;
+    j = i + count;
+    if (j > n) j = n;
+  }
+  if (i < 0) i = 0;
 
-  // Search backwards
-  if (compare != null) {
-    for (; i > j; i--) {
-      if (compare(list[i], value) == 0) {
-        return i;
-      }
+  // forward loop in range [i, j)
+  for (; i < j; ++i) {
+    if (test.call(list[i])) {
+      return i;
     }
-  } else {
-    for (; i > j; i--) {
-      if (list[i] == value) {
-        return i;
-      }
+  }
+
+  return -1;
+}
+
+/// Returns the last index of the [value] in a [list] in reverse order, otherwise -1.
+///
+/// You can control the range to search using the [start] and [count] parameters.
+/// * If [start] parameter is not null, search start there and go backwards down to 0.
+/// * If [start] is not less than the length of the [list], it will start at the end.
+/// * If the [count] parameter is given, it will check up to [count] numbers of items.
+/// * If either [start] or [count] is negative, -1 will be returned.
+///
+/// -------------------------------------------------------------------------
+/// Complexity: Time `O(n)` | Space `O(1)`
+int linearSearchReversed<E>(
+  final List<E> list,
+  final E value, {
+  final int? start,
+  final int? count,
+}) {
+  int i = list.length - 1;
+  int j = -1;
+
+  if (start != null) {
+    if (start < 0) return -1;
+    if (start < i) i = start;
+  }
+
+  if (count != null) {
+    if (count <= 0) return -1;
+    j = i - count;
+  }
+
+  // reverse loop in range (j, i]
+  for (; i > j; --i) {
+    if (list[i] == value) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+/// Returns the last index where the [test] is true in the [list], otherwise -1.
+///
+/// You can control the range to search using the [start] and [count] parameters.
+/// * If [start] parameter is not null, search start there and go backwards down to 0.
+/// * If [start] is not less than the length of the [list], it will start at the end.
+/// * If the [count] parameter is given, it will check up to [count] numbers of items.
+/// * If either [start] or [count] is negative, -1 will be returned.
+///
+/// -------------------------------------------------------------------------
+/// Complexity: Time `O(n)` | Space `O(1)`
+int linearSearchReversedBy<E>(
+  final List<E> list,
+  final EqualityTest<E> test, {
+  final int? start,
+  final int? count,
+}) {
+  int i = list.length - 1;
+  int j = -1;
+
+  if (start != null) {
+    if (start < 0) return -1;
+    if (start < i) i = start;
+  }
+
+  if (count != null) {
+    if (count <= 0) return -1;
+    j = i - count;
+  }
+
+  // reverse loop in range (j, i]
+  for (; i > j; --i) {
+    if (test(list[i])) {
+      return i;
     }
   }
 

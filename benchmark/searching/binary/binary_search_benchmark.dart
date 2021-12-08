@@ -2,10 +2,9 @@ import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
 import 'package:collection/src/utils.dart' show identity, defaultCompare;
+import '_config.dart';
 
 void main() {
-  int times = 100 * 1000;
-  int size = 500 * 1000 * 1000;
   final list = List<int>.generate(size, (i) => i);
 
   group(
@@ -16,7 +15,7 @@ void main() {
           collection.binarySearch(list, -i);
         }
       });
-      benchmark('* algorithmic.binarySearch()', () {
+      benchmark('algorithmic.binarySearch()', () {
         for (int i = 1; i <= times; ++i) {
           algorithmic.binarySearch(list, -i);
         }
@@ -32,9 +31,9 @@ void main() {
           collection.binarySearchBy(list, identity, defaultCompare, -1, 100);
         }
       });
-      benchmark('* algorithmic.binarySearch()', () {
+      benchmark('algorithmic.binarySearch()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.binarySearch(list, -i, offset: 100);
+          algorithmic.binarySearch(list, -i, start: 100);
         }
       });
     },
@@ -43,14 +42,32 @@ void main() {
   group(
     "Binary search in a sorted list of $size numbers with a custom comparator ($times times)",
     () {
+      final comp = ((int a, int b) => a - b);
       benchmark('collection.binarySearch()', () {
         for (int i = 1; i <= times; ++i) {
-          collection.binarySearch(list, -1, compare: (int a, int b) => a - b);
+          collection.binarySearch(list, -1, compare: comp);
         }
       });
-      benchmark('* algorithmic.binarySearch', () {
+      benchmark('algorithmic.binarySearch()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.binarySearch(list, -i, compare: (int a, int b) => a - b);
+          algorithmic.binarySearch(list, -i, compare: comp);
+        }
+      });
+    },
+  );
+
+  group(
+    "Binary search in a sorted list of $size numbers with a starting and custom comparator ($times times)",
+    () {
+      final comp = ((int a, int b) => a - b);
+      benchmark('collection.binarySearchBy()', () {
+        for (int i = 1; i <= times; ++i) {
+          collection.binarySearchBy<int, int>(list, identity, comp, -1, 100);
+        }
+      });
+      benchmark('algorithmic.binarySearch()', () {
+        for (int i = 1; i <= times; ++i) {
+          algorithmic.binarySearch(list, -i, start: 100, compare: comp);
         }
       });
     },
