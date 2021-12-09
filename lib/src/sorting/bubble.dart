@@ -1,4 +1,4 @@
-/// Sorts the [list] of numbers using selection sort algorithm.
+/// Sorts the [list] of numbers using bubble sort algorithm.
 ///
 /// ## Parameters
 ///
@@ -17,20 +17,22 @@
 ///
 /// ## Details
 ///
-/// The selection sort algorithm sorts the [list] in an increasing order by finding
-/// the minimum element and putting it in the beginning for the unsorted range repeteadly.
-/// Although the selection sort algorithm is not very efficient, it is useful when the
-/// auxiliary memory is limited.
+/// The bubble sort algorithm sorts the [list] in an increasing order by swapping
+/// unordered items repeteadly until the end of the list. It is very similar to
+/// selection sort, except that the swap operation is happening all the time here.
+/// Therefore, it is comparatively slower than selection sort.
+///
+/// When [begin] or [end] are specified, it will perform a partial sorting on the [list].
 ///
 /// ----------------------------------------------------------------
 /// Complexity: Time `O(n^2)` | Space `O(1)`
-void selectionSort<E>(
+void bubbleSort<E>(
   final List<E> list, {
   final int? begin,
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c, m;
+  int b, e, c;
   final int n = list.length;
 
   b = 0;
@@ -45,34 +47,26 @@ void selectionSort<E>(
 
   if (compare == null) {
     // compare items with default comparision
-    for (int i = b; i < e; ++i) {
-      m = i;
-      for (int j = i + 1; j < e; ++j) {
-        c = (list[j] as Comparable).compareTo(list[m]);
+    for (int i = b + 1; i < e; ++i) {
+      for (int j = b + 1; j <= e - i + b; ++j) {
+        c = (list[j] as Comparable).compareTo(list[j - 1]);
         if (c < 0) {
-          m = j;
+          final E t = list[j - 1];
+          list[j - 1] = list[j];
+          list[j] = t;
         }
-      }
-      if (m != i) {
-        final E t = list[m];
-        list[m] = list[i];
-        list[i] = t;
       }
     }
   } else {
     // compare items with custom comparator (slower)
-    for (int i = b; i < e; ++i) {
-      m = i;
-      for (int j = i + 1; j < e; ++j) {
-        c = compare(list[j], list[m]);
+    for (int i = b + 1; i < e; ++i) {
+      for (int j = b + 1; j <= e - i + b; ++j) {
+        c = compare(list[j], list[j - 1]);
         if (c < 0) {
-          m = j;
+          final E t = list[j - 1];
+          list[j - 1] = list[j];
+          list[j] = t;
         }
-      }
-      if (m != i) {
-        final E t = list[m];
-        list[m] = list[i];
-        list[i] = t;
       }
     }
   }

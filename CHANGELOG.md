@@ -1,5 +1,8 @@
 ## 0.0.5
 
+- Adds sorting algorithms:
+  - bubbleSort
+  - selectionSort
 - Refactor binary searching to improve performance.
   - lowerBound: parameter change
   - lowerBoundBy: removed (merged with lowerBound)

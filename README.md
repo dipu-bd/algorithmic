@@ -51,7 +51,15 @@ A faster searching algorithm for sorted list of items.
 
 #### Selection Sort
 
-A naive sorting algorithm that has a very little memory overhead.
+A straightfoward sorting algorithm that has a very little memory overhead.
+
+| Exported Methods | Performance | Tests | Benchmark | Since |
+| ---------------: | :---------: | :---: | :-------: | :---: |
+|   `bubbleSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
+
+#### Selection Sort
+
+Almost similar, but faster than the bubble sort algorithm.
 
 |  Exported Methods | Performance | Tests | Benchmark | Since |
 | ----------------: | :---------: | :---: | :-------: | :---: |
