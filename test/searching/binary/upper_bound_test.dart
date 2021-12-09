@@ -1,3 +1,6 @@
+// Copyright (c) 2021, Sudipto Chandra
+// All rights reserved. Check LICENSE file for details.
+
 import 'package:test/test.dart';
 import 'package:algorithmic/searching.dart';
 
@@ -263,10 +266,12 @@ void main() {
         expect(upperBound(arr, 5, compare: compare, start: 8, count: 100), 8);
       });
       test("Case: 5 start -100 count 5", () {
-        expect(upperBound(arr, 5, compare: compare, start: -100, count: 5), -95);
+        expect(
+            upperBound(arr, 5, compare: compare, start: -100, count: 5), -95);
       });
       test("Case: 5 start -100 count 8", () {
-        expect(upperBound(arr, 5, compare: compare, start: -100, count: 8), -92);
+        expect(
+            upperBound(arr, 5, compare: compare, start: -100, count: 8), -92);
       });
       test("Case: 5 start -100 count 100", () {
         expect(

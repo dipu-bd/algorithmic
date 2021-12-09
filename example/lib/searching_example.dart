@@ -1,27 +1,18 @@
+// Copyright (c) 2021, Sudipto Chandra
+// All rights reserved. Check LICENSE file for details.
+
 import 'package:algorithmic/algorithmic.dart';
 
 void main() {
-  // Linear searching
-  final arr = [-2, -1, 1, 2, 2, 3];
+  final list = List<int>.generate(1000, (i) => i - 500);
+  list.shuffle();
 
-  print("linear search 2 in $arr [expects 3]: "
-      "${linearSearch(arr, 2)}");
-      
-  print("binary search 2 in $arr [expects 3]: "
-      "${binarySearch(arr, 2)}");
+  int indexOf10 = linearSearch(list, 10);
+  print("index of 10 in a random list: $indexOf10");
 
-  print("binary search 2 in $arr with offset = 3 [expects 3]: "
-      "${binarySearch(arr, 2, start: 3)}");
+  print("sorting list using gnome sort.");
+  gnomeSort(list);
 
-  print("binary search 2 in $arr with count = 2 [expects -1]: "
-      "${binarySearch(arr, 2, count: 2)}");
-
-  print("binary search 2 in $arr with offset = 2 and count = 1 [expects 4]: "
-      "${binarySearch(arr, 2, start: 4, count: 1)}");
-
-  print("linear search 2 in $arr with custom comparator [expects 0]: "
-      "${linearSearchBy(arr, (int e) => e * e == 4)}");
-
-  print("binary search maximum index of 2 in $arr reversed [expects 4]: "
-      "${binarySearchMax(arr, 2)}");
+  int indexOf10Sorted = binarySearch(list, 10);
+  print("index of 10 in a sorted list: $indexOf10Sorted");
 }

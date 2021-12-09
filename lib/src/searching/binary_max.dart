@@ -2,10 +2,10 @@
 // All rights reserved. Check LICENSE file for details.
 
 import 'package:algorithmic/src/utils/comparators.dart';
-import './lower_bound.dart';
+import './upper_bound.dart';
 
-/// Returns the index of the _first_ occurance of the [value] in a sorted [list],
-/// otherwise -1 if not found. It is ensured that the index is as lowest as possible.
+/// Returns the index of the _last_ occurance of the [value] in a sorted [list],
+/// otherwise -1 if not found.
 ///
 /// ## Parameters
 ///
@@ -22,18 +22,18 @@ import './lower_bound.dart';
 ///
 /// ## Details
 ///
-/// Internally it calls the [lowerBound] method, passing true to the `exactMatch` parameter.
+/// Internally it calls the [upperBound] method, passing true to the `exactMatch` parameter.
 ///
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(log n)` | Space `O(1)`
-int binarySearch<E, V>(
+int binarySearchMax<E, V>(
   final List<E> list,
   final V value, {
   final int? start,
   final int? count,
   final EntryComparator<E, V>? compare,
 }) {
-  return lowerBound<E, V>(
+  return upperBound<E, V>(
     list,
     value,
     start: start,

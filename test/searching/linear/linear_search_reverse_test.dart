@@ -1,3 +1,6 @@
+// Copyright (c) 2021, Sudipto Chandra
+// All rights reserved. Check LICENSE file for details.
+
 import 'dart:collection';
 
 import 'package:test/test.dart';

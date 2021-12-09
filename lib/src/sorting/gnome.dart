@@ -1,3 +1,6 @@
+// Copyright (c) 2021, Sudipto Chandra
+// All rights reserved. Check LICENSE file for details.
+
 /// Sorts the [list] of numbers using the
 /// [gnome sort](https://en.wikipedia.org/wiki/Gnome_sort) algorithm.
 ///

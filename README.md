@@ -18,6 +18,7 @@ You can also import these algorithms separately:
 | Libraries         | Imported By                            |
 | ----------------- | -------------------------------------- |
 | Search algorithms | `'package:algorithmic/searching.dart'` |
+| Sort algorithms   | `'package:algorithmic/sorting.dart'`   |
 
 <!-- ⌛ ✔️ ❌ -->
 
