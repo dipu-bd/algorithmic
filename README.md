@@ -27,6 +27,8 @@ You can also import these algorithms separately:
 
 #### Linear Search
 
+A basic searching algorithm for any kind of list.
+
 |           Exported Methods | Performance | Tests | Benchmark | Since |
 | -------------------------: | :---------: | :---: | :-------: | :---: |
 |           `linearSearch()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
@@ -36,6 +38,8 @@ You can also import these algorithms separately:
 
 #### Binary Search
 
+A faster searching algorithm for sorted list of items.
+
 |    Exported Methods | Performance | Tests | Benchmark | Since |
 | ------------------: | :---------: | :---: | :-------: | :---: |
 |      `lowerBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
@@ -43,16 +47,15 @@ You can also import these algorithms separately:
 |    `binarySearch()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
 | `binarySearchMax()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.4 |
 
-<!--
-#### Interpolation Search
+### Sorting algorithms
 
-|        Exported Methods |    Performance    | Tests | Benchmark | Since |
-| ----------------------: | :---------------: | :---: | :-------: | :---: |
-| `interpolationSearch()` | `O(log log n)` 🗒️ |  ⌛   |    ⌛     |  ⌛   |
+#### Selection Sort
 
-🗒️ Under the assumption of a uniform distribution of data, performance of interpolation search is `O(log log n)`. However, in general the performance is `O(n)`.
+A naive sorting algorithm that has a very little memory overhead.
 
--->
+|  Exported Methods | Performance | Tests | Benchmark | Since |
+| ----------------: | :---------: | :---: | :-------: | :---: |
+| `selectionSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
 
 ## Benchmarks
 

@@ -4,6 +4,7 @@
 /// A collection of all available algorithms.
 library algorithmic;
 
-export 'searching.dart';
-
 export 'src/utils/comparators.dart';
+
+export 'searching.dart';
+export 'sorting.dart';
