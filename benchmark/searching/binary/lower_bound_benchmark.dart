@@ -49,7 +49,7 @@ void main() {
       });
       benchmark('algorithmic.lowerBoundBy()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.lowerBoundBy(list, (int e) => e < -i);
+          algorithmic.lowerBound(list, -i, compare: (int a, int b) => a - b);
         }
       });
     },
@@ -66,7 +66,7 @@ void main() {
       });
       benchmark('algorithmic.lowerBoundBy()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.lowerBoundBy(list, (int e) => e < -i, start: 100);
+          algorithmic.lowerBound(list, -i, compare: (int a, int b) => a - b, start: 100);
         }
       });
     },

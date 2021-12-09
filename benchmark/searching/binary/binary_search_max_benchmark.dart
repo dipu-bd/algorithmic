@@ -8,9 +8,9 @@ void main() {
   group(
     "Binary search (maximum index) in a sorted list of $size numbers ($times times)",
     () {
-      benchmark('algorithmic.binarySearch()', () {
+      benchmark('algorithmic.binarySearchMax()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.binarySearch(list, -i);
+          algorithmic.binarySearchMax(list, -i);
         }
       });
     },
@@ -19,9 +19,9 @@ void main() {
   group(
     "Binary search (maximum index) in a sorted list of $size numbers with starting offset ($times times)",
     () {
-      benchmark('algorithmic.binarySearch()', () {
+      benchmark('algorithmic.binarySearchMax()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.binarySearch(list, -i, start: 100);
+          algorithmic.binarySearchMax(list, -i, start: 100);
         }
       });
     },
@@ -30,9 +30,9 @@ void main() {
   group(
     "Binary search (maximum index) in a sorted list of $size numbers with a custom comparator ($times times)",
     () {
-      benchmark('algorithmic.binarySearch()', () {
+      benchmark('algorithmic.binarySearchMax()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.binarySearch(list, -1, compare: (int a, int b) => a - b);
+          algorithmic.binarySearchMax(list, -1, compare: (int a, int b) => a - b);
         }
       });
     },
@@ -41,9 +41,9 @@ void main() {
   group(
     "Binary search (maximum index) in a sorted list of $size numbers with starting offset and custom comparator ($times times)",
     () {
-      benchmark('algorithmic.binarySearch()', () {
+      benchmark('algorithmic.binarySearchMax()', () {
         for (int i = 1; i <= times; ++i) {
-          algorithmic.binarySearch(list, -1,
+          algorithmic.binarySearchMax(list, -1,
               compare: (int a, int b) => a - b, start: 100);
         }
       });

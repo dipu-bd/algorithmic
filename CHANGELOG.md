@@ -1,3 +1,9 @@
+## 0.0.5
+
+- Refactor binary searching to improve performance.
+  - lowerBound: parameter change
+  - lowerBoundBy: removed (merged with lowerBound)
+
 ## 0.0.4
 
 - Refactor linear searching for better flexibility and performance.
@@ -12,8 +18,7 @@
   - upperBound: parameter change
   - lowerBoundBy: new
   - upperBoundBy: new
-  - binarySearch: re-implementation
-  - binarySearchMax: replacement of binarySearchReversed
+  - binarySearchMax: instead of binarySearchReversed
 
 ## 0.0.3
 

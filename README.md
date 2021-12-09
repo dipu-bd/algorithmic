@@ -39,10 +39,9 @@ You can also import these algorithms separately:
 |    Exported Methods | Performance | Tests | Benchmark | Since |
 | ------------------: | :---------: | :---: | :-------: | :---: |
 |      `lowerBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-|    `lowerBoundBy()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.4 |
 |      `upperBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
 |    `binarySearch()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-| `binarySearchMax()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
+| `binarySearchMax()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.4 |
 
 <!--
 #### Interpolation Search

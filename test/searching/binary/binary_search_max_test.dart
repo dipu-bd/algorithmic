@@ -5,16 +5,20 @@ void main() {
   group('binarySearchMax()', () {
     group('Check if errors are thrown', () {
       test("Case: int vs. string", () {
-        expect(binarySearchMax([1], '1'), -1);
+        expect(
+            () => binarySearchMax([1], '1'), throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: String vs. int", () {
-        expect(binarySearchMax(['1'], 1), -1);
+        expect(
+            () => binarySearchMax(['1'], 1), throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: String vs. double", () {
-        expect(binarySearchMax(['1'], 1.0), -1);
+        expect(() => binarySearchMax(['1'], 1.0),
+            throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: negative count", () {
-        expect(binarySearchMax([1], 1, count: -1), -1);
+        expect(() => binarySearchMax([1], 1, count: -1),
+            throwsA(TypeMatcher<RangeError>()));
       });
     });
 
@@ -275,28 +279,33 @@ void main() {
         expect(binarySearchMax(arr, 5, compare: comp, start: 3, count: 100), 5);
       });
       test("Case: 5 start 8 count 100", () {
-        expect(binarySearchMax(arr, 5, compare: comp, start: 8, count: 100), -1);
+        expect(
+            binarySearchMax(arr, 5, compare: comp, start: 8, count: 100), -1);
       });
       test("Case: 5 start -100 count 5", () {
-        expect(binarySearchMax(arr, 5, compare: comp, start: -100, count: 5), -1);
+        expect(
+            binarySearchMax(arr, 5, compare: comp, start: -100, count: 5), -1);
       });
       test("Case: 5 start -100 count 8", () {
-        expect(binarySearchMax(arr, 5, compare: comp, start: -100, count: 8), -1);
+        expect(
+            binarySearchMax(arr, 5, compare: comp, start: -100, count: 8), -1);
       });
       test("Case: 5 start -100 count 100", () {
-        expect(binarySearchMax(arr, 5, compare: comp, start: -100, count: 100), -1);
+        expect(binarySearchMax(arr, 5, compare: comp, start: -100, count: 100),
+            -1);
       });
       test("Case: 5 start -100 count 106", () {
-        expect(binarySearchMax(arr, 5, compare: comp, start: -100, count: 106), 5);
+        expect(
+            binarySearchMax(arr, 5, compare: comp, start: -100, count: 106), 5);
       });
       test("Case: 5 start -100 count 105", () {
-        expect(binarySearchMax(arr, 5, compare: comp, start: -100, count: 105), 4);
+        expect(
+            binarySearchMax(arr, 5, compare: comp, start: -100, count: 105), 4);
       });
       test("Case: 3 start -100 count 106", () {
-        expect(binarySearchMax(arr, 3, compare: comp, start: -100, count: 106), -1);
+        expect(binarySearchMax(arr, 3, compare: comp, start: -100, count: 106),
+            -1);
       });
     });
   });
-
-
 }

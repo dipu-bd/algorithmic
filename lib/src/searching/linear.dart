@@ -99,18 +99,18 @@ int linearSearchReversed<E>(
   final int? start,
   final int? count,
 }) {
-  int i = list.length - 1;
-  int j = -1;
+  int i, j;
+  final int n = list.length;
 
-  if (start != null) {
-    if (start < 0) return -1;
-    if (start < i) i = start;
-  }
-
+  // determine range [i, j)
+  i = start ?? n - 1;
+  j = -1;
   if (count != null) {
-    if (count <= 0) return -1;
+    if (count < 0) return -1;
     j = i - count;
+    if (j < -1) j = -1;
   }
+  if (i >= n) i = n - 1;
 
   // reverse loop in range (j, i]
   for (; i > j; --i) {
@@ -138,18 +138,18 @@ int linearSearchReversedBy<E>(
   final int? start,
   final int? count,
 }) {
-  int i = list.length - 1;
-  int j = -1;
+  int i, j;
+  final int n = list.length;
 
-  if (start != null) {
-    if (start < 0) return -1;
-    if (start < i) i = start;
-  }
-
+  // determine range [i, j)
+  i = start ?? n - 1;
+  j = -1;
   if (count != null) {
-    if (count <= 0) return -1;
+    if (count < 0) return -1;
     j = i - count;
+    if (j < -1) j = -1;
   }
+  if (i >= n) i = n - 1;
 
   // reverse loop in range (j, i]
   for (; i > j; --i) {

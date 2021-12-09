@@ -4,17 +4,19 @@ import 'package:algorithmic/searching.dart';
 void main() {
   group('binarySearch()', () {
     group('Check if type errors are thrown', () {
-      test("Case: int vs. String", () {
-        expect(binarySearch([1, 2, 3], '1'), -1);
+      test("Case: int vs. string", () {
+        expect(() => binarySearch([1], '1'), throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: String vs. int", () {
-        expect(binarySearch(['1'], 1), -1);
+        expect(() => binarySearch(['1'], 1), throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: String vs. double", () {
-        expect(binarySearch(['1'], 1.0), -1);
+        expect(
+            () => binarySearch(['1'], 1.0), throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: negative count", () {
-        expect(binarySearch([1], 1, count: -1), -1);
+        expect(() => binarySearch([1], 1, count: -1),
+            throwsA(TypeMatcher<RangeError>()));
       });
     });
     group('Find items from an integer array', () {
@@ -193,9 +195,6 @@ void main() {
       test("arr, 1, count: 11", () {
         expect(binarySearch(arr, 1, count: 11), 10);
       });
-      test("arr, 1, count: -1", () {
-        expect(binarySearch(arr, 1, count: -1), -1);
-      });
 
       test("arr, 1, start: 8, count: 0", () {
         expect(binarySearch(arr, 1, start: 8, count: 0), -1);
@@ -214,12 +213,6 @@ void main() {
       });
       test("arr, 1, start: 10, count: 1", () {
         expect(binarySearch(arr, 1, start: 10, count: 1), 10);
-      });
-      test("arr, 1, start: 11, count: -1", () {
-        expect(binarySearch(arr, 1, start: 11, count: -1), -1);
-      });
-      test("arr, 1, start: 12, count: -2", () {
-        expect(binarySearch(arr, 1, start: 12, count: -2), -1);
       });
       test("arr, 1, start: 30, count: 1", () {
         expect(binarySearch(arr, 1, start: 30, count: 1), -1);
@@ -261,12 +254,6 @@ void main() {
       });
       test("arr, 1, start: 10, count: 1, compare: comp", () {
         expect(binarySearch(arr, 1, start: 10, count: 1, compare: comp), 10);
-      });
-      test("arr, 1, start: 11, count: -1, compare: comp", () {
-        expect(binarySearch(arr, 1, start: 11, count: -1, compare: comp), -1);
-      });
-      test("arr, 1, start: 12, count: -2, compare: comp", () {
-        expect(binarySearch(arr, 1, start: 12, count: -2, compare: comp), -1);
       });
       test("arr, 1, start: 30, count: 1, compare: comp", () {
         expect(binarySearch(arr, 1, start: 30, count: 1, compare: comp), -1);
