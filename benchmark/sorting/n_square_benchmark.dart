@@ -1,9 +1,8 @@
 import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
+import '_config.dart';
 
 void main() {
-  final int size = 10 * 1000;
-
   group("Algorithms with O(n^2) time complexity", () {
     group(
       "In a shuffled list of $size numbers",
@@ -12,10 +11,14 @@ void main() {
         list.shuffle();
 
         final bubble = [...list];
+        final gnome = [...list];
         final insertion = [...list];
         final selection = [...list];
         benchmark('algorithmic.bubbleSort()', () {
           algorithmic.bubbleSort(bubble);
+        });
+        benchmark('algorithmic.gnomeSort()', () {
+          algorithmic.gnomeSort(gnome);
         });
         benchmark('algorithmic.insertionSort()', () {
           algorithmic.insertionSort(insertion);
@@ -32,10 +35,14 @@ void main() {
         final list = List<int>.generate(size, (i) => i);
 
         final bubble = [...list];
+        final gnome = [...list];
         final insertion = [...list];
         final selection = [...list];
         benchmark('algorithmic.bubbleSort()', () {
           algorithmic.bubbleSort(bubble);
+        });
+        benchmark('algorithmic.gnomeSort()', () {
+          algorithmic.gnomeSort(gnome);
         });
         benchmark('algorithmic.insertionSort()', () {
           algorithmic.insertionSort(insertion);
@@ -52,10 +59,14 @@ void main() {
         final list = List<int>.generate(size, (i) => size - i);
 
         final bubble = [...list];
-        final selection = [...list];
+        final gnome = [...list];
         final insertion = [...list];
+        final selection = [...list];
         benchmark('algorithmic.bubbleSort()', () {
           algorithmic.bubbleSort(bubble);
+        });
+        benchmark('algorithmic.gnomeSort()', () {
+          algorithmic.gnomeSort(gnome);
         });
         benchmark('algorithmic.insertionSort()', () {
           algorithmic.insertionSort(insertion);

@@ -1,4 +1,5 @@
-/// Sorts the [list] of numbers using bubble sort algorithm.
+/// Sorts the [list] of numbers using the
+/// [bubble sort](https://en.wikipedia.org/wiki/Bubble_sort) algorithm.
 ///
 /// ## Parameters
 ///

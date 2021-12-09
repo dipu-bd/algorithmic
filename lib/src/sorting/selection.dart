@@ -1,4 +1,5 @@
-/// Sorts the [list] of numbers using selection sort algorithm.
+/// Sorts the [list] of numbers using the
+/// [selection sort](https://en.wikipedia.org/wiki/Selection_sort) algorithm.
 ///
 /// ## Parameters
 ///
@@ -18,9 +19,8 @@
 /// ## Details
 ///
 /// The selection sort algorithm sorts the [list] in an increasing order by finding
-/// the minimum element and putting it in the beginning for the unsorted range repeteadly.
-/// Although the selection sort algorithm is not very efficient, it is useful when the
-/// auxiliary memory is limited.
+/// the minimum element from the unordered range and putting it at the beginning in
+/// each iteration.
 ///
 /// ----------------------------------------------------------------
 /// Complexity: Time `O(n^2)` | Space `O(1)`

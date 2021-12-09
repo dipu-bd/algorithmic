@@ -4,10 +4,9 @@ import 'package:algorithmic/algorithmic.dart';
 
 void main() {
   group("bubbleSort()", () {
-    test("Test all permutations of 'abcde'", () {
-      final original = characters('abcde');
-      final perms = Permutations(5, original);
-      expect(perms.length.toInt(), 1 * 2 * 3 * 4 * 5);
+    test("Test all permutations of [-3, -2, -1, 0, 1, 2]", () {
+      final original = [-3, -2, -1, 0, 1, 2];
+      final perms = Permutations(original.length, original);
       for (final list in perms()) {
         bubbleSort(list);
         expect(list, original);
@@ -127,15 +126,11 @@ void main() {
   });
 
   group("bubbleSort() with custom [compare]", () {
-    test("Test all permutations of 'abcde'", () {
-      final original = characters('abcde');
-      final perms = Permutations(5, original);
-      expect(perms.length.toInt(), 1 * 2 * 3 * 4 * 5);
+    test("Test all permutations of [-3, -2, -1, 0, 1, 2]", () {
+      final original = [-3, -2, -1, 0, 1, 2];
+      final perms = Permutations(original.length, original);
       for (final list in perms()) {
-        bubbleSort<String>(
-          list,
-          compare: (a, b) => a.codeUnitAt(0) - b.codeUnitAt(0),
-        );
+        bubbleSort<int>(list, compare: (a, b) => a - b);
         expect(list, original);
       }
     });
