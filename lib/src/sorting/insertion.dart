@@ -1,4 +1,4 @@
-/// Sorts the [list] of numbers using bubble sort algorithm.
+/// Sorts the [list] of numbers using insertion sort algorithm.
 ///
 /// ## Parameters
 ///
@@ -17,14 +17,14 @@
 ///
 /// ## Details
 ///
-/// The bubble sort algorithm sorts the [list] in an increasing order by swapping
-/// unordered items repeteadly until the end of the list. It is very similar to
-/// selection sort, except that the swap operation is happening all the time here.
-/// Therefore, it is comparatively slower than selection sort.
+/// The insertion sort algorithm sorts the [list] in an increasing order by virtually
+/// splitting it into two parts. Left part is ordered, the right part is unordered.
+/// In each iteration, it removes the first item from unordered part, and insert it
+/// into the ordered part maintaining the increasing order.
 ///
 /// ----------------------------------------------------------------
 /// Complexity: Time `O(n^2)` | Space `O(1)`
-void bubbleSort<E>(
+void insertionSort<E>(
   final List<E> list, {
   final int? begin,
   final int? end,
@@ -46,25 +46,23 @@ void bubbleSort<E>(
   if (compare == null) {
     // compare items with default comparision
     for (int i = b + 1; i < e; ++i) {
-      for (int j = b + 1; j <= e - i + b; ++j) {
-        c = (list[j] as Comparable).compareTo(list[j - 1]);
-        if (c < 0) {
-          final E t = list[j - 1];
-          list[j - 1] = list[j];
-          list[j] = t;
-        }
+      for (int j = i - 1; j >= b; --j) {
+        c = (list[j] as Comparable).compareTo(list[j + 1]);
+        if (c <= 0) break;
+        final E t = list[j + 1];
+        list[j + 1] = list[j];
+        list[j] = t;
       }
     }
   } else {
     // compare items with custom comparator (slower)
     for (int i = b + 1; i < e; ++i) {
-      for (int j = b + 1; j <= e - i + b; ++j) {
-        c = compare(list[j], list[j - 1]);
-        if (c < 0) {
-          final E t = list[j - 1];
-          list[j - 1] = list[j];
-          list[j] = t;
-        }
+      for (int j = i - 1; j >= b; --j) {
+        c = compare(list[j], list[j + 1]);
+        if (c <= 0) break;
+        final E t = list[j + 1];
+        list[j + 1] = list[j];
+        list[j] = t;
       }
     }
   }

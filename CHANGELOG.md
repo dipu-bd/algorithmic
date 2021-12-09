@@ -2,6 +2,7 @@
 
 - Adds sorting algorithms:
   - bubbleSort
+  - insertionSort
   - selectionSort
 - Refactor binary searching to improve performance.
   - lowerBound: parameter change

@@ -25,17 +25,6 @@ You can also import these algorithms separately:
 
 ### Searching algorithms
 
-#### Linear Search
-
-A basic searching algorithm for any kind of list.
-
-|           Exported Methods | Performance | Tests | Benchmark | Since |
-| -------------------------: | :---------: | :---: | :-------: | :---: |
-|           `linearSearch()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
-|         `linearSearchBy()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.4 |
-|   `linearSearchReversed()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
-| `linearSearchReversedBy()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.4 |
-
 #### Binary Search
 
 A faster searching algorithm for sorted list of items.
@@ -47,19 +36,38 @@ A faster searching algorithm for sorted list of items.
 |    `binarySearch()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
 | `binarySearchMax()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.4 |
 
+#### Linear Search
+
+A general searching algorithm for any kind of list.
+
+|           Exported Methods | Performance | Tests | Benchmark | Since |
+| -------------------------: | :---------: | :---: | :-------: | :---: |
+|           `linearSearch()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
+|         `linearSearchBy()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.4 |
+|   `linearSearchReversed()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
+| `linearSearchReversedBy()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.4 |
+
 ### Sorting algorithms
 
-#### Selection Sort
+#### Bubble Sort
 
-A straightfoward sorting algorithm that has a very little memory overhead.
+<!--  -->
 
 | Exported Methods | Performance | Tests | Benchmark | Since |
 | ---------------: | :---------: | :---: | :-------: | :---: |
 |   `bubbleSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
 
+#### Insertion Sort
+
+<!--  -->
+
+|  Exported Methods | Performance | Tests | Benchmark | Since |
+| ----------------: | :---------: | :---: | :-------: | :---: |
+| `insertionSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
+
 #### Selection Sort
 
-Almost similar, but faster than the bubble sort algorithm.
+<!--  -->
 
 |  Exported Methods | Performance | Tests | Benchmark | Since |
 | ----------------: | :---------: | :---: | :-------: | :---: |

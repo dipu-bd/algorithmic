@@ -5,4 +5,5 @@
 library algorithmic.sorting;
 
 export 'src/sorting/bubble.dart';
+export 'src/sorting/insertion.dart';
 export 'src/sorting/selection.dart';
