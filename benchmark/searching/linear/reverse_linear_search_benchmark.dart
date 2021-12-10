@@ -7,7 +7,7 @@ import '_config.dart';
 
 void main() {
   list.shuffle();
-  
+
   group(
     "Reversed linear search in a shuffled list of $size numbers ($times times)",
     () {
@@ -40,5 +40,4 @@ void main() {
       });
     },
   );
-
 }

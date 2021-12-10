@@ -2,6 +2,7 @@
 
 [![plugin version](https://img.shields.io/pub/v/algorithmic?label=pub)](https://pub.dev/packages/algorithmic)
 [![dependencies](https://img.shields.io/librariesio/release/pub/algorithmic?label=dependencies)](https://github.com/dipu-bd/algorithmic/-/blob/master/pubspec.yaml)
+[![Dart](https://github.com/dipu-bd/algorithmic/actions/workflows/dart.yml/badge.svg)](https://github.com/dipu-bd/algorithmic/actions/workflows/dart.yml)
 
 A collection of useful algorithms keeping performance and flexibility on mind.
 

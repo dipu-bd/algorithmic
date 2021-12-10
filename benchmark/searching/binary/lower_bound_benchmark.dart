@@ -4,7 +4,6 @@
 import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
-import 'package:collection/src/utils.dart' show identity, defaultCompare;
 import '_config.dart';
 
 void main() {
@@ -39,5 +38,4 @@ void main() {
       });
     },
   );
-
 }
