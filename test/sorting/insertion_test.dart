@@ -129,11 +129,11 @@ void main() {
   });
 
   group("insertionSort() with custom [compare]", () {
-    test("Test all permutations of [-3, -2, -1, 0, 1, 2]", () {
-      final original = [-3, -2, -1, 0, 1, 2];
+    test("Test all permutations of [2, 1, 0, -1, -2, -3]", () {
+      final original = [2, 1, 0, -1, -2, -3];
       final perms = Permutations(original.length, original);
       for (final list in perms()) {
-        insertionSort<int>(list, compare: (a, b) => a - b);
+        insertionSort<int>(list, compare: (a, b) => b - a);
         expect(list, original);
       }
     });

@@ -6,7 +6,7 @@ import 'package:algorithmic/searching.dart';
 import 'package:trotter/trotter.dart';
 
 void main() {
-  group('quickBinarySearch()', () {
+  group('binarySearchQuick()', () {
     group('Check if type errors are thrown', () {
       test("Case: int vs. string", () {
         expect(() => binarySearchQuick([1], '1'),
@@ -181,7 +181,7 @@ void main() {
     });
   });
 
-  group('quickBinarySearch() with custom [compare]', () {
+  group('binarySearchQuick() with custom [compare]', () {
     final comp = ((num a, num b) => (a - b).toInt());
     test('Find items from a floating point array', () {
       var arr = List<double>.generate(10, (i) => i - 5.5);

@@ -6,38 +6,69 @@ import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
 
 void main() {
-  final int times = 1000;
+  final int times = 2000;
   final int size = 100 * 1000 * 1000;
-  final list = List<int>.generate(size, (i) => i);
+  final comp = ((num a, num b) => (a - b).toInt());
 
-  group(
-    "Binary search in a sorted list of $size numbers",
-    () {
+  group("Benchmark binary searching", () {
+    group("In a sorted list of $size numbers", () {
+      List<int> list = [];
+      setUp(() {
+        list = List<int>.generate(size, (i) => i);
+      });
+
       benchmark('collection.binarySearch()', () {
         collection.binarySearch(list, 1);
       }, iterations: times);
-      benchmark('algorithmic.quickBinarySearch()', () {
+      benchmark('algorithmic.binarySearchQuick()', () {
         algorithmic.binarySearchQuick(list, 1);
       }, iterations: times);
       benchmark('algorithmic.binarySearch()', () {
         algorithmic.binarySearch(list, 1);
       }, iterations: times);
-    },
-  );
+      benchmark('algorithmic.binarySearchUpper()', () {
+        algorithmic.binarySearchUpper(list, 1);
+      }, iterations: times);
+    });
 
-  group(
-    "Binary search in a sorted list of $size numbers with a custom comparator",
-    () {
-      final comp = ((int a, int b) => a - b);
+    group("In a sorted list of $size numbers with repeated items", () {
+      List<int> list = [];
+      setUp(() {
+        list = List<int>.generate(size, (i) => (i * 1000 / size).floor());
+      });
+
+      benchmark('collection.binarySearch()', () {
+        collection.binarySearch(list, 1);
+      }, iterations: times);
+      benchmark('algorithmic.binarySearchQuick()', () {
+        algorithmic.binarySearchQuick(list, 1);
+      }, iterations: times);
+      benchmark('algorithmic.binarySearch()', () {
+        algorithmic.binarySearch(list, 1);
+      }, iterations: times);
+      benchmark('algorithmic.binarySearchUpper()', () {
+        algorithmic.binarySearchUpper(list, 1);
+      }, iterations: times);
+    });
+
+    group("In a sorted list of $size numbers with a custom comparator", () {
+      List<int> list = [];
+      setUp(() {
+        list = List<int>.generate(size, (i) => i);
+      });
+
       benchmark('collection.binarySearch()', () {
         collection.binarySearch(list, 1, compare: comp);
       }, iterations: times);
-      benchmark('algorithmic.quickBinarySearch()', () {
-        algorithmic.binarySearchQuick(list, 1, compare: comp);
+      benchmark('algorithmic.binarySearchQuick()', () {
+        algorithmic.binarySearchQuick(list, 1);
       }, iterations: times);
       benchmark('algorithmic.binarySearch()', () {
         algorithmic.binarySearch(list, 1, compare: comp);
       }, iterations: times);
-    },
-  );
+      benchmark('algorithmic.binarySearchUpper()', () {
+        algorithmic.binarySearchUpper(list, 1, compare: comp);
+      }, iterations: times);
+    });
+  });
 }

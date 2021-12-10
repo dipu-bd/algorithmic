@@ -41,13 +41,13 @@ Index searching algorithms attempt to find the index of an item from a list.
 
 A faster searching algorithm for sorted list of items. It divides the list into two parts and discard one based on the middle value of them. This requires the list to be sorted in an increasing order.
 
-|             Functions | Performance | Tests | Benchmark | Since |
-| --------------------: | :---------: | :---: | :-------: | :---: |
-|        `lowerBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-|        `upperBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-|      `binarySearch()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-| `binarySearchUpper()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.6 |
-| `binarySearchQuick()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.6 |
+|             Functions | Performance  | Tests | Benchmark | Since |
+| --------------------: | :----------: | :---: | :-------: | :---: |
+|        `lowerBound()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.3 |
+|        `upperBound()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.3 |
+|      `binarySearch()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.3 |
+| `binarySearchUpper()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.6 |
+| `binarySearchQuick()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.6 |
 
 ### Linear Search
 
@@ -55,10 +55,10 @@ A general searching algorithm for any kind of list. It tests every elements on t
 
 |                  Functions | Performance | Tests | Benchmark | Since |
 | -------------------------: | :---------: | :---: | :-------: | :---: |
-|           `linearSearch()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
-|         `linearSearchBy()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.4 |
-|   `linearSearchReversed()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.1 |
-| `linearSearchReversedBy()` |   `O(n)`    |  ✔️   |    ✔️     | 0.0.4 |
+|           `linearSearch()` |  _O_(_n_)   |  ✔️   |    ✔️     | 0.0.1 |
+|         `linearSearchBy()` |  _O_(_n_)   |  ✔️   |    ✔️     | 0.0.4 |
+|   `linearSearchReversed()` |  _O_(_n_)   |  ✔️   |    ✔️     | 0.0.1 |
+| `linearSearchReversedBy()` |  _O_(_n_)   |  ✔️   |    ✔️     | 0.0.4 |
 
 ## Sorting algorithms
 
@@ -70,7 +70,7 @@ Sorting algorithms puts a list of items into an increasing order.
 
 |      Functions | Performance | Tests | Benchmark | Since |
 | -------------: | :---------: | :---: | :-------: | :---: |
-| `bubbleSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
+| `bubbleSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.5 |
 
 ### Selection Sort
 
@@ -78,7 +78,7 @@ Sorting algorithms puts a list of items into an increasing order.
 
 |         Functions | Performance | Tests | Benchmark | Since |
 | ----------------: | :---------: | :---: | :-------: | :---: |
-| `selectionSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
+| `selectionSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.5 |
 
 ### Insertion Sort
 
@@ -86,7 +86,7 @@ Sorting algorithms puts a list of items into an increasing order.
 
 |         Functions | Performance | Tests | Benchmark | Since |
 | ----------------: | :---------: | :---: | :-------: | :---: |
-| `insertionSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
+| `insertionSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.5 |
 
 ### Gnome Sort
 
@@ -94,4 +94,12 @@ Sorting algorithms puts a list of items into an increasing order.
 
 |     Functions | Performance | Tests | Benchmark | Since |
 | ------------: | :---------: | :---: | :-------: | :---: |
-| `gnomeSort()` |  `O(n^2)`   |  ✔️   |    ✔️     | 0.0.5 |
+| `gnomeSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.5 |
+
+### Quick Sort
+
+[Quicksort](https://en.wikipedia.org/wiki/Quicksort) is an in-place sorting algorithm that works by selecting a _pivot_ element and partitioning the list surrounding it. There are several schemes for selecting the pivot. The sorting performance varies for different schemes.
+
+|           Functions |   Performance    | Tests | Benchmark | Since |
+| ------------------: | :--------------: | :---: | :-------: | :---: |
+| `quickSortLomuto()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.6 |
