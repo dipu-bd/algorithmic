@@ -37,8 +37,8 @@ void gnomeSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c;
-  final int n = list.length;
+  int b, e, c, i;
+  int n = list.length;
 
   b = 0;
   e = n;
@@ -52,7 +52,7 @@ void gnomeSort<E>(
 
   if (compare == null) {
     // compare items with default comparision
-    for (int i = b + 1; i < e;) {
+    for (i = b + 1; i < e;) {
       if (i == b) {
         i++;
         continue;
@@ -62,14 +62,14 @@ void gnomeSort<E>(
         i++;
         continue;
       }
-      final E t = list[i - 1];
+      E t = list[i - 1];
       list[i - 1] = list[i];
       list[i] = t;
       i--;
     }
   } else {
     // compare items with custom comparator (slower)
-    for (int i = b + 1; i < e;) {
+    for (i = b + 1; i < e;) {
       if (i == b) {
         i++;
         continue;
@@ -79,7 +79,7 @@ void gnomeSort<E>(
         i++;
         continue;
       }
-      final E t = list[i - 1];
+      E t = list[i - 1];
       list[i - 1] = list[i];
       list[i] = t;
       i--;

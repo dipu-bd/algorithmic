@@ -4,6 +4,8 @@
 /// A collection of list sorting algorithms.
 library algorithmic.sorting;
 
+export 'src/utils/comparators.dart';
+
 export 'src/sorting/bubble.dart';
 export 'src/sorting/gnome.dart';
 export 'src/sorting/insertion.dart';

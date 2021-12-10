@@ -33,8 +33,8 @@ void selectionSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c, m;
-  final int n = list.length;
+  int b, e, c, m, i, j;
+  int n = list.length;
 
   b = 0;
   e = n;
@@ -48,32 +48,32 @@ void selectionSort<E>(
 
   if (compare == null) {
     // compare items with default comparision
-    for (int i = b; i < e; ++i) {
+    for (i = b; i < e; ++i) {
       m = i;
-      for (int j = i + 1; j < e; ++j) {
+      for (j = i + 1; j < e; ++j) {
         c = (list[j] as Comparable).compareTo(list[m]);
         if (c < 0) {
           m = j;
         }
       }
       if (m != i) {
-        final E t = list[m];
+        E t = list[m];
         list[m] = list[i];
         list[i] = t;
       }
     }
   } else {
     // compare items with custom comparator (slower)
-    for (int i = b; i < e; ++i) {
+    for (i = b; i < e; ++i) {
       m = i;
-      for (int j = i + 1; j < e; ++j) {
+      for (j = i + 1; j < e; ++j) {
         c = compare(list[j], list[m]);
         if (c < 0) {
           m = j;
         }
       }
       if (m != i) {
-        final E t = list[m];
+        E t = list[m];
         list[m] = list[i];
         list[i] = t;
       }

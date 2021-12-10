@@ -1,3 +1,10 @@
+## 0.0.6
+
+- New algorithms:
+  - binarySearchQuick
+- Changes algorithms:
+  - binarySearchUpper: renamed from binarySearchMax
+
 ## 0.0.5
 
 - Adds sorting algorithms:

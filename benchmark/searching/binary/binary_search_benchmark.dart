@@ -4,49 +4,40 @@
 import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
-import '_config.dart';
 
 void main() {
+  final int times = 1000;
+  final int size = 100 * 1000 * 1000;
+  final list = List<int>.generate(size, (i) => i);
+
   group(
-    "Binary search in a sorted list of $size numbers ($times times)",
+    "Binary search in a sorted list of $size numbers",
     () {
       benchmark('collection.binarySearch()', () {
-        for (int i in vals) {
-          collection.binarySearch(list, i);
-        }
-      });
+        collection.binarySearch(list, 1);
+      }, iterations: times);
       benchmark('algorithmic.quickBinarySearch()', () {
-        for (int i in vals) {
-          algorithmic.quickBinarySearch(list, i);
-        }
-      });
+        algorithmic.binarySearchQuick(list, 1);
+      }, iterations: times);
       benchmark('algorithmic.binarySearch()', () {
-        for (int i in vals) {
-          algorithmic.binarySearch(list, i);
-        }
-      });
+        algorithmic.binarySearch(list, 1);
+      }, iterations: times);
     },
   );
 
   group(
-    "Binary search in a sorted list of $size numbers with a custom comparator ($times times)",
+    "Binary search in a sorted list of $size numbers with a custom comparator",
     () {
       final comp = ((int a, int b) => a - b);
       benchmark('collection.binarySearch()', () {
-        for (int i in vals) {
-          collection.binarySearch(list, i, compare: comp);
-        }
-      });
+        collection.binarySearch(list, 1, compare: comp);
+      }, iterations: times);
       benchmark('algorithmic.quickBinarySearch()', () {
-        for (int i in vals) {
-          algorithmic.quickBinarySearch(list, i, compare: comp);
-        }
-      });
+        algorithmic.binarySearchQuick(list, 1, compare: comp);
+      }, iterations: times);
       benchmark('algorithmic.binarySearch()', () {
-        for (int i in vals) {
-          algorithmic.binarySearch(list, i, compare: comp);
-        }
-      });
+        algorithmic.binarySearch(list, 1, compare: comp);
+      }, iterations: times);
     },
   );
 }

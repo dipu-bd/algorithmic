@@ -22,7 +22,7 @@ int linearSearchReversed<E>(
   int i, j;
   final int n = list.length;
 
-  // determine range [i, j)
+  // determine range (j, i]
   i = start ?? n - 1;
   j = -1;
   if (count != null) {
@@ -61,7 +61,7 @@ int linearSearchReversedBy<E>(
   int i, j;
   final int n = list.length;
 
-  // determine range [i, j)
+  // determine range (j, i]
   i = start ?? n - 1;
   j = -1;
   if (count != null) {

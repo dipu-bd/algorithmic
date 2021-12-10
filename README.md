@@ -8,7 +8,7 @@ A collection of useful algorithms keeping performance and flexibility on mind.
 
 ## Usage
 
-The following import will give you access to all algorithms declared in this library.
+The following import will give you access to all the algorithms in this package.
 
 ```dart
 import 'package:algorithmic/algorithmic.dart';
@@ -31,9 +31,7 @@ To run benchmark on your own machine:
 $ dart run benchmark
 ```
 
-You can check the [benchmark.log](https://github.com/dipu-bd/algorithmic/blob/master/benchmark.log) for the benchmark result from my desktop.
-
-If it is taking too long to run the benchmarks, modify the `_config.dart` files stored inside the `benchmark` folder.
+You can check the [benchmark.log](https://github.com/dipu-bd/algorithmic/blob/master/benchmark.log) file for the benchmark results.
 
 ## Searching algorithms
 
@@ -41,18 +39,19 @@ Index searching algorithms attempt to find the index of an item from a list.
 
 ### Binary Search
 
-A faster searching algorithm for sorted list of items.
+A faster searching algorithm for sorted list of items. It divides the list into two parts and discard one based on the middle value of them. This requires the list to be sorted in an increasing order.
 
-|           Functions | Performance | Tests | Benchmark | Since |
-| ------------------: | :---------: | :---: | :-------: | :---: |
-|      `lowerBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-|      `upperBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-|    `binarySearch()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
-| `binarySearchMax()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.4 |
+|             Functions | Performance | Tests | Benchmark | Since |
+| --------------------: | :---------: | :---: | :-------: | :---: |
+|        `lowerBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
+|        `upperBound()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
+|      `binarySearch()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.3 |
+| `binarySearchUpper()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.6 |
+| `binarySearchQuick()` | `O(log n)`  |  ✔️   |    ✔️     | 0.0.6 |
 
 ### Linear Search
 
-A general searching algorithm for any kind of list.
+A general searching algorithm for any kind of list. It tests every elements on the list one by one.
 
 |                  Functions | Performance | Tests | Benchmark | Since |
 | -------------------------: | :---------: | :---: | :-------: | :---: |

@@ -1,74 +1,87 @@
- RUNNING  ./benchmark\searching\binary\binary_search_benchmark.dart DONE  ./benchmark\searching\binary\binary_search_benchmark.dart (22 s)
- Binary search in a sorted list of 1000000000 numbers (200000 times)
-  ✓ collection.binarySearch() (777 ms)
-  ✓ algorithmic.quickBinarySearch() (132 ms)
-  ✓ algorithmic.binarySearch() (138 ms)
- Binary search in a sorted list of 1000000000 numbers with a custom comparator (200000 times)
-  ✓ collection.binarySearch() (753 ms)
-  ✓ algorithmic.quickBinarySearch() (263 ms)
-  ✓ algorithmic.binarySearch() (283 ms)
+ RUNNING  ./benchmark\searching\binary\binary_search_benchmark.dart DONE  ./benchmark\searching\binary\binary_search_benchmark.dart (14 s)
+ Binary search in a sorted list of 100000000 numbers
+  ✓ collection.binarySearch() (313 us)
+  ✓ algorithmic.quickBinarySearch() (30 us)
+  ✓ algorithmic.binarySearch() (33 us)
+ Binary search in a sorted list of 100000000 numbers with a custom comparator
+  ✓ collection.binarySearch() (304 us)
+  ✓ algorithmic.quickBinarySearch() (89 us)
+  ✓ algorithmic.binarySearch() (105 us)
 
- RUNNING  ./benchmark\searching\binary\binary_search_max_benchmark.dart DONE  ./benchmark\searching\binary\binary_search_max_benchmark.dart (12 s)
- Binary search (maximum index) in a sorted list of 1000000000 numbers (200000 times)
-  ✓ algorithmic.binarySearchMax() (143 ms)
- Binary search (maximum index) in a sorted list of 1000000000 numbers with a custom comparator (200000 times)
-  ✓ algorithmic.binarySearchMax() (305 ms)
+ RUNNING  ./benchmark\searching\binary\binary_variant_benchmark.dart DONE  ./benchmark\searching\binary\binary_variant_benchmark.dart (10 s)
+ Binary search (upper) in a sorted list of 100000000 numbers
+  ✓ algorithmic.binarySearchUpper() (35 us)
+ Binary search (upper) in a sorted list of 100000000 numbers with a custom comparator
+  ✓ algorithmic.binarySearchUpper() (101 us)
+ Binary search (quick) in a sorted list of 100000000 numbers
+  ✓ algorithmic.binarySearchQuick() (28 us)
+ Binary search (quick) in a sorted list of 100000000 numbers with a custom comparator
+  ✓ algorithmic.binarySearchQuick() (90 us)
 
- RUNNING  ./benchmark\searching\binary\lower_bound_benchmark.dart DONE  ./benchmark\searching\binary\lower_bound_benchmark.dart (16 s)
- Lower bound in a sorted list of 1000000000 numbers (200000 times)
-  ✓ collection.lowerBound() (806 ms)
-  ✓ algorithmic.lowerBound() (128 ms)
- Lower bound in a sorted list of 1000000000 numbers with a custom comparator (200000 times)
-  ✓ collection.lowerBound() (787 ms)
-  ✓ algorithmic.lowerBoundBy() (318 ms)
+ RUNNING  ./benchmark\searching\binary\lower_bound_benchmark.dart DONE  ./benchmark\searching\binary\lower_bound_benchmark.dart (10 s)
+ Lower bound in a sorted list of 100000000 numbers
+  ✓ collection.lowerBound() (311 us)
+  ✓ algorithmic.lowerBound() (27 us)
+ Lower bound in a sorted list of 100000000 numbers with a custom comparator
+  ✓ collection.lowerBound() (313 us)
+  ✓ algorithmic.lowerBoundBy() (96 us)
 
- RUNNING  ./benchmark\searching\binary\upper_bound_benchmark.dart DONE  ./benchmark\searching\binary\upper_bound_benchmark.dart (11 s)
- Upper bound in a sorted list of 1000000000 numbers (200000 times)
-  ✓ algorithmic.upperBound() (140 ms)
- Upper bound in a sorted list of 1000000000 numbers with a custom comparator (200000 times)
-  ✓ algorithmic.upperBound() (308 ms)
+ RUNNING  ./benchmark\searching\binary\upper_bound_benchmark.dart DONE  ./benchmark\searching\binary\upper_bound_benchmark.dart (6 s)
+ Upper bound in a sorted list of 100000000 numbers
+  ✓ algorithmic.upperBound() (29 us)
+ Upper bound in a sorted list of 100000000 numbers with a custom comparator
+  ✓ algorithmic.upperBound() (93 us)
 
- RUNNING  ./benchmark\searching\linear\linear_search_benchmark.dart DONE  ./benchmark\searching\linear\linear_search_benchmark.dart (9 s)
- Linear search in a shuffled list of 1000000 numbers (10 times)
-  ✓ list.indexOf() (46 ms)
-  ✓ algorithmic.linearSearch() (43 ms)
- Linear search in a shuffled list of 1000000 numbers with a tester (10 times)
-  ✓ list.indexWhere() (309 ms)
-  ✓ algorithmic.linearSearchBy() (305 ms)
+ RUNNING  ./benchmark\searching\linear\forward_linear_benchmark.dart DONE  ./benchmark\searching\linear\forward_linear_benchmark.dart (18 s)
+ Linear search in a list of 1000 numbers
+  ✓ list.indexOf() (164 us)
+  ✓ algorithmic.linearSearch() (110 us)
+ Linear search in a list of 1000 numbers with a tester
+  ✓ list.indexWhere() (162 us)
+  ✓ algorithmic.linearSearchBy() (723 us)
+ Reversed linear search in a list of 1000 numbers
+  ✓ list.lastIndexOf() (162 us)
+  ✓ algorithmic.linearSearchReversed() (162 us)
+ Reversed Linear search in a list of 1000 numbers with a tester
+  ✓ list.lastIndexWhere() (761 us)
+  ✓ algorithmic.linearSearchReversedBy() (765 us)
 
- RUNNING  ./benchmark\searching\linear\reverse_linear_search_benchmark.dart DONE  ./benchmark\searching\linear\reverse_linear_search_benchmark.dart (8 s)
- Reversed linear search in a shuffled list of 1000000 numbers (10 times)
-  ✓ list.lastIndexOf() (65 ms)
-  ✓ algorithmic.linearSearchReversed() (65 ms)
- Reversed Linear search in a shuffled list of 1000000 numbers with a custom comparator (10 times)
-  ✓ list.lastIndexWhere() (304 ms)
-  ✓ algorithmic.linearSearchReversedBy() (289 ms)
+ RUNNING  ./benchmark\searching\linear\reverse_linear_benchmark.dart DONE  ./benchmark\searching\linear\reverse_linear_benchmark.dart (9 s)
+ Reversed linear search in a list of 1000 numbers
+  ✓ list.lastIndexOf() (162 us)
+  ✓ algorithmic.linearSearchReversed() (137 us)
+ Reversed Linear search in a list of 1000 numbers with a tester
+  ✓ list.lastIndexWhere() (728 us)
+  ✓ algorithmic.linearSearchReversedBy() (765 us)
 
- RUNNING  ./benchmark\sorting\n_square\bubble_vs_selection_benchmark.dart DONE  ./benchmark\sorting\n_square\bubble_vs_selection_benchmark.dart (14 s)
- Bubble vs Selection sort
-  In a shuffled list of 10000 numbers
-   ✓ algorithmic.bubbleSort() (551 ms)
-   ✓ algorithmic.selectionSort() (335 ms)
-  In an increasingly sorted list of 10000 numbers
-   ✓ algorithmic.bubbleSort() (559 ms)
-   ✓ algorithmic.selectionSort() (330 ms)
-  In a decreasingly sorted list of 10000 numbers
-   ✓ algorithmic.bubbleSort() (544 ms)
-   ✓ algorithmic.selectionSort() (324 ms)
+ RUNNING  ./benchmark\sorting\n_square_benchmark.dart DONE  ./benchmark\sorting\n_square_benchmark.dart (32 s)
+ Benchmark O(n^2) algorithms with small list of integers
+  In a shuffled list of 32 numbers
+   ✓ list.sort() (168 us)
+   ✓ algorithmic.gnomeSort() (47 us)
+   ✓ algorithmic.insertionSort() (92 us)
+   ✓ algorithmic.bubbleSort() (612 us)
+   ✓ algorithmic.selectionSort() (594 us)
+  In an increasing list of 32 numbers
+   ✓ list.sort() (162 us)
+   ✓ algorithmic.gnomeSort() (46 us)
+   ✓ algorithmic.insertionSort() (90 us)
+   ✓ algorithmic.bubbleSort() (583 us)
+   ✓ algorithmic.selectionSort() (580 us)
+  In a decreasing list of 32 numbers
+   ✓ list.sort() (165 us)
+   ✓ algorithmic.gnomeSort() (48 us)
+   ✓ algorithmic.insertionSort() (91 us)
+   ✓ algorithmic.bubbleSort() (612 us)
+   ✓ algorithmic.selectionSort() (597 us)
 
- RUNNING  ./benchmark\sorting\n_square\insertion_vs_gnome_benchmark.dart DONE  ./benchmark\sorting\n_square\insertion_vs_gnome_benchmark.dart (13 s)
- Insertion vs Gnome sort
-  In a shuffled list of 10000 numbers
-   ✓ algorithmic.gnomeSort() (148 us)
-   ✓ algorithmic.insertionSort() (174 us)
-  In an increasingly sorted list of 10000 numbers
-   ✓ algorithmic.gnomeSort() (148 us)
-   ✓ algorithmic.insertionSort() (173 us)
-  In a decreasingly sorted list of 10000 numbers
-   ✓ algorithmic.gnomeSort() (148 us)
-   ✓ algorithmic.insertionSort() (172 us)
+ RUNNING  ./benchmark\tes\quicksort_benchmark.dart[50D ERROR  ./benchmark\tes\quicksort_benchmark.dart     
+FormatException: Unexpected end of input (at character 1)
 
-Benchmark suites: 8 passed, 8 total
-Benchmarks:       34 passed, 34 total
-Time:             109 s
+^
+
+
+Benchmark suites: 7 passed, 8 total
+Benchmarks:       43 passed, 43 total
+Time:             101 s
 Ran all benchmark suites.

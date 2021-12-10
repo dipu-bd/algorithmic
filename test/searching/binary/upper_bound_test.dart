@@ -151,7 +151,7 @@ void main() {
     });
   });
 
-  group('upperBound() with [compare]', () {
+  group('upperBound() with custom [compare]', () {
     final compare = ((int a, int b) => a - b);
 
     group('Test [0, 0, 0, 0, 0]', () {

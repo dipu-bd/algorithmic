@@ -4,38 +4,34 @@
 import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
-import '_config.dart';
 
 void main() {
+  final int times = 1000;
+  final int size = 100 * 1000 * 1000;
+  final list = List<int>.generate(size, (i) => i);
+
   group(
-    "Lower bound in a sorted list of $size numbers ($times times)",
+    "Lower bound in a sorted list of $size numbers",
     () {
       benchmark('collection.lowerBound()', () {
-        for (int i in vals) {
-          collection.lowerBound(list, i);
-        }
-      });
+        collection.lowerBound(list, 1);
+      }, iterations: times);
       benchmark('algorithmic.lowerBound()', () {
-        for (int i in vals) {
-          algorithmic.lowerBound(list, i);
-        }
-      });
+        algorithmic.lowerBound(list, 1);
+      }, iterations: times);
     },
   );
 
   group(
-    "Lower bound in a sorted list of $size numbers with a custom comparator ($times times)",
+    "Lower bound in a sorted list of $size numbers with a custom comparator",
     () {
+      final comp = ((int a, int b) => a - b);
       benchmark('collection.lowerBound()', () {
-        for (int i in vals) {
-          collection.lowerBound(list, i, compare: (int a, int b) => a - b);
-        }
-      });
+        collection.lowerBound(list, 1, compare: comp);
+      }, iterations: times);
       benchmark('algorithmic.lowerBoundBy()', () {
-        for (int i in vals) {
-          algorithmic.lowerBound(list, i, compare: (int a, int b) => a - b);
-        }
-      });
+        algorithmic.lowerBound(list, 1, compare: comp);
+      }, iterations: times);
     },
   );
 }

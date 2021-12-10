@@ -34,8 +34,8 @@ void insertionSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c;
-  final int n = list.length;
+  int b, e, c, i, j;
+  int n = list.length;
 
   b = 0;
   e = n;
@@ -49,25 +49,29 @@ void insertionSort<E>(
 
   if (compare == null) {
     // compare items with default comparision
-    for (int i = b + 1; i < e; ++i) {
-      for (int j = i - 1; j >= b; --j) {
-        c = (list[j] as Comparable).compareTo(list[j + 1]);
+    for (i = b + 1; i < e; ++i) {
+      E e = list[i];
+      j = i;
+      while (j > b) {
+        c = (list[j - 1] as Comparable).compareTo(e);
         if (c <= 0) break;
-        final E t = list[j + 1];
-        list[j + 1] = list[j];
-        list[j] = t;
+        list[j] = list[j - 1];
+        j--;
       }
+      list[j] = e;
     }
   } else {
     // compare items with custom comparator (slower)
-    for (int i = b + 1; i < e; ++i) {
-      for (int j = i - 1; j >= b; --j) {
-        c = compare(list[j], list[j + 1]);
+    for (i = b + 1; i < e; ++i) {
+      E e = list[i];
+      j = i;
+      while (j > b) {
+        c = compare(list[j - 1], e);
         if (c <= 0) break;
-        final E t = list[j + 1];
-        list[j + 1] = list[j];
-        list[j] = t;
+        list[j] = list[j - 1];
+        j--;
       }
+      list[j] = e;
     }
   }
 }

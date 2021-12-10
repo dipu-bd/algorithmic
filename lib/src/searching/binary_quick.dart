@@ -31,7 +31,7 @@ import 'package:algorithmic/src/utils/comparators.dart';
 ///
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(log n)` | Space `O(1)`
-int quickBinarySearch<E, V>(
+int binarySearchQuick<E, V>(
   final List<E> list,
   final V value, {
   final int? start,

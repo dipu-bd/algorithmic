@@ -75,7 +75,7 @@ int linearSearchBy<E>(
 
   // forward loop in range [i, j)
   for (; i < j; ++i) {
-    if (test.call(list[i])) {
+    if (test(list[i])) {
       return i;
     }
   }

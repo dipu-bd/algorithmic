@@ -184,7 +184,7 @@ void main() {
     });
   });
 
-  group('lowerBound() with [compare]', () {
+  group('lowerBound() with custom [compare]', () {
     final comp = ((int a, int b) => a - b);
     group('Test [0, 0, 0, 0, 0]', () {
       final arr = [0, 0, 0, 0, 0];
