@@ -103,3 +103,4 @@ Sorting algorithms puts a list of items into an increasing order.
 |           Functions |   Performance    | Tests | Benchmark | Since |
 | ------------------: | :--------------: | :---: | :-------: | :---: |
 | `quickSortLomuto()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.6 |
+|  `quickSortHaore()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.7 |

@@ -1,7 +1,14 @@
+## 0.0.7
+
+- New algorithms:
+  - quickSortHaore
+
 ## 0.0.6
 
 - New algorithms:
   - binarySearchQuick
+  - quickSortLomuto
+  - gnomeSort
 - Changes algorithms:
   - binarySearchUpper: renamed from binarySearchMax
 

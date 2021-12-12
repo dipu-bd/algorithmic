@@ -1,12 +1,10 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import './gnome.dart';
-
 /// Sorts the [list] of numbers using the
 /// [quicksort](https://en.wikipedia.org/wiki/Quicksort) algorithm with
-/// [Lomuto partition scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme),
-/// with several optimizations.
+/// [Lomuto partition scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
+/// and several optimizations.
 ///
 ///
 /// ## Parameters
@@ -23,44 +21,35 @@ import './gnome.dart';
 /// * if [end] is not greater than the [begin], the range will be empty.
 /// * [compare] is a custom comparator to order the list elements.
 ///   If it is null and [list] items are not [Comparable], [TypeError] is thrown.
-/// * [minItemLimit] is the maximum limit for which a range can be sorted using
+/// * [threshold] is the maximum limit for which a range can be sorted using
 ///   gnome sort.
 ///
 /// ## Optimizations
 ///
-/// 1. Using iterative approach to avoid recursive calls. (dart functions are slow as a sloth!)
+/// 1. Using iterative approach to avoid recursion. (function calls are slow)
 /// 2. Keeping stack smaller by tail-call optimization. (reduces memory usage)
-/// 3. Use gnome sort on smaller ranges. (configurable by [minItemLimit] parameter)
+/// 3. Use gnome sort on smaller ranges. (configurable by [threshold] parameter)
 /// 4. Following Sedwick's optimization and using median-of-3 to choose the pivot.
 ///   (avoiding worst-case performance on already sorted list)
 /// 5. Exclude items equal to the pivot to avoid worst-case performance on list with
 ///   repeatitive items.
 /// 6. Keeping separate logic for when compare function is provided or not.
-///    (again, dart functions are slow as a turtle!)
 ///
-/// ## Algorithm Details
+/// ## Details
 ///
-/// - If the range has less than two items, returns immediately.
-/// - Otherwise, add the range to a stack.
-/// - While the stack is not empty:
-///   - Pop last range from the stack.
-///   - Set the left index of the range as a temporary pivot index.
-///   - To simulate the tail-call optimization and keep the stack smaller,
-///     while temporary pivot index is less than the right index:
-///     - if range has less than or equal to [minItemLimit] items, apply
-///       [gnomeSort] on the range, and break current iteration.
-///     - Otherwise, calculate the median of the range.
-///     - The items at left, median, and right index are swapped in a way so that
-///       the left item is less than both right and median items, and the right item
-///       is less than the median item.
-///     - Select the right item as the  pivot.
-///     - Partitions the range by moving the temporary pivot index is moved to
-///       a location where the pivot index holds the pivot, left part holds all
-///       items less than or equal to the pivot, and right part has all items greater
-///       than the pivot.
-///      - If left part has more than one item, push the range to the stack.
-///      - set the left index to the current temporary pivot index, and continue
-///        this inner loop.
+/// Quicksort is a type of divide and conquer algorithm for sorting an array,
+/// based on a partitioning routine; the details of this partitioning can vary
+/// somewhat, so that quicksort is really a family of closely related algorithms.
+///
+/// Lomuto scheme is attributed to Nico Lomuto. This scheme chooses a pivot that
+/// is typically the last element in the array. The algorithm maintains a temporary
+/// pivot index `p` as it scans the array using another index `i` such that the elements
+/// at `l` through `i-1` (inclusive) are less than the pivot, and the elements at
+/// `i` through `p` (inclusive) are equal to or greater than the pivot.
+///
+/// This scheme degrades to O(n^2) when the [list] is already sorted, or items are repetitive,
+/// but some optimizations can be done to overcome that. Still this is less efficient than
+/// Haore's original scheme implemented in [quickSortHaore].
 ///
 /// --------------------------------------------------------------------------
 /// Complexity: Time `O(n log n)` | Space `O(log n)` <br>
@@ -70,7 +59,7 @@ void quickSortLomuto<E>(
   int? begin,
   int? end,
   Comparator<E>? compare,
-  int minItemLimit = 32,
+  int threshold = 32,
 }) {
   int b, e;
   int n = list.length;
@@ -89,122 +78,146 @@ void quickSortLomuto<E>(
   if (b + 1 >= e) return;
 
   // add the range to a stack.
-  var queue = <int>[];
-  queue.add(b);
-  queue.add(e - 1);
+  var stack = <int>[];
+  stack.add(b);
+  stack.add(e - 1);
 
   // While the stack is not empty
   int l, h, p, q;
-  while (queue.isNotEmpty) {
+  while (stack.isNotEmpty) {
     // pop last range from the stack
-    h = queue.removeLast();
-    l = queue.removeLast();
-
-    // Temporary pivot index
-    p = l;
+    h = stack.removeLast();
+    l = stack.removeLast();
 
     // To keep the stack smaller by simulating the tail-call optimization
     while (l < h) {
-      // If there are few elements, sort them using gnome sort and break the loop
-      if (l + minItemLimit > h) {
-        gnomeSort(list, begin: l, end: h + 1, compare: compare);
-        break;
-      }
-
-      // To avoid worst-case pitfall of already sorted list
-      _sortByMedian(list, l, h, compare);
-
-      // Partition list around pivot index
-      p = _partitionRange(list, l, h, compare);
-
-      // Optimization for repeated values on left partition.
-      // exclude the items from the left range that are equal to the pivot
-      q = p - 1;
       if (compare == null) {
-        while (q > l && list[q] == list[p]) {
-          q--;
+        // If there are few elements, sort them using gnome sort and break the loop
+        if (l + threshold > h) {
+          _gnomeSortDefault(list, l, h);
+          break;
+        }
+
+        // To avoid worst-case pitfall of already sorted list
+        _sortByMedianDefault(list, l, h);
+
+        // Partition list around pivot index
+        p = _partitionRangeDefault(list, l, h);
+
+        // Optimization for repeated values on left partition.
+        // exclude the items from the left range that are equal to the pivot
+        q = p + 1;
+        while (q < h && list[q] == list[p]) {
+          q++;
         }
       } else {
-        while (q > l && compare(list[q], list[p]) == 0) {
-          q--;
+        // If there are few elements, sort them using gnome sort and break the loop
+        if (l + threshold > h) {
+          _gnomeSortCustom(list, l, h, compare);
+          break;
+        }
+
+        // To avoid worst-case pitfall of already sorted list
+        _sortByMedianCustom(list, l, h, compare);
+
+        // Partition list around pivot index
+        p = _partitionRangeCustom(list, l, h, compare);
+
+        // Optimization for repeated values on left partition.
+        // exclude the items from the left range that are equal to the pivot
+        q = p + 1;
+        while (q < h && compare(list[q], list[p]) == 0) {
+          q++;
         }
       }
 
       // take the left partition if it has more than one element
-      if (l < q) {
-        queue.add(l);
-        queue.add(q);
+      if (l < p - 1) {
+        stack.add(l);
+        stack.add(p - 1);
       }
 
       // select the right partition to continue the inner loop
-      l = p + 1;
+      l = q;
     }
   }
 }
 
-void _sortByMedian<E>(List<E> list, int l, int h, Comparator<E>? compare) {
+/// compare items with default comparision
+void _gnomeSortDefault<E>(List<E> list, int l, int h) {
+  E tmp;
+  int i = l + 1;
+  while (i <= h) {
+    if (i == l) {
+      i++;
+      continue;
+    }
+    if ((list[i - 1] as Comparable).compareTo(list[i]) <= 0) {
+      i++;
+      continue;
+    }
+    tmp = list[i - 1];
+    list[i - 1] = list[i];
+    list[i] = tmp;
+    i--;
+  }
+}
+
+/// compare items with custom comparator (slower)
+void _gnomeSortCustom<E>(List<E> list, int l, int h, Comparator<E> compare) {
+  E tmp;
+  int i = l + 1;
+  while (i <= h) {
+    if (i == l) {
+      i++;
+      continue;
+    }
+    if (compare(list[i - 1], list[i]) <= 0) {
+      i++;
+      continue;
+    }
+    tmp = list[i - 1];
+    list[i - 1] = list[i];
+    list[i] = tmp;
+    i--;
+  }
+}
+
+/// compare with default comparator
+void _sortByMedianDefault<E>(List<E> list, int l, int h) {
   // median of the two bounds
   int m = (l + h) >> 1;
+
+  E tmp;
   E el = list[l];
   E em = list[m];
   E eh = list[h];
 
+  if (l == m) {
+    // if there are only two items, sort them and return
+    if ((eh as Comparable).compareTo(el) < 0) {
+      list[l] = eh;
+      list[h] = el;
+    }
+    return;
+  }
+
   // Sedgewick's optimization: el < eh < em
   // el < em | el < eh | eh < em
-  if (compare == null) {
-    // compare with default comparator
-
-    if (l + 2 > h) {
-      // if there are only two items, sort them and return
-      if ((eh as Comparable).compareTo(el) < 0) {
-        list[l] = eh;
-        list[h] = el;
-      }
-      return;
-    }
-
-    if ((em as Comparable).compareTo(el) < 0) {
-      E t = em;
-      em = el;
-      el = t;
-    }
-    if ((eh as Comparable).compareTo(el) < 0) {
-      E t = eh;
-      eh = el;
-      el = t;
-    }
-    if ((em as Comparable).compareTo(eh) < 0) {
-      E t = em;
-      em = eh;
-      eh = t;
-    }
-  } else {
-    // compare with custom comparator (slower)
-
-    if (l + 2 > h) {
-      // if there are only two items, sort them and return
-      if (compare(eh, el) < 0) {
-        list[l] = eh;
-        list[h] = el;
-      }
-      return;
-    }
-
-    if (compare(em, el) < 0) {
-      E t = em;
-      em = el;
-      el = t;
-    }
-    if (compare(eh, el) < 0) {
-      E t = eh;
-      eh = el;
-      el = t;
-    }
-    if (compare(em, eh) < 0) {
-      E t = em;
-      em = eh;
-      eh = t;
-    }
+  if ((em as Comparable).compareTo(el) < 0) {
+    tmp = em;
+    em = el;
+    el = tmp;
+  }
+  if ((eh as Comparable).compareTo(el) < 0) {
+    tmp = eh;
+    eh = el;
+    el = tmp;
+  }
+  if ((em as Comparable).compareTo(eh) < 0) {
+    tmp = em;
+    em = eh;
+    eh = tmp;
   }
 
   list[l] = el;
@@ -212,41 +225,97 @@ void _sortByMedian<E>(List<E> list, int l, int h, Comparator<E>? compare) {
   list[h] = eh;
 }
 
-int _partitionRange<E>(List<E> list, int l, int h, Comparator<E>? compare) {
+/// compare with custom comparator (slower)
+void _sortByMedianCustom<E>(List<E> list, int l, int h, Comparator<E> compare) {
+  // median of the two bounds
+  int m = (l + h) >> 1;
+
+  E tmp;
+  E el = list[l];
+  E em = list[m];
+  E eh = list[h];
+
+  if (l == m) {
+    // if there are only two items, sort them and return
+    if (compare(eh, el) < 0) {
+      list[l] = eh;
+      list[h] = el;
+    }
+    return;
+  }
+
+  // Sedgewick's optimization: el < eh < em
+  // el < em | el < eh | eh < em
+  if (compare(em, el) < 0) {
+    tmp = em;
+    em = el;
+    el = tmp;
+  }
+  if (compare(eh, el) < 0) {
+    tmp = eh;
+    eh = el;
+    el = tmp;
+  }
+  if (compare(em, eh) < 0) {
+    tmp = em;
+    em = eh;
+    eh = tmp;
+  }
+
+  list[l] = el;
+  list[m] = em;
+  list[h] = eh;
+}
+
+/// compare with default comparator
+int _partitionRangeDefault<E>(List<E> list, int l, int h) {
+  E tmp;
+
   // choose the last element as the pivot
   E pivot = list[h];
 
   // Temporary pivot index
   int p = l;
 
-  // PARTITIONING: Move the pivot index to the right position, where all
-  // items on the left are less or equal to the pivot, and all items on
-  // the right are greater than pivot.
-  if (compare == null) {
-    // compare with default comparator
-    for (int i = l; i < h; ++i) {
-      // if the item is less or equal to the pivot
-      if ((list[i] as Comparable).compareTo(pivot) <= 0) {
-        // swap the current item with the item at the temporary pivot index
-        E t = list[p];
-        list[p] = list[i];
-        list[i] = t;
-        // move the temporary pivot index forward
-        p++;
-      }
+  for (; l < h; ++l) {
+    // if the item is less or equal to the pivot
+    if ((list[l] as Comparable).compareTo(pivot) < 0) {
+      // swap the current item with the item at the temporary pivot index
+      tmp = list[p];
+      list[p] = list[l];
+      list[l] = tmp;
+      // move the temporary pivot index forward
+      p++;
     }
-  } else {
-    // compare with custom comparator (slower)
-    for (int i = l; i < h; ++i) {
-      // if the item is less or equal to the pivot
-      if (compare(list[i], pivot) <= 0) {
-        // swap the current item with the item at the temporary pivot index
-        E t = list[p];
-        list[p] = list[i];
-        list[i] = t;
-        // move the temporary pivot index forward
-        p++;
-      }
+  }
+
+  // move the pivot item at the pivot index
+  list[h] = list[p];
+  list[p] = pivot;
+
+  return p;
+}
+
+/// compare with custom comparator (slower)
+int _partitionRangeCustom<E>(
+    List<E> list, int l, int h, Comparator<E> compare) {
+  E tmp;
+
+  // choose the last element as the pivot
+  E pivot = list[h];
+
+  // Temporary pivot index
+  int p = l;
+
+  for (; l < h; ++l) {
+    // if the item is less or equal to the pivot
+    if (compare(list[l], pivot) < 0) {
+      // swap the current item with the item at the temporary pivot index
+      tmp = list[p];
+      list[p] = list[l];
+      list[l] = tmp;
+      // move the temporary pivot index forward
+      p++;
     }
   }
 

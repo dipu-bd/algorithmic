@@ -5,7 +5,7 @@ import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 
 void main() {
-  final int times = 250;
+  final int times = 300;
   final int size = 1000;
 
   group(

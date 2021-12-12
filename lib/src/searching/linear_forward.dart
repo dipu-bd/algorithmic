@@ -15,28 +15,28 @@ import 'package:algorithmic/src/utils/comparators.dart';
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
 int linearSearch<E>(
-  final List<E> list,
-  final E value, {
-  final int? start,
-  final int? count,
+  List<E> list,
+  E value, {
+  int? start,
+  int? count,
 }) {
-  int i, j;
-  final int n = list.length;
+  int l, h;
+  int n = list.length;
 
-  // determine range [i, j)
-  i = start ?? 0;
-  j = n;
+  // determine range [l, h)
+  l = start ?? 0;
+  h = n;
   if (count != null) {
     if (count < 0) return -1;
-    j = i + count;
-    if (j > n) j = n;
+    h = l + count;
+    if (h > n) h = n;
   }
-  if (i < 0) i = 0;
+  if (l < 0) l = 0;
 
-  // forward loop in range [i, j)
-  for (; i < j; ++i) {
-    if (list[i] == value) {
-      return i;
+  // forward loop in range [l, h)
+  for (; l < h; ++l) {
+    if (list[l] == value) {
+      return l;
     }
   }
 
@@ -55,28 +55,28 @@ int linearSearch<E>(
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
 int linearSearchBy<E>(
-  final List<E> list,
-  final EqualityTest<E> test, {
-  final int? start,
-  final int? count,
+  List<E> list,
+  EqualityTest<E> test, {
+  int? start,
+  int? count,
 }) {
-  int i, j;
-  final int n = list.length;
+  int l, h;
+  int n = list.length;
 
-  // determine range [i, j)
-  i = start ?? 0;
-  j = n;
+  // determine range [l, h)
+  l = start ?? 0;
+  h = n;
   if (count != null) {
     if (count < 0) return -1;
-    j = i + count;
-    if (j > n) j = n;
+    h = l + count;
+    if (h > n) h = n;
   }
-  if (i < 0) i = 0;
+  if (l < 0) l = 0;
 
-  // forward loop in range [i, j)
-  for (; i < j; ++i) {
-    if (test(list[i])) {
-      return i;
+  // forward loop in range [l, h)
+  for (; l < h; ++l) {
+    if (test(list[l])) {
+      return l;
     }
   }
 

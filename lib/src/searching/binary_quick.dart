@@ -32,63 +32,71 @@ import 'package:algorithmic/src/utils/comparators.dart';
 /// -------------------------------------------------------------------------
 /// Complexity: Time `O(log n)` | Space `O(1)`
 int binarySearchQuick<E, V>(
-  final List<E> list,
-  final V value, {
-  final int? start,
-  final int? count,
-  final EntryComparator<E, V>? compare,
+  List<E> list,
+  V value, {
+  int? start,
+  int? count,
+  EntryComparator<E, V>? compare,
 }) {
-  int i, j, l, r, m, c;
-  final int n = list.length;
+  int l, h;
+  int n = list.length;
 
   // determine range [i, j)
-  i = start ?? 0;
-  j = n;
+  l = start ?? 0;
+  h = n;
   if (count != null) {
     if (count <= 0) return -1;
-    j = i + count;
-    if (j > n) j = n;
+    h = l + count;
+    if (h > n) h = n;
   }
-  if (i < 0) i = 0;
+  if (l < 0) l = 0;
 
-  l = i;
-  r = j;
   if (compare == null) {
-    // with default comparator
-    while (l < r) {
-      // the middle of the range
-      m = l + ((r - l) >> 1);
-      if (list[m] == value) return m;
-
-      // compare middle item with value
-      c = (list[m] as Comparable).compareTo(value);
-      if (c < 0) {
-        // middle item is lesser, select right range
-        l = m + 1;
-      } else {
-        // middle item is greater, select left range
-        r = m;
-      }
-    }
+    return _withDefaultCompare<E, V>(list, value, l, h);
   } else {
-    // with custom comparator (slower)
-    while (l < r) {
-      // the middle of the range
-      m = l + ((r - l) >> 1);
+    return _withCustomCompare<E, V>(list, value, l, h, compare);
+  }
+}
 
-      // compare middle item with value
-      c = compare(list[m], value);
-      if (c == 0) {
-        return m;
-      } else if (c < 0) {
-        // middle item is lesser, select right range
-        l = m + 1;
-      } else {
-        // middle item is greater, select left range
-        r = m;
-      }
+/// with default comparator
+int _withDefaultCompare<E, V>(List<E> list, V value, int l, int h) {
+  int m;
+  while (l < h) {
+    // the middle of the range
+    m = l + ((h - l) >> 1);
+    // if middle item equals value we found it
+    if (list[m] == value) return m;
+    // compare middle item with value
+    if ((list[m] as Comparable).compareTo(value) < 0) {
+      // if middle item is lesser, select right range
+      l = m + 1;
+    } else {
+      // if middle item is greater, select left range
+      h = m;
     }
   }
+  return -1;
+}
 
+/// with custom comparator (slower)
+int _withCustomCompare<E, V>(
+    List<E> list, V value, int l, int h, EntryComparator<E, V> compare) {
+  int m, c;
+  while (l < h) {
+    // the middle of the range
+    m = l + ((h - l) >> 1);
+    // compare middle item with value
+    c = compare(list[m], value);
+    if (c == 0) {
+      // if middle item equals value we found it
+      return m;
+    } else if (c < 0) {
+      // if middle item is lesser, select right range
+      l = m + 1;
+    } else {
+      // if middle item is greater, select left range
+      h = m;
+    }
+  }
   return -1;
 }

@@ -6,8 +6,8 @@ library algorithmic.searching;
 
 export 'src/utils/comparators.dart';
 
+export 'src/searching/binary_lower.dart';
 export 'src/searching/binary_quick.dart';
 export 'src/searching/binary_upper.dart';
-export 'src/searching/binary.dart';
+export 'src/searching/linear_forward.dart';
 export 'src/searching/linear_reversed.dart';
-export 'src/searching/linear.dart';

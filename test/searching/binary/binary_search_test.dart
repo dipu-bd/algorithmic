@@ -6,7 +6,7 @@ import 'package:algorithmic/searching.dart';
 
 void main() {
   group('binarySearch()', () {
-    group('Check if type errors are thrown', () {
+    group('Check if errors are thrown', () {
       test("Case: int vs. string", () {
         expect(() => binarySearch([1], '1'), throwsA(TypeMatcher<TypeError>()));
       });
@@ -18,8 +18,7 @@ void main() {
             () => binarySearch(['1'], 1.0), throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: negative count", () {
-        expect(() => binarySearch([1], 1, count: -1),
-            throwsA(TypeMatcher<RangeError>()));
+        expect(binarySearch([1], 1, count: -1), -1);
       });
     });
     group('Find items from an integer array', () {

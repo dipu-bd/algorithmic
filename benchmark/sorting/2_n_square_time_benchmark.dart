@@ -6,12 +6,11 @@ import 'package:algorithmic/algorithmic.dart' as algorithmic;
 
 void main() {
   final int size = 32;
-  final int times = 1000;
+  final int times = 800;
 
   group("Benchmark sort algorithms with small list of integers", () {
     group("In a shuffled list of $size numbers", () {
       List<List<int>> general = [];
-      List<List<int>> lomuto = [];
       List<List<int>> gnome = [];
       List<List<int>> insertion = [];
       List<List<int>> bubble = [];
@@ -21,7 +20,6 @@ void main() {
           var list = List<int>.generate(size, (i) => i);
           list.shuffle();
           general.add([...list]);
-          lomuto.add([...list]);
           gnome.add([...list]);
           insertion.add([...list]);
           bubble.add([...list]);
@@ -32,11 +30,6 @@ void main() {
       benchmark('list.sort()', () {
         for (var list in general) {
           list.sort();
-        }
-      }, iterations: 1);
-      benchmark('algorithmic.quickSortLomuto()', () {
-        for (var list in lomuto) {
-          algorithmic.quickSortLomuto(list);
         }
       }, iterations: 1);
       benchmark('algorithmic.gnomeSort()', () {
@@ -70,9 +63,6 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
-      benchmark('algorithmic.quickSortLomuto()', () {
-        algorithmic.quickSortLomuto(list);
-      }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list);
       }, iterations: times);
@@ -96,9 +86,6 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
-      benchmark('algorithmic.quickSortLomuto()', () {
-        algorithmic.quickSortLomuto(list);
-      }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list);
       }, iterations: times);
@@ -121,9 +108,6 @@ void main() {
 
       benchmark('list.sort()', () {
         list.sort();
-      }, iterations: times);
-      benchmark('algorithmic.quickSortLomuto()', () {
-        algorithmic.quickSortLomuto(list);
       }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list);
@@ -149,9 +133,6 @@ void main() {
 
       benchmark('list.sort()', () {
         list.sort(comp);
-      }, iterations: times);
-      benchmark('algorithmic.quickSortLomuto()', () {
-        algorithmic.quickSortLomuto(list, compare: comp);
       }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list, compare: comp);

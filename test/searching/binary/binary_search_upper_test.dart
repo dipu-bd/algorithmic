@@ -20,8 +20,7 @@ void main() {
             throwsA(TypeMatcher<TypeError>()));
       });
       test("Case: negative count", () {
-        expect(() => binarySearchUpper([1], 1, count: -1),
-            throwsA(TypeMatcher<RangeError>()));
+        expect(binarySearchUpper([1], 1, count: -1), -1);
       });
     });
 
