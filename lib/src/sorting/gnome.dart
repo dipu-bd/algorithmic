@@ -37,7 +37,8 @@ void gnomeSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c, i;
+  E tmp;
+  int b, e, i;
   int n = list.length;
 
   b = 0;
@@ -57,14 +58,13 @@ void gnomeSort<E>(
         i++;
         continue;
       }
-      c = (list[i - 1] as Comparable).compareTo(list[i]);
-      if (c <= 0) {
+      if ((list[i - 1] as Comparable).compareTo(list[i]) <= 0) {
         i++;
         continue;
       }
-      E t = list[i - 1];
+      tmp = list[i - 1];
       list[i - 1] = list[i];
-      list[i] = t;
+      list[i] = tmp;
       i--;
     }
   } else {
@@ -74,14 +74,13 @@ void gnomeSort<E>(
         i++;
         continue;
       }
-      c = compare(list[i - 1], list[i]);
-      if (c <= 0) {
+      if (compare(list[i - 1], list[i]) <= 0) {
         i++;
         continue;
       }
-      E t = list[i - 1];
+      tmp = list[i - 1];
       list[i - 1] = list[i];
-      list[i] = t;
+      list[i] = tmp;
       i--;
     }
   }

@@ -2,6 +2,9 @@
 
 - New algorithms:
   - quickSortHaore
+- Performance improvement:
+  - Removes `final` from function parameters.
+  - Pre-declare all variables.
 
 ## 0.0.6
 

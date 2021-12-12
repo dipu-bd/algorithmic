@@ -5,8 +5,8 @@ import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 
 void main() {
-  final int times = 300;
-  final int size = 1000;
+  final int times = 77;
+  final int size = 1777000;
 
   group(
     "Linear search in a list of $size numbers",

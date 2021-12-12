@@ -16,8 +16,7 @@ void main() {
         expect(list, original);
       }
     });
-    test(
-        "Test all permutations of [-3, -2, -1, 0, 1, 2] with threshold: 128",
+    test("Test all permutations of [-3, -2, -1, 0, 1, 2] with threshold: 128",
         () {
       final original = [-3, -2, -1, 0, 1, 2];
       final perms = Permutations(original.length, original);
@@ -157,8 +156,7 @@ void main() {
         expect(list, original);
       }
     });
-    test(
-        "Test all permutations of [2, 1, 0, -1, -2, -3] with threshold: 128",
+    test("Test all permutations of [2, 1, 0, -1, -2, -3] with threshold: 128",
         () {
       final original = [2, 1, 0, -1, -2, -3];
       final perms = Permutations(original.length, original);

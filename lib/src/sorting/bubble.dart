@@ -34,7 +34,8 @@ void bubbleSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c, i, j;
+  E tmp;
+  int b, e, i, j;
   int n = list.length;
 
   b = 0;
@@ -51,11 +52,10 @@ void bubbleSort<E>(
     // compare items with default comparision
     for (i = b + 1; i < e; ++i) {
       for (j = b + 1; j <= e - i + b; ++j) {
-        c = (list[j] as Comparable).compareTo(list[j - 1]);
-        if (c < 0) {
-          E t = list[j - 1];
+        if ((list[j] as Comparable).compareTo(list[j - 1]) < 0) {
+          tmp = list[j - 1];
           list[j - 1] = list[j];
-          list[j] = t;
+          list[j] = tmp;
         }
       }
     }
@@ -63,11 +63,10 @@ void bubbleSort<E>(
     // compare items with custom comparator (slower)
     for (i = b + 1; i < e; ++i) {
       for (j = b + 1; j <= e - i + b; ++j) {
-        c = compare(list[j], list[j - 1]);
-        if (c < 0) {
-          E t = list[j - 1];
+        if (compare(list[j], list[j - 1]) < 0) {
+          tmp = list[j - 1];
           list[j - 1] = list[j];
-          list[j] = t;
+          list[j] = tmp;
         }
       }
     }

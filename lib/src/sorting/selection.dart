@@ -33,7 +33,8 @@ void selectionSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  int b, e, c, m, i, j;
+  E tmp;
+  int b, e, m, i, j;
   int n = list.length;
 
   b = 0;
@@ -51,15 +52,14 @@ void selectionSort<E>(
     for (i = b; i < e; ++i) {
       m = i;
       for (j = i + 1; j < e; ++j) {
-        c = (list[j] as Comparable).compareTo(list[m]);
-        if (c < 0) {
+        if ((list[j] as Comparable).compareTo(list[m]) < 0) {
           m = j;
         }
       }
       if (m != i) {
-        E t = list[m];
+        tmp = list[m];
         list[m] = list[i];
-        list[i] = t;
+        list[i] = tmp;
       }
     }
   } else {
@@ -67,15 +67,14 @@ void selectionSort<E>(
     for (i = b; i < e; ++i) {
       m = i;
       for (j = i + 1; j < e; ++j) {
-        c = compare(list[j], list[m]);
-        if (c < 0) {
+        if (compare(list[j], list[m]) < 0) {
           m = j;
         }
       }
       if (m != i) {
-        E t = list[m];
+        tmp = list[m];
         list[m] = list[i];
-        list[i] = t;
+        list[i] = tmp;
       }
     }
   }
