@@ -38,7 +38,7 @@ int binarySearchQuick<E, V>(
   int? count,
   EntryComparator<E, V>? compare,
 }) {
-  int i, j, l, r, m, c;
+  int i, j, l, h, m, c;
   int n = list.length;
 
   // determine range [i, j)
@@ -52,12 +52,12 @@ int binarySearchQuick<E, V>(
   if (i < 0) i = 0;
 
   l = i;
-  r = j;
+  h = j;
   if (compare == null) {
     // with default comparator
-    while (l < r) {
+    while (l < h) {
       // the middle of the range
-      m = l + ((r - l) >> 1);
+      m = l + ((h - l) >> 1);
 
       // if item at the middle is equal return immediately
       if (list[m] == value) return m;
@@ -68,14 +68,14 @@ int binarySearchQuick<E, V>(
         l = m + 1;
       } else {
         // middle item is greater, select left range
-        r = m;
+        h = m;
       }
     }
   } else {
     // with custom comparator (slower)
-    while (l < r) {
+    while (l < h) {
       // the middle of the range
-      m = l + ((r - l) >> 1);
+      m = l + ((h - l) >> 1);
 
       // compare middle item with value
       c = compare(list[m], value);
@@ -87,7 +87,7 @@ int binarySearchQuick<E, V>(
         l = m + 1;
       } else {
         // middle item is greater, select left range
-        r = m;
+        h = m;
       }
     }
   }

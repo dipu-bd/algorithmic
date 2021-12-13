@@ -5,14 +5,14 @@ import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 
 void main() {
-  final int size = 100 * 1000;
+  final int size = 500 * 1000;
   final int times = 100;
   final duration = Duration(seconds: 2);
 
   final sortable = List<int>.generate(size, (i) => i);
   sortable.shuffle();
 
-  group("Benchmark Lomuto Quicksort with different [threshold]", () {
+  group("Benchmark Quicksort with different [threshold]", () {
     List<int> list = [];
     setUpEach(() {
       list = [...sortable];

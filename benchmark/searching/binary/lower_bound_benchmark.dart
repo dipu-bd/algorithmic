@@ -6,15 +6,16 @@ import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
 
 void main() {
-  final int times = 2000;
-  final int size = 100 * 1000 * 1000;
+  final int times = 777 * 1000;
+  final int size = 1000 * 1000 * 1000;
   final comp = ((int a, int b) => a - b);
+  final original = List<int>.generate(size, (i) => i);
 
   group("Benchmark lower bound", () {
     group("In a sorted list of $size numbers", () {
       List<int> list = [];
       setUp(() {
-        list = List<int>.generate(size, (i) => i);
+        list = original;
       });
 
       benchmark('collection.lowerBound()', () {
@@ -28,7 +29,7 @@ void main() {
     group("In a sorted list of $size numbers with repeated items", () {
       List<int> list = [];
       setUp(() {
-        list = List<int>.generate(size, (i) => (i * 1000 / size).floor());
+        list = original.map((i) => (i * 1000 / size).floor()).toList();
       });
 
       benchmark('collection.lowerBound()', () {
@@ -42,7 +43,7 @@ void main() {
     group("In a sorted list of $size numbers with a custom comparator", () {
       List<int> list = [];
       setUp(() {
-        list = List<int>.generate(size, (i) => i);
+        list = original;
       });
 
       benchmark('collection.lowerBound()', () {

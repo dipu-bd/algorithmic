@@ -41,6 +41,7 @@ void gnomeSort<E>(
   int b, e, i;
   int n = list.length;
 
+  // Find the range given the parameters.
   b = 0;
   e = n;
   if (begin != null && b < begin) {

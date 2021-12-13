@@ -6,8 +6,8 @@ import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:collection/src/algorithms.dart' as collection;
 
 void main() {
-  final int times = 2000;
-  final int size = 100 * 1000 * 1000;
+  final int times = 777 * 1000;
+  final int size = 1000 * 1000 * 1000;
   final comp = ((num a, num b) => (a - b).toInt());
   final original = List<int>.generate(size, (i) => i);
 

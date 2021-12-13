@@ -101,78 +101,67 @@ int _lowerBound<E, V>(
   EntryComparator<E, V>? compare, {
   bool exactMatch = false,
 }) {
-  int l, h, x;
+  int b, e, l, h, m;
   int n = list.length;
 
   // determine range [i, j)
-  l = start ?? 0;
-  h = n;
+  b = start ?? 0;
+  e = n;
   if (count != null) {
     if (count < 0) {
       if (exactMatch) return -1;
       throw RangeError("count can not be negative");
     }
-    h = l + count;
-    if (h > n) h = n;
+    e = b + count;
+    if (e > n) e = n;
   }
-  if (l < 0) l = 0;
+  if (b < 0) b = 0;
 
+  l = b;
+  h = e;
   if (compare == null) {
-    x = _withDefaultCompare<E, V>(list, value, l, h);
+    // with default comparator
+    while (l < h) {
+      // the middle of the range
+      m = l + ((h - l) >> 1);
+      // compare middle item with value
+      if ((list[m] as Comparable).compareTo(value) < 0) {
+        // middle item is lesser, select right range
+        l = m + 1;
+      } else {
+        // middle item is either equal or greater, select left range
+        h = m;
+      }
+    }
   } else {
-    x = _withCustomCompare<E, V>(list, value, l, h, compare);
+    // with custom comparator (slower)
+    while (l < h) {
+      // the middle of the range
+      m = l + ((h - l) >> 1);
+      // compare middle item with value
+      if (compare(list[m], value) < 0) {
+        // middle item is lesser, select right range
+        l = m + 1;
+      } else {
+        // middle item is either equal or greater, select left range
+        h = m;
+      }
+    }
   }
-  if (x > h) x = h;
+  if (l > e) l = e;
 
   if (!exactMatch) {
     // lower bound index
-    return x;
+    return l;
   }
 
   // binary search result
-  if (l <= x && x < h) {
+  if (b <= l && l < e) {
     if (compare == null) {
-      if (list[x] == value) return x;
+      if (list[l] == value) return l;
     } else {
-      if (compare(list[x], value) == 0) return x;
+      if (compare(list[l], value) == 0) return l;
     }
   }
   return -1;
-}
-
-/// with default comparator
-int _withDefaultCompare<E, V>(List<E> list, V value, int l, int h) {
-  int m;
-  while (l < h) {
-    // the middle of the range
-    m = l + ((h - l) >> 1);
-    // compare middle item with value
-    if ((list[m] as Comparable).compareTo(value) < 0) {
-      // middle item is lesser, select right range
-      l = m + 1;
-    } else {
-      // middle item is either equal or greater, select left range
-      h = m;
-    }
-  }
-  return l;
-}
-
-/// with custom comparator (slower)
-int _withCustomCompare<E, V>(
-    List<E> list, V value, int l, int h, EntryComparator<E, V> compare) {
-  int m;
-  while (l < h) {
-    // the middle of the range
-    m = l + ((h - l) >> 1);
-    // compare middle item with value
-    if (compare(list[m], value) < 0) {
-      // middle item is lesser, select right range
-      l = m + 1;
-    } else {
-      // middle item is either equal or greater, select left range
-      h = m;
-    }
-  }
-  return l;
 }

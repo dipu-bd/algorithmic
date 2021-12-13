@@ -104,3 +104,11 @@ Sorting algorithms puts a list of items into an increasing order.
 | ------------------: | :--------------: | :---: | :-------: | :---: |
 | `quickSortLomuto()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.6 |
 |  `quickSortHaore()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.7 |
+
+### Merge Sort
+
+[Merge sort](https://en.wikipedia.org/wiki/Merge_sort) is a divide and conquer based algorithm, which can handle very large arrays. Unlike quick sort, it promises `O(n log n)` performance in worst case and provides stable sort. But it requires equal amount of memory as the length of the array and the implementation runs slower compared than quick sort.
+
+|     Functions |   Performance    | Tests | Benchmark | Since |
+| ------------: | :--------------: | :---: | :-------: | :---: |
+| `mergeSort()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.8 |

@@ -37,6 +37,7 @@ void selectionSort<E>(
   int b, e, m, i, j;
   int n = list.length;
 
+  // Find the range given the parameters.
   b = 0;
   e = n;
   if (begin != null && b < begin) {

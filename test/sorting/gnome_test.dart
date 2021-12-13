@@ -129,11 +129,12 @@ void main() {
   });
 
   group("gnomeSort() with custom [compare]", () {
+    final comp = ((int a, int b) => b - a);
     test("Test all permutations of [2, 1, 0, -1, -2, -3]", () {
       final original = [2, 1, 0, -1, -2, -3];
       final perms = Permutations(original.length, original);
       for (final list in perms()) {
-        gnomeSort<int>(list, compare: (a, b) => b - a);
+        gnomeSort(list, compare: comp);
         expect(list, original);
       }
     });

@@ -9,6 +9,7 @@ export 'src/utils/comparators.dart';
 export 'src/sorting/bubble.dart';
 export 'src/sorting/gnome.dart';
 export 'src/sorting/insertion.dart';
+export 'src/sorting/merge.dart';
 export 'src/sorting/quicksort_haore.dart';
 export 'src/sorting/quicksort_lomuto.dart';
 export 'src/sorting/selection.dart';

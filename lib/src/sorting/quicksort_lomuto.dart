@@ -2,10 +2,9 @@
 // All rights reserved. Check LICENSE file for details.
 
 /// Sorts the [list] of numbers using the
-/// [quicksort](https://en.wikipedia.org/wiki/Quicksort) algorithm with
+/// [quicksort](https://en.wikipedia.org/wiki/Quicksort) algorithm following
 /// [Lomuto partition scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
-/// and several optimizations.
-///
+/// with several optimizations.
 ///
 /// ## Parameters
 ///
@@ -64,6 +63,7 @@ void quickSortLomuto<E>(
   int b, e;
   int n = list.length;
 
+  // Find the range given the parameters.
   b = 0;
   e = n;
   if (begin != null && b < begin) {
