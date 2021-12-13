@@ -66,7 +66,7 @@ void mergeSort<E>(
   if (w <= 1) {
     w = 1;
   } else if ((w & (w - 1)) != 0) {
-    throw ArgumentError('Threshold must a power of two', 'threshold');
+    throw ArgumentError('Threshold must a power of two');
   } else {
     // Sort by threshold
     if (compare == null) {
