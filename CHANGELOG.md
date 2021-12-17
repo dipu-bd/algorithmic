@@ -1,3 +1,10 @@
+## 0.0.8
+
+- New algorithms:
+  - mergeSort
+- Performance improvement:
+  - Using a custom insertion sort for quickSortHaore and quickSortLomuto
+
 ## 0.0.7
 
 - New algorithms:

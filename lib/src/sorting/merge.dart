@@ -20,23 +20,21 @@
 /// * [compare] is a custom comparator to order the list elements.
 ///   If it is null and [list] items are not [Comparable], [TypeError] is thrown.
 /// * [threshold] is the maximum limit for which a range can be sorted using
-///   gnome sort. It must be a power of 2, otherwise [ArgumentError] is thrown.
+///   insertion sort. It must be a power of 2, otherwise [ArgumentError] is thrown.
 ///
 /// ## Optimizations
 ///
 /// 1. Using iterative approach to avoid recursion. (function calls are slow)
-/// 2. Use gnome sort on smaller ranges. (configurable by [threshold] parameter)
-/// 4. Exclude items equal to the pivot to avoid worst-case performance on list with
-///   repeatitive items.
-/// 5. Keeping separate logic for when compare function is provided or not.
-///
+/// 2. Use insertion sort on smaller ranges. (configurable by [threshold] parameter)
+/// 3. Reuse working copy of [list] by swapping after merge (reduces copy operations)
+/// 4. Keeping separate logic for when compare function is provided or not.
 ///
 /// ## Details
 ///
 /// Mergesort is a divide and conquer based algorithm, which can handle very
 /// large arrays. Unlike quick sort, it promises `O(n log n)` performance in
 /// worst case and provides stable sort. But it performs poorly in practice
-/// due to high memory overhead, and frequent copy operations.
+/// due to extra memory allocation, and frequent copy operations.
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n log n)` | Space `O(n)`
@@ -73,13 +71,13 @@ void mergeSort<E>(
       for (l = b; l < e; l = r) {
         r = l + w;
         if (r > e) r = e;
-        _gnomeSortDefault(list, l, r);
+        _insertionSortDefault(list, l, r);
       }
     } else {
       for (l = b; l < e; l = r) {
         r = l + w;
         if (r > e) r = e;
-        _gnomeSortCustom(list, l, r, compare);
+        _insertionSortCustom(list, l, r, compare);
       }
     }
   }
@@ -113,42 +111,31 @@ void mergeSort<E>(
 }
 
 /// compare items with default comparision
-void _gnomeSortDefault<E>(List<E> list, int l, int h) {
-  E t;
-  int i = l + 1;
-  while (i < h) {
-    if (i == l) {
-      i++;
-      continue;
+void _insertionSortDefault<E>(List<E> list, int b, int e) {
+  E el;
+  int i, j;
+  for (i = b + 1; i < e; ++i) {
+    for (j = i; j > b; --j) {
+      if ((list[j - 1] as Comparable).compareTo(list[j]) <= 0) break;
+      el = list[j - 1];
+      list[j - 1] = list[j];
+      list[j] = el;
     }
-    if ((list[i - 1] as Comparable).compareTo(list[i]) <= 0) {
-      i++;
-      continue;
-    }
-    t = list[i - 1];
-    list[i - 1] = list[i];
-    list[i] = t;
-    i--;
   }
 }
 
 /// compare items with custom comparator (slower)
-void _gnomeSortCustom<E>(List<E> list, int l, int h, Comparator<E> compare) {
-  E t;
-  int i = l + 1;
-  while (i < h) {
-    if (i == l) {
-      i++;
-      continue;
+void _insertionSortCustom<E>(
+    List<E> list, int b, int e, Comparator<E> compare) {
+  E el;
+  int i, j;
+  for (i = b + 1; i < e; ++i) {
+    for (j = i; j > b; --j) {
+      if (compare(list[j - 1], list[j]) <= 0) break;
+      el = list[j - 1];
+      list[j - 1] = list[j];
+      list[j] = el;
     }
-    if (compare(list[i - 1], list[i]) <= 0) {
-      i++;
-      continue;
-    }
-    t = list[i - 1];
-    list[i - 1] = list[i];
-    list[i] = t;
-    i--;
   }
 }
 
