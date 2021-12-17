@@ -24,9 +24,10 @@
 /// The bubble sort algorithm sorts the [list] in an increasing order by swapping
 /// unordered items repeteadly until the end of the list. It is very similar to
 /// selection sort, except that the swap operation is happening all the time here.
-/// Therefore, it is comparatively slower than selection sort.
+/// Therefore, it is comparatively slower than selection sort and not very usefull
+/// in practice.
 ///
-/// ----------------------------------------------------------------
+/// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n^2)` | Space `O(1)`
 void bubbleSort<E>(
   final List<E> list, {
@@ -34,8 +35,7 @@ void bubbleSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  E tmp;
-  int b, e, i, j;
+  int b, e;
   int n = list.length;
 
   // Find the range given the parameters.
@@ -50,25 +50,39 @@ void bubbleSort<E>(
   }
 
   if (compare == null) {
-    // compare items with default comparision
-    for (i = b + 1; i < e; ++i) {
-      for (j = b + 1; j <= e - i + b; ++j) {
-        if ((list[j] as Comparable).compareTo(list[j - 1]) < 0) {
-          tmp = list[j - 1];
-          list[j - 1] = list[j];
-          list[j] = tmp;
-        }
+    bubbleSortDefault(list, b, e);
+  } else {
+    bubbleSortCustom(list, b, e, compare);
+  }
+}
+
+/// sorts range `[b, e)`
+void bubbleSortDefault<E>(List<E> list, int b, int e) {
+  E tmp;
+  int i, j, t;
+  for (i = b + 1; i < e; ++i) {
+    t = e - (i - b) + 1;
+    for (j = b + 1; j < t; ++j) {
+      if ((list[j] as Comparable).compareTo(list[j - 1]) < 0) {
+        tmp = list[j - 1];
+        list[j - 1] = list[j];
+        list[j] = tmp;
       }
     }
-  } else {
-    // compare items with custom comparator (slower)
-    for (i = b + 1; i < e; ++i) {
-      for (j = b + 1; j <= e - i + b; ++j) {
-        if (compare(list[j], list[j - 1]) < 0) {
-          tmp = list[j - 1];
-          list[j - 1] = list[j];
-          list[j] = tmp;
-        }
+  }
+}
+
+/// sorts range `[b, e)`
+void bubbleSortCustom<E>(List<E> list, int b, int e, Comparator<E> compare) {
+  E tmp;
+  int i, j, t;
+  for (i = b + 1; i < e; ++i) {
+    t = e - (i - b) + 1;
+    for (j = b + 1; j < t; ++j) {
+      if (compare(list[j], list[j - 1]) < 0) {
+        tmp = list[j - 1];
+        list[j - 1] = list[j];
+        list[j] = tmp;
       }
     }
   }

@@ -2,8 +2,9 @@
 
 - New algorithms:
   - mergeSort
-- Performance improvement:
-  - Using a custom insertion sort for quickSortHaore and quickSortLomuto
+  - cocktailShakerSort
+- Refactor exports
+- Performance improvements
 
 ## 0.0.7
 

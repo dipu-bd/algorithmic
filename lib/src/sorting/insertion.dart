@@ -27,15 +27,15 @@
 /// into the ordered part maintaining the increasing order.
 ///
 /// ----------------------------------------------------------------
-/// Complexity: Time `O(n^2)` | Space `O(1)`
+/// Complexity: Time `O(n^2)` | Space `O(1)` <br>
+/// Best Case: Time `O(n)` | Space `O(1)`
 void insertionSort<E>(
   final List<E> list, {
   final int? begin,
   final int? end,
   final Comparator<E>? compare,
 }) {
-  E el;
-  int b, e, i, j;
+  int b, e;
   int n = list.length;
 
   // Find the range given the parameters.
@@ -50,28 +50,42 @@ void insertionSort<E>(
   }
 
   if (compare == null) {
-    // compare items with default comparision
-    for (i = b + 1; i < e; ++i) {
-      el = list[i];
-      j = i;
-      while (j > b) {
-        if ((list[j - 1] as Comparable).compareTo(el) <= 0) break;
-        list[j] = list[j - 1];
-        j--;
-      }
-      list[j] = el;
-    }
+    insertionSortDefault(list, b, e);
   } else {
-    // compare items with custom comparator (slower)
-    for (i = b + 1; i < e; ++i) {
-      el = list[i];
-      j = i;
-      while (j > b) {
-        if (compare(list[j - 1], el) <= 0) break;
-        list[j] = list[j - 1];
-        j--;
-      }
-      list[j] = el;
+    insertionSortCustom(list, b, e, compare);
+  }
+}
+
+/// sorts range `[b, e)`
+void insertionSortDefault<E>(List<E> list, int b, int e) {
+  E tmp;
+  int i, j;
+  i = b + 1;
+  while (i < e) {
+    j = i;
+    while (j > b && (list[j - 1] as Comparable).compareTo(list[j]) > 0) {
+      tmp = list[j];
+      list[j] = list[j - 1];
+      list[j - 1] = tmp;
+      j--;
     }
+    i++;
+  }
+}
+
+/// sorts range `[b, e)`
+void insertionSortCustom<E>(List<E> list, int b, int e, Comparator<E> compare) {
+  E tmp;
+  int i, j;
+  i = b + 1;
+  while (i < e) {
+    j = i;
+    while (j > b && compare(list[j - 1], list[j]) > 0) {
+      tmp = list[j];
+      list[j] = list[j - 1];
+      list[j - 1] = tmp;
+      j--;
+    }
+    i++;
   }
 }

@@ -15,6 +15,7 @@ void main() {
       List<List<int>> insertion = [];
       List<List<int>> bubble = [];
       List<List<int>> selection = [];
+      List<List<int>> cocktail = [];
       setUpAll(() {
         for (int i = 0; i < times; ++i) {
           var list = List<int>.generate(size, (i) => i);
@@ -24,12 +25,18 @@ void main() {
           insertion.add([...list]);
           bubble.add([...list]);
           selection.add([...list]);
+          cocktail.add([...list]);
         }
       });
 
       benchmark('list.sort()', () {
         for (var list in general) {
           list.sort();
+        }
+      }, iterations: 1);
+      benchmark('algorithmic.cocktailShakerSort()', () {
+        for (var list in selection) {
+          algorithmic.cocktailShakerSort(list);
         }
       }, iterations: 1);
       benchmark('algorithmic.gnomeSort()', () {
@@ -63,6 +70,9 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
+      benchmark('algorithmic.cocktailShakerSort()', () {
+        algorithmic.cocktailShakerSort(list);
+      }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list);
       }, iterations: times);
@@ -86,6 +96,9 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
+      benchmark('algorithmic.cocktailShakerSort()', () {
+        algorithmic.cocktailShakerSort(list);
+      }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list);
       }, iterations: times);
@@ -108,6 +121,9 @@ void main() {
 
       benchmark('list.sort()', () {
         list.sort();
+      }, iterations: times);
+      benchmark('algorithmic.cocktailShakerSort()', () {
+        algorithmic.cocktailShakerSort(list);
       }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list);
@@ -133,6 +149,9 @@ void main() {
 
       benchmark('list.sort()', () {
         list.sort(comp);
+      }, iterations: times);
+      benchmark('algorithmic.cocktailShakerSort()', () {
+        algorithmic.cocktailShakerSort(list);
       }, iterations: times);
       benchmark('algorithmic.gnomeSort()', () {
         algorithmic.gnomeSort(list, compare: comp);

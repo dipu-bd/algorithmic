@@ -30,15 +30,15 @@
 /// performs better if the array is already or partially sorted.
 ///
 /// ----------------------------------------------------------------
-/// Complexity: Time `O(n^2)` | Space `O(1)`
+/// Complexity: Time `O(n^2)` | Space `O(1)` <br>
+/// Best Case: Time `O(n)` | Space `O(1)`
 void gnomeSort<E>(
   final List<E> list, {
   final int? begin,
   final int? end,
   final Comparator<E>? compare,
 }) {
-  E tmp;
-  int b, e, i;
+  int b, e;
   int n = list.length;
 
   // Find the range given the parameters.
@@ -53,36 +53,48 @@ void gnomeSort<E>(
   }
 
   if (compare == null) {
-    // compare items with default comparision
-    for (i = b + 1; i < e;) {
-      if (i == b) {
-        i++;
-        continue;
-      }
-      if ((list[i - 1] as Comparable).compareTo(list[i]) <= 0) {
-        i++;
-        continue;
-      }
-      tmp = list[i - 1];
-      list[i - 1] = list[i];
-      list[i] = tmp;
-      i--;
-    }
+    gnomeSortDefault(list, b, e);
   } else {
-    // compare items with custom comparator (slower)
-    for (i = b + 1; i < e;) {
-      if (i == b) {
-        i++;
-        continue;
-      }
-      if (compare(list[i - 1], list[i]) <= 0) {
-        i++;
-        continue;
-      }
-      tmp = list[i - 1];
-      list[i - 1] = list[i];
-      list[i] = tmp;
-      i--;
+    gnomeSortCustom(list, b, e, compare);
+  }
+}
+
+/// sorts range `[b, e)`
+void gnomeSortDefault<E>(List<E> list, int b, int e) {
+  E tmp;
+  int i;
+  for (i = b + 1; i < e;) {
+    if (i == b) {
+      i++;
+      continue;
     }
+    if ((list[i - 1] as Comparable).compareTo(list[i]) <= 0) {
+      i++;
+      continue;
+    }
+    tmp = list[i - 1];
+    list[i - 1] = list[i];
+    list[i] = tmp;
+    i--;
+  }
+}
+
+/// sorts range `[b, e)`
+void gnomeSortCustom<E>(List<E> list, int b, int e, Comparator<E> compare) {
+  E tmp;
+  int i;
+  for (i = b + 1; i < e;) {
+    if (i == b) {
+      i++;
+      continue;
+    }
+    if (compare(list[i - 1], list[i]) <= 0) {
+      i++;
+      continue;
+    }
+    tmp = list[i - 1];
+    list[i - 1] = list[i];
+    list[i] = tmp;
+    i--;
   }
 }

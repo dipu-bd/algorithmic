@@ -21,11 +21,15 @@
 ///
 /// ## Details
 ///
-/// The selection sort algorithm sorts the [list] in an increasing order by finding
-/// the minimum element from the unordered range and putting it at the beginning in
-/// each iteration.
+/// The selection sort algorithm sorts the [list] in an increasing order by
+/// finding the minimum element from the unordered range and putting it at
+/// the beginning in each iteration.
 ///
-/// ----------------------------------------------------------------
+/// Although, it is faster than bubble sort, it requires more comparisons than
+/// other O(n^2) algorithms such as insertion sort. Therefore, it is not very
+/// useful in practice.
+///
+/// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n^2)` | Space `O(1)`
 void selectionSort<E>(
   final List<E> list, {
@@ -33,8 +37,7 @@ void selectionSort<E>(
   final int? end,
   final Comparator<E>? compare,
 }) {
-  E tmp;
-  int b, e, m, i, j;
+  int b, e;
   int n = list.length;
 
   // Find the range given the parameters.
@@ -49,34 +52,46 @@ void selectionSort<E>(
   }
 
   if (compare == null) {
-    // compare items with default comparision
-    for (i = b; i < e; ++i) {
-      m = i;
-      for (j = i + 1; j < e; ++j) {
-        if ((list[j] as Comparable).compareTo(list[m]) < 0) {
-          m = j;
-        }
-      }
-      if (m != i) {
-        tmp = list[m];
-        list[m] = list[i];
-        list[i] = tmp;
+    selectorSortDefault(list, b, e);
+  } else {
+    selectorSortCustom(list, b, e, compare);
+  }
+}
+
+/// sorts range `[b, e)`
+void selectorSortDefault<E>(List<E> list, int b, int e) {
+  E tmp;
+  int m, i, j;
+  for (i = b; i < e; ++i) {
+    m = i;
+    for (j = i + 1; j < e; ++j) {
+      if ((list[j] as Comparable).compareTo(list[m]) < 0) {
+        m = j;
       }
     }
-  } else {
-    // compare items with custom comparator (slower)
-    for (i = b; i < e; ++i) {
-      m = i;
-      for (j = i + 1; j < e; ++j) {
-        if (compare(list[j], list[m]) < 0) {
-          m = j;
-        }
+    if (m != i) {
+      tmp = list[m];
+      list[m] = list[i];
+      list[i] = tmp;
+    }
+  }
+}
+
+/// sorts range `[b, e)`
+void selectorSortCustom<E>(List<E> list, int b, int e, Comparator<E> compare) {
+  E tmp;
+  int m, i, j;
+  for (i = b; i < e; ++i) {
+    m = i;
+    for (j = i + 1; j < e; ++j) {
+      if (compare(list[j], list[m]) < 0) {
+        m = j;
       }
-      if (m != i) {
-        tmp = list[m];
-        list[m] = list[i];
-        list[i] = tmp;
-      }
+    }
+    if (m != i) {
+      tmp = list[m];
+      list[m] = list[i];
+      list[i] = tmp;
     }
   }
 }

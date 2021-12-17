@@ -6,10 +6,11 @@ library algorithmic.sorting;
 
 export 'src/utils/comparators.dart';
 
-export 'src/sorting/bubble.dart';
-export 'src/sorting/gnome.dart';
-export 'src/sorting/insertion.dart';
-export 'src/sorting/merge.dart';
-export 'src/sorting/quicksort_haore.dart';
-export 'src/sorting/quicksort_lomuto.dart';
-export 'src/sorting/selection.dart';
+export 'src/sorting/bubble.dart' show bubbleSort;
+export 'src/sorting/cocktail_shaker.dart' show cocktailShakerSort;
+export 'src/sorting/gnome.dart' show gnomeSort;
+export 'src/sorting/insertion.dart' show insertionSort;
+export 'src/sorting/merge.dart' show mergeSort;
+export 'src/sorting/quicksort_haore.dart' show quickSortHaore;
+export 'src/sorting/quicksort_lomuto.dart' show quickSortLomuto;
+export 'src/sorting/selection.dart' show selectionSort;

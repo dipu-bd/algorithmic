@@ -1,6 +1,8 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
+import 'cocktail_shaker.dart';
+
 /// Sorts the [list] of numbers using the
 /// [quicksort](https://en.wikipedia.org/wiki/Quicksort) algorithm following
 /// [Lomuto partition scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
@@ -78,13 +80,14 @@ void quickSortLomuto<E>(
   if (b + 1 >= e) return;
 
   if (compare == null) {
-    _quickSortDefault(list, b, e, threshold);
+    quickSortDefault(list, b, e, threshold);
   } else {
-    _quickSortCustom(list, b, e, threshold, compare);
+    quickSortCustom(list, b, e, threshold, compare);
   }
 }
 
-void _quickSortDefault<E>(List<E> list, int b, int e, int threshold) {
+/// sorts range `[b, e)`
+void quickSortDefault<E>(List<E> list, int b, int e, int threshold) {
   int l, h, p, q;
 
   // add the range to a stack.
@@ -102,7 +105,7 @@ void _quickSortDefault<E>(List<E> list, int b, int e, int threshold) {
     while (l < h) {
       // If there are few elements, sort them using insertion sort and break the loop
       if (l + threshold > h) {
-        _insertionSortDefault(list, l, h);
+        cocktailSortDefault(list, l, h + 1);
         break;
       }
 
@@ -131,7 +134,8 @@ void _quickSortDefault<E>(List<E> list, int b, int e, int threshold) {
   }
 }
 
-void _quickSortCustom<E>(
+/// sorts range `[b, e)`
+void quickSortCustom<E>(
     List<E> list, int b, int e, int threshold, Comparator<E> compare) {
   int l, h, p, q;
 
@@ -150,7 +154,7 @@ void _quickSortCustom<E>(
     while (l < h) {
       // If there are few elements, sort them using insertion sort and break the loop
       if (l + threshold > h) {
-        _insertionSortCustom(list, l, h, compare);
+        cocktailSortCustom(list, l, h + 1, compare);
         break;
       }
 
@@ -175,35 +179,6 @@ void _quickSortCustom<E>(
 
       // select the right partition to continue the inner loop
       l = q;
-    }
-  }
-}
-
-/// compare items with default comparision
-void _insertionSortDefault<E>(List<E> list, int b, int e) {
-  E el;
-  int i, j;
-  for (i = b + 1; i <= e; ++i) {
-    for (j = i; j > b; --j) {
-      if ((list[j - 1] as Comparable).compareTo(list[j]) <= 0) break;
-      el = list[j - 1];
-      list[j - 1] = list[j];
-      list[j] = el;
-    }
-  }
-}
-
-/// compare items with custom comparator (slower)
-void _insertionSortCustom<E>(
-    List<E> list, int b, int e, Comparator<E> compare) {
-  E el;
-  int i, j;
-  for (i = b + 1; i <= e; ++i) {
-    for (j = i; j > b; --j) {
-      if (compare(list[j - 1], list[j]) <= 0) break;
-      el = list[j - 1];
-      list[j - 1] = list[j];
-      list[j] = el;
     }
   }
 }

@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import 'package:algorithmic/src/utils/comparators.dart';
+import '../utils/comparators.dart';
 
 /// Returns the index of the _first_ item from a sorted [list] that is either
 /// equal to or greater than the the [value], otherwise if all items are lesser
@@ -37,13 +37,26 @@ int lowerBound<E, V>(
   int? count,
   EntryComparator<E, V>? compare,
 }) {
-  return _lowerBound<E, V>(
-    list,
-    value,
-    start,
-    count,
-    compare,
-  );
+  int b, e;
+  int n = list.length;
+
+  // determine range [i, j)
+  b = start ?? 0;
+  e = n;
+  if (count != null) {
+    if (count < 0) {
+      throw RangeError("count can not be negative");
+    }
+    e = b + count;
+    if (e > n) e = n;
+  }
+  if (b < 0) b = 0;
+
+  if (compare == null) {
+    return lowerBoundDefault<E, V>(list, value, b, e);
+  } else {
+    return lowerBoundCustom<E, V>(list, value, b, e, compare);
+  }
 }
 
 /// Returns the index of the _first_ occurance of the [value] in a sorted [list],
@@ -81,78 +94,23 @@ int binarySearch<E, V>(
   int? count,
   EntryComparator<E, V>? compare,
 }) {
-  return _lowerBound<E, V>(
-    list,
-    value,
-    start,
-    count,
-    compare,
-    exactMatch: true,
-  );
-}
-
-/// Internal function to calculate lower bound and binary search.
-/// Pass [exactMatch] to true if you want to perform a binary search.
-int _lowerBound<E, V>(
-  List<E> list,
-  V value,
-  int? start,
-  int? count,
-  EntryComparator<E, V>? compare, {
-  bool exactMatch = false,
-}) {
-  int b, e, l, h, m;
+  int b, e, l;
   int n = list.length;
 
   // determine range [i, j)
   b = start ?? 0;
   e = n;
   if (count != null) {
-    if (count < 0) {
-      if (exactMatch) return -1;
-      throw RangeError("count can not be negative");
-    }
+    if (count < 0) return -1;
     e = b + count;
     if (e > n) e = n;
   }
   if (b < 0) b = 0;
 
-  l = b;
-  h = e;
   if (compare == null) {
-    // with default comparator
-    while (l < h) {
-      // the middle of the range
-      m = l + ((h - l) >> 1);
-      // compare middle item with value
-      if ((list[m] as Comparable).compareTo(value) < 0) {
-        // middle item is lesser, select right range
-        l = m + 1;
-      } else {
-        // middle item is either equal or greater, select left range
-        h = m;
-      }
-    }
+    l = lowerBoundDefault<E, V>(list, value, b, e);
   } else {
-    // with custom comparator (slower)
-    while (l < h) {
-      // the middle of the range
-      m = l + ((h - l) >> 1);
-      // compare middle item with value
-      if (compare(list[m], value) < 0) {
-        // middle item is lesser, select right range
-        l = m + 1;
-      } else {
-        // middle item is either equal or greater, select left range
-        h = m;
-      }
-    }
-  }
-  if (l > e) l = e;
-
-  if (!exactMatch) {
-    // lower bound index
-    return l;
+    l = lowerBoundCustom<E, V>(list, value, b, e, compare);
   }
 
   // binary search result
@@ -164,4 +122,55 @@ int _lowerBound<E, V>(
     }
   }
   return -1;
+}
+
+/// from range `[b, e)`
+int lowerBoundDefault<E, V>(List<E> list, V value, int b, int e) {
+  int l, h, m;
+
+  l = b;
+  h = e;
+  // with default comparator
+  while (l < h) {
+    // the middle of the range
+    m = l + ((h - l) >> 1);
+    // compare middle item with value
+    if ((list[m] as Comparable).compareTo(value) < 0) {
+      // middle item is lesser, select right range
+      l = m + 1;
+    } else {
+      // middle item is either equal or greater, select left range
+      h = m;
+    }
+  }
+  if (l > e) l = e;
+
+  // lower bound index
+  return l;
+}
+
+/// from range `[b, e)`
+int lowerBoundCustom<E, V>(
+    List<E> list, V value, int b, int e, EntryComparator<E, V> compare) {
+  int l, h, m;
+
+  l = b;
+  h = e;
+  // with default comparator
+  while (l < h) {
+    // the middle of the range
+    m = l + ((h - l) >> 1);
+    // compare middle item with value
+    if (compare(list[m], value) < 0) {
+      // middle item is lesser, select right range
+      l = m + 1;
+    } else {
+      // middle item is either equal or greater, select left range
+      h = m;
+    }
+  }
+  if (l > e) l = e;
+
+  // lower bound index
+  return l;
 }
