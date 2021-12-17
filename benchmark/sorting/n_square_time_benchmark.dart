@@ -16,6 +16,7 @@ void main() {
       List<List<int>> bubble = [];
       List<List<int>> selection = [];
       List<List<int>> cocktail = [];
+      List<List<int>> comb = [];
       setUpAll(() {
         for (int i = 0; i < times; ++i) {
           var list = List<int>.generate(size, (i) => i);
@@ -26,6 +27,7 @@ void main() {
           bubble.add([...list]);
           selection.add([...list]);
           cocktail.add([...list]);
+          comb.add([...list]);
         }
       });
 
@@ -47,6 +49,11 @@ void main() {
       benchmark('algorithmic.insertionSort()', () {
         for (var list in insertion) {
           algorithmic.insertionSort(list);
+        }
+      }, iterations: 1);
+      benchmark('algorithmic.combSort()', () {
+        for (var list in insertion) {
+          algorithmic.combSort(list);
         }
       }, iterations: 1);
       benchmark('algorithmic.selectionSort()', () {
@@ -79,6 +86,9 @@ void main() {
       benchmark('algorithmic.insertionSort()', () {
         algorithmic.insertionSort(list);
       }, iterations: times);
+      benchmark('algorithmic.combSort()', () {
+        algorithmic.combSort(list);
+      }, iterations: times);
       benchmark('algorithmic.selectionSort()', () {
         algorithmic.selectionSort(list);
       }, iterations: times);
@@ -105,6 +115,9 @@ void main() {
       benchmark('algorithmic.insertionSort()', () {
         algorithmic.insertionSort(list);
       }, iterations: times);
+      benchmark('algorithmic.combSort()', () {
+        algorithmic.combSort(list);
+      }, iterations: times);
       benchmark('algorithmic.selectionSort()', () {
         algorithmic.selectionSort(list);
       }, iterations: times);
@@ -130,6 +143,9 @@ void main() {
       }, iterations: times);
       benchmark('algorithmic.insertionSort()', () {
         algorithmic.insertionSort(list);
+      }, iterations: times);
+      benchmark('algorithmic.combSort()', () {
+        algorithmic.combSort(list);
       }, iterations: times);
       benchmark('algorithmic.selectionSort()', () {
         algorithmic.selectionSort(list);
@@ -158,6 +174,9 @@ void main() {
       }, iterations: times);
       benchmark('algorithmic.insertionSort()', () {
         algorithmic.insertionSort(list, compare: comp);
+      }, iterations: times);
+      benchmark('algorithmic.combSort()', () {
+        algorithmic.combSort(list);
       }, iterations: times);
       benchmark('algorithmic.selectionSort()', () {
         algorithmic.selectionSort(list, compare: comp);

@@ -72,6 +72,24 @@ Sorting algorithms puts a list of items into an increasing order.
 | -------------: | :---------: | :---: | :-------: | :---: |
 | `bubbleSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.5 |
 
+### Comb Sort
+
+[Comb sort](https://en.wikipedia.org/wiki/Comb_sort) improves bubble sort by eliminating small values near the end of the list, since they slows down bubble sort. It has `O(n)` time complexity for an already sorted list.
+
+|    Functions | Performance | Tests | Benchmark | Since |
+| -----------: | :---------: | :---: | :-------: | :---: |
+| `combSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.8 |
+
+### Cocktail Shaker Sort
+
+[Cocktail shaker sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort) extends bubble sort by operating in two directions. It has `O(n)` time complexity for an already sorted list.
+
+This algorithm is known by many other names, e.g.: bidirectional bubble sort, cocktail sort, shaker sort, ripple sort, shuffle sort, shuttle sort etc.
+
+|              Functions | Performance | Tests | Benchmark | Since |
+| ---------------------: | :---------: | :---: | :-------: | :---: |
+| `cocktailShakerSort()` |  _O_(_n²_)  |  ✔️   |    ✔️     | 0.0.8 |
+
 ### Selection Sort
 
 [Selection sort](https://en.wikipedia.org/wiki/Selection_sort) algorithm performs sorting by finding the minimum element from the unordered range and putting it at the beginning in each iteration.
@@ -90,7 +108,7 @@ Sorting algorithms puts a list of items into an increasing order.
 
 ### Gnome Sort
 
-[Gnome sort](https://en.wikipedia.org/wiki/Gnome_sort) is a variation to the insertion sort which uses a much simpler implementation and has `O(n)` time complexity for an already sorted list.
+[Gnome sort](https://en.wikipedia.org/wiki/Gnome_sort) is a variation to the insertion sort which uses a much simpler implementation. It has `O(n)` time complexity for an already sorted list.
 
 |     Functions | Performance | Tests | Benchmark | Since |
 | ------------: | :---------: | :---: | :-------: | :---: |

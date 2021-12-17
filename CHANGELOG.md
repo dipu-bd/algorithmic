@@ -2,6 +2,7 @@
 
 - New algorithms:
   - mergeSort
+  - combSort
   - cocktailShakerSort
 - Refactor exports
 - Performance improvements

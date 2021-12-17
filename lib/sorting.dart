@@ -8,6 +8,7 @@ export 'src/utils/comparators.dart';
 
 export 'src/sorting/bubble.dart' show bubbleSort;
 export 'src/sorting/cocktail_shaker.dart' show cocktailShakerSort;
+export 'src/sorting/comb.dart' show combSort;
 export 'src/sorting/gnome.dart' show gnomeSort;
 export 'src/sorting/insertion.dart' show insertionSort;
 export 'src/sorting/merge.dart' show mergeSort;
