@@ -16,17 +16,17 @@ void main() {
     benchmark('algorithmic.combSort(shrinkFactor: 1.3)', () {
       algorithmic.combSort(list, shrinkFactor: 1.3);
     }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.4)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.4);
+    benchmark('algorithmic.combSort(shrinkFactor: 1.5)', () {
+      algorithmic.combSort(list, shrinkFactor: 1.5);
     }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.6)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.6);
-    }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.8)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.8);
+    benchmark('algorithmic.combSort(shrinkFactor: 1.7)', () {
+      algorithmic.combSort(list, shrinkFactor: 1.7);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 2.2)', () {
       algorithmic.combSort(list, shrinkFactor: 2.2);
+    }, iterations: times);
+    benchmark('algorithmic.combSort(shrinkFactor: 2.5)', () {
+      algorithmic.combSort(list, shrinkFactor: 2.5);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 3.2)', () {
       algorithmic.combSort(list, shrinkFactor: 3.2);
@@ -36,12 +36,6 @@ void main() {
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 5)', () {
       algorithmic.combSort(list, shrinkFactor: 5);
-    }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 5.5)', () {
-      algorithmic.combSort(list, shrinkFactor: 5.5);
-    }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 6)', () {
-      algorithmic.combSort(list, shrinkFactor: 6);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 8)', () {
       algorithmic.combSort(list, shrinkFactor: 8);
@@ -59,17 +53,17 @@ void main() {
     benchmark('algorithmic.combSort(shrinkFactor: 1.3)', () {
       algorithmic.combSort(list, shrinkFactor: 1.3);
     }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.4)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.4);
+    benchmark('algorithmic.combSort(shrinkFactor: 1.5)', () {
+      algorithmic.combSort(list, shrinkFactor: 1.5);
     }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.6)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.6);
-    }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.8)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.8);
+    benchmark('algorithmic.combSort(shrinkFactor: 1.7)', () {
+      algorithmic.combSort(list, shrinkFactor: 1.7);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 2.2)', () {
       algorithmic.combSort(list, shrinkFactor: 2.2);
+    }, iterations: times);
+    benchmark('algorithmic.combSort(shrinkFactor: 2.5)', () {
+      algorithmic.combSort(list, shrinkFactor: 2.5);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 3.2)', () {
       algorithmic.combSort(list, shrinkFactor: 3.2);
@@ -96,17 +90,17 @@ void main() {
     benchmark('algorithmic.combSort(shrinkFactor: 1.3)', () {
       algorithmic.combSort(list, shrinkFactor: 1.3);
     }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.4)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.4);
+    benchmark('algorithmic.combSort(shrinkFactor: 1.5)', () {
+      algorithmic.combSort(list, shrinkFactor: 1.5);
     }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.6)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.6);
-    }, iterations: times);
-    benchmark('algorithmic.combSort(shrinkFactor: 1.8)', () {
-      algorithmic.combSort(list, shrinkFactor: 1.8);
+    benchmark('algorithmic.combSort(shrinkFactor: 1.7)', () {
+      algorithmic.combSort(list, shrinkFactor: 1.7);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 2.2)', () {
       algorithmic.combSort(list, shrinkFactor: 2.2);
+    }, iterations: times);
+    benchmark('algorithmic.combSort(shrinkFactor: 2.5)', () {
+      algorithmic.combSort(list, shrinkFactor: 2.5);
     }, iterations: times);
     benchmark('algorithmic.combSort(shrinkFactor: 3.2)', () {
       algorithmic.combSort(list, shrinkFactor: 3.2);

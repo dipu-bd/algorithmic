@@ -130,3 +130,12 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 |     Functions |   Performance    | Tests | Benchmark | Since |
 | ------------: | :--------------: | :---: | :-------: | :---: |
 | `mergeSort()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.8 |
+
+### Counting Sort
+
+[Counting sort](https://en.wikipedia.org/wiki/Counting_sort) is used to sort small integers in linear time. It counts the frequencies of the numbers appearing in an array, and then using this to reconstruct a sorted list.
+
+|          Functions |  Performance   | Tests | Benchmark | Since |
+| -----------------: | :------------: | :---: | :-------: | :---: |
+|   `countingSort()` | _O_(_n_ + _k_) |  ✔️   |    ✔️     | 0.0.9 |
+| `countingSortOf()` | _O_(_n_ + _k_) |  ✔️   |    ✔️     | 0.0.9 |

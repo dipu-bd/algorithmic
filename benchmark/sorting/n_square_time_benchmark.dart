@@ -155,8 +155,7 @@ void main() {
       }, iterations: times);
     });
 
-    group("In an increasing list of $size numbers with a custom comparator",
-        () {
+    group("In an increasing list of $size numbers with a custom compare", () {
       List<int> list = [];
       setUpEach(() {
         list = List<int>.generate(size, (i) => i);

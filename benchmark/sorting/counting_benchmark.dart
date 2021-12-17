@@ -8,16 +8,18 @@ void main() {
   final int size = 777 * 1000;
   final int times = 7;
 
-  group("Mergesort algorithms benchmark", () {
+  group("Counting sort algorithms benchmark", () {
     group("In a shuffled list of $size numbers", () {
       List<List<int>> general = [];
-      List<List<int>> merge = [];
+      List<List<int>> counting = [];
+      List<List<int>> countingOf = [];
       setUpAll(() {
         for (int i = 0; i < times; ++i) {
           var list = List<int>.generate(size, (i) => i);
           list.shuffle();
           general.add([...list]);
-          merge.add([...list]);
+          counting.add([...list]);
+          countingOf.add([...list]);
         }
       });
 
@@ -26,9 +28,14 @@ void main() {
           list.sort();
         }
       }, iterations: 1);
-      benchmark('algorithmic.mergeSort()', () {
-        for (var list in merge) {
-          algorithmic.mergeSort(list);
+      benchmark('algorithmic.countingSort()', () {
+        for (var list in counting) {
+          algorithmic.countingSort(list);
+        }
+      }, iterations: 1);
+      benchmark('algorithmic.countingSortOf()', () {
+        for (var list in counting) {
+          algorithmic.countingSortOf<int>(list, (i) => i);
         }
       }, iterations: 1);
     });
@@ -42,8 +49,11 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
-      benchmark('algorithmic.mergeSort()', () {
-        algorithmic.mergeSort(list);
+      benchmark('algorithmic.countingSort()', () {
+        algorithmic.countingSort(list);
+      }, iterations: times);
+      benchmark('algorithmic.countingSortOf()', () {
+        algorithmic.countingSortOf<int>(list, (i) => i);
       }, iterations: times);
     });
 
@@ -56,8 +66,11 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
-      benchmark('algorithmic.mergeSort()', () {
-        algorithmic.mergeSort(list);
+      benchmark('algorithmic.countingSort()', () {
+        algorithmic.countingSort(list);
+      }, iterations: times);
+      benchmark('algorithmic.countingSortOf()', () {
+        algorithmic.countingSortOf<int>(list, (i) => i);
       }, iterations: times);
     });
 
@@ -70,12 +83,15 @@ void main() {
       benchmark('list.sort()', () {
         list.sort();
       }, iterations: times);
-      benchmark('algorithmic.mergeSort()', () {
-        algorithmic.mergeSort(list);
+      benchmark('algorithmic.countingSort()', () {
+        algorithmic.countingSort(list);
+      }, iterations: times);
+      benchmark('algorithmic.countingSortOf()', () {
+        algorithmic.countingSortOf<int>(list, (i) => i);
       }, iterations: times);
     });
 
-    group("In an increasing list of $size numbers with a custom compare", () {
+    group("In an increasing list of $size numbers in reverse order", () {
       List<int> list = [];
       setUpEach(() {
         list = List<int>.generate(size, (i) => i);
@@ -85,8 +101,11 @@ void main() {
       benchmark('list.sort()', () {
         list.sort(comp);
       }, iterations: times);
-      benchmark('algorithmic.mergeSort()', () {
-        algorithmic.mergeSort(list, compare: comp);
+      benchmark('algorithmic.countingSort()', () {
+        algorithmic.countingSort(list, reversed: true);
+      }, iterations: times);
+      benchmark('algorithmic.countingSortOf()', () {
+        algorithmic.countingSortOf<int>(list, (i) => i, reversed: true);
       }, iterations: times);
     });
   });

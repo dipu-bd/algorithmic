@@ -1,3 +1,9 @@
+## 0.0.9
+
+- New algorithms:
+  - countingSort
+  - countingSortOf
+
 ## 0.0.8
 
 - New algorithms:

@@ -14,13 +14,13 @@ import 'cocktail_shaker.dart';
 /// * To perform partial sorting, you can specify the [begin] or [end].
 /// * [begin] is the start index of the range to be sorted.
 /// * If [begin] is negative, range starts at the 0
-/// * if [begin] is not below the length of the [list], range will be empty.
+/// * If [begin] is not below the length of the [list], range will be empty.
 /// * [end] is the final index if the range to be sorted. It is exclusive.
 /// * If [end] is above the length of the [list], it will be ignored.
-/// * if [end] is negative, the absolute value of it will be subtracted
+/// * If [end] is negative, the absolute value of it will be subtracted
 /// from the length of the [list] to determine where the range ends.
-/// * if [end] is not greater than the [begin], the range will be empty.
-/// * [compare] is a custom comparator to order the list elements.
+/// * If [end] is not greater than the [begin], the range will be empty.
+/// * [compare] is a custom compare to order the list elements.
 ///   If it is null and [list] items are not [Comparable], [TypeError] is thrown.
 /// * [threshold] is the maximum limit for which a range can be sorted using
 ///   insertion sort.
@@ -222,7 +222,7 @@ int _partitionRangeDefault<E>(List<E> list, int l, int h) {
   }
 }
 
-/// compare items with custom comparator (slower)
+/// compare items with custom compare (slower)
 int _partitionRangeCustom<E>(
     List<E> list, int l, int h, Comparator<E> compare) {
   E t;

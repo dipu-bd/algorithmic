@@ -17,7 +17,7 @@ import '../utils/comparators.dart';
 /// * If [start] is not below the length of the [list], the length is returned.
 /// * If the [count] parameter is given, it will check up to [count] numbers of items.
 /// * The [count] must not be negative. Otherwise, [RangeError] is thrown.
-/// * [compare] is a custom comparator function between a list element and the value.
+/// * [compare] is a custom compare function between a list element and the value.
 ///   If it is null, `compareTo` method of [list] item is used.
 ///
 /// ## Details
@@ -72,7 +72,7 @@ int lowerBound<E, V>(
 /// * If [start] is negative, search starts at [start] + [count] or 0, whichever is greater.
 /// * If the [count] parameter is given, it will check up to [count] numbers of items.
 /// * If [count] is negative, -1 is returned.
-/// * [compare] is a custom comparator function between a list element and the value.
+/// * [compare] is a custom compare function between a list element and the value.
 ///   If it is null, `compareTo` method of [list] item is used.
 ///
 /// ## Details

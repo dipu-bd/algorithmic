@@ -52,7 +52,7 @@ void main() {
       }, iterations: times);
     });
 
-    group("In a sorted list of $size numbers with a custom comparator", () {
+    group("In a sorted list of $size numbers with a custom compare", () {
       List<int> list = [];
       setUp(() {
         list = original;

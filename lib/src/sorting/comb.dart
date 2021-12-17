@@ -10,15 +10,15 @@
 /// * To perform partial sorting, you can specify the [begin] or [end].
 /// * [begin] is the start index of the range to be sorted.
 /// * If [begin] is negative, range starts at the 0
-/// * if [begin] is not below the length of the [list], range will be empty.
+/// * If [begin] is not below the length of the [list], range will be empty.
 /// * [end] is the final index if the range to be sorted. It is exclusive.
 /// * If [end] is above the length of the [list], it will be ignored.
-/// * if [end] is negative, the absolute value of it will be subtracted
+/// * If [end] is negative, the absolute value of it will be subtracted
 /// from the length of the [list] to determine where the range ends.
-/// * if [end] is not greater than the [begin], the range will be empty.
+/// * If [end] is not greater than the [begin], the range will be empty.
 /// * [shrinkFactor] is the gap shrink factor for comb sort. For small lists,
 ///   higher shrink factor works well.
-/// * [compare] is a custom comparator to order the list elements.
+/// * [compare] is a custom compare to order the list elements.
 ///   If it is null and [list] items are not [Comparable], [TypeError] is thrown.
 ///
 /// ## Details
@@ -36,11 +36,11 @@
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n^2)` | Space `O(1)`
 void combSort<E>(
-  final List<E> list, {
-  final int? begin,
-  final int? end,
+  List<E> list, {
+  int? begin,
+  int? end,
   double shrinkFactor = 2.5,
-  final Comparator<E>? compare,
+  Comparator<E>? compare,
 }) {
   int b, e;
   int n = list.length;
