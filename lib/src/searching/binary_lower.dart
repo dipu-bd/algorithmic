@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import '../utils/comparators.dart';
+import '../utils/templates.dart';
 
 /// Returns the index of the _first_ item from a sorted [list] that is either
 /// equal to or greater than the the [value], otherwise if all items are lesser

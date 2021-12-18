@@ -1,6 +1,8 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
+import '../utils/templates.dart';
+
 /// Sorts a [list] of integer numbers of small range using the
 /// [counting sort](https://en.wikipedia.org/wiki/Counting_sort) algorithm.
 ///
@@ -106,7 +108,7 @@ void countingSortRange(List<int> list, int b, int e) {
 /// ## Parameters
 ///
 /// * [list] is any list of integers to be sorted.
-/// * [keyOf] is an additional function to get the integer value of the item.
+/// * [keyOf] is an mapping function to get the integer value of the item.
 /// * To perform partial sorting, you can specify the [begin] or [end].
 /// * [begin] is the start index of the range to be sorted.
 /// * If [begin] is negative, range starts at the 0
@@ -127,7 +129,7 @@ void countingSortRange(List<int> list, int b, int e) {
 /// Complexity: Time `O(n + k)` | Space `O(n + k)`  (`k` is the range of the keys)
 void countingSortOf<E>(
   List<E> list,
-  int Function(E) keyOf, {
+  KeyOf<E, int> keyOf, {
   int? begin,
   int? end,
   bool reversed = false,

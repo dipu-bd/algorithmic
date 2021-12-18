@@ -22,3 +22,9 @@ typedef EqualityTest<E> = bool Function(E element);
 /// * `true` if the [element] is strictly lesser,
 /// * otherwise, `false` if equal or greater.
 typedef LessThanTest<E> = bool Function(E element);
+
+/// A template to extract key of an element.
+///
+/// This function should be one to one.
+/// One element should map to one and only one key.
+typedef KeyOf<E, V> = V Function(E element);

@@ -4,7 +4,7 @@
 /// A collection of list sorting algorithms.
 library algorithmic.sorting;
 
-export 'src/utils/comparators.dart';
+export 'src/utils/templates.dart';
 
 export 'src/sorting/bubble.dart' show bubbleSort;
 export 'src/sorting/cocktail_shaker.dart' show cocktailShakerSort;

@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import '../utils/comparators.dart';
+import '../utils/templates.dart';
 
 /// This function returns the index of the first occurence of a [value] in a
 /// sorted [list]. Unlike [binarySearch], this does not ensure that the index of

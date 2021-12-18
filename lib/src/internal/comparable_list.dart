@@ -3,7 +3,7 @@
 
 import 'dart:collection';
 
-import '../utils/comparators.dart';
+import '../utils/templates.dart';
 
 abstract class ComparableList<E> with ListMixin<E> {
   final List<E> _base;
