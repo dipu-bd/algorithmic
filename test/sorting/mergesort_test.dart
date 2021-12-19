@@ -38,9 +38,8 @@ void main() {
       }
     });
     test("Test with large list of 1000 length", () {
-      final original = List<int>.generate(1000, (i) => i);
+      final original = List<int>.generate(1000, (i) => (i / 10).floor());
       final shuffled = [...original];
-      shuffled.shuffle();
       shuffled.shuffle();
       mergeSort(shuffled);
       expect(shuffled, original);

@@ -41,13 +41,13 @@ Index searching algorithms attempt to find the index of an item from a list.
 
 A faster searching algorithm for sorted list of items. It divides the list into two parts and discard one based on the middle value of them. This requires the list to be sorted in an increasing order.
 
-|             Functions | Performance  | Tests | Benchmark | Since |
-| --------------------: | :----------: | :---: | :-------: | :---: |
-|        `lowerBound()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.3 |
-|        `upperBound()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.3 |
-|      `binarySearch()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.3 |
-| `binarySearchUpper()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.6 |
-| `binarySearchQuick()` | _O_(log _n_) |  ✔️   |    ✔️     | 0.0.6 |
+|             Functions |  Performance   | Tests | Benchmark | Since |
+| --------------------: | :------------: | :---: | :-------: | :---: |
+|        `lowerBound()` | _O_(`log` _n_) |  ✔️   |    ✔️     | 0.0.3 |
+|        `upperBound()` | _O_(`log` _n_) |  ✔️   |    ✔️     | 0.0.3 |
+|      `binarySearch()` | _O_(`log` _n_) |  ✔️   |    ✔️     | 0.0.3 |
+| `binarySearchUpper()` | _O_(`log` _n_) |  ✔️   |    ✔️     | 0.0.6 |
+| `binarySearchQuick()` | _O_(`log` _n_) |  ✔️   |    ✔️     | 0.0.6 |
 
 ### Linear Search
 
@@ -118,24 +118,35 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 
 [Quicksort](https://en.wikipedia.org/wiki/Quicksort) is an in-place sorting algorithm that works by selecting a _pivot_ element and partitioning the list surrounding it. There are several schemes for selecting the pivot. The sorting performance varies for different schemes.
 
-|           Functions |   Performance    | Tests | Benchmark | Since |
-| ------------------: | :--------------: | :---: | :-------: | :---: |
-| `quickSortLomuto()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.6 |
-|  `quickSortHaore()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.7 |
+|           Functions |    Performance     | Tests | Benchmark | Since |
+| ------------------: | :----------------: | :---: | :-------: | :---: |
+| `quickSortLomuto()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.6 |
+|  `quickSortHaore()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.7 |
 
 ### Merge Sort
 
 [Merge sort](https://en.wikipedia.org/wiki/Merge_sort) is a divide and conquer based algorithm, which can handle very large arrays. Unlike quick sort, it promises `O(n log n)` performance in worst case and provides stable sort. But it requires equal amount of memory as the length of the array and the implementation runs slower compared than quick sort.
 
-|     Functions |   Performance    | Tests | Benchmark | Since |
-| ------------: | :--------------: | :---: | :-------: | :---: |
-| `mergeSort()` | _O_(_n_ log _n_) |  ✔️   |    ✔️     | 0.0.8 |
+|     Functions |    Performance     | Tests | Benchmark | Since |
+| ------------: | :----------------: | :---: | :-------: | :---: |
+| `mergeSort()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.8 |
 
 ### Counting Sort
 
-[Counting sort](https://en.wikipedia.org/wiki/Counting_sort) is used to sort small integers in linear time. It counts the frequencies of the numbers appearing in an array, and then using this to reconstruct a sorted list.
+[Counting sort](https://en.wikipedia.org/wiki/Counting_sort) is a specialized sorting algorithm to sort integers of ranges in linear time. It counts the frequencies of the numbers appearing in an array, and uses it to reconstruct a sorted list.
 
-|          Functions |  Performance   | Tests | Benchmark | Since |
-| -----------------: | :------------: | :---: | :-------: | :---: |
-|   `countingSort()` | _O_(_n_ + _k_) |  ✔️   |    ✔️     | 0.0.9 |
-| `countingSortOf()` | _O_(_n_ + _k_) |  ✔️   |    ✔️     | 0.0.9 |
+|          Functions |            Performance            | Tests | Benchmark | Since |
+| -----------------: | :-------------------------------: | :---: | :-------: | :---: |
+|   `countingSort()` |          _O_(_n_ + _k_)           |  ✔️   |    ✔️     | 0.0.9 |
+| `countingSortOf()` |          _O_(_n_ + _k_)           |  ✔️   |    ✔️     | 0.0.9 |
+|                    | Here, `k` is the range of numbers |       |           |       |
+
+### Radix Sort
+
+[Radix sort](https://en.wikipedia.org/wiki/Radix_sort) can sort a range of integers without using any comparisons. It is a special form of bucket sort, which distribute elements into buckets according to their radix.
+
+|       Functions |      Performance       | Tests | Benchmark | Since |
+| --------------: | :--------------------: | :---: | :-------: | :---: |
+|   `radixSort()` |  _O_(_n_ `log_b` _n_)  |  ✔️   |    ✔️     | 0.0.9 |
+| `radixSortOf()` |  _O_(_n_ `log_b` _n_)  |  ✔️   |    ✔️     | 0.0.9 |
+|                 | Here, `b` is the radix |       |           |       |

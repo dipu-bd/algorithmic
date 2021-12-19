@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import 'package:algorithmic/src/utils/templates.dart';
+import '../utils/templates.dart';
 
 /// Returns the last index of the [value] in a [list] in reverse order, otherwise -1.
 ///

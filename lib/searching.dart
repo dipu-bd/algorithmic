@@ -4,8 +4,6 @@
 /// A collection of index search algorithms.
 library algorithmic.searching;
 
-export 'src/utils/templates.dart';
-
 export 'src/searching/binary_lower.dart' show lowerBound, binarySearch;
 export 'src/searching/binary_quick.dart' show binarySearchQuick;
 export 'src/searching/binary_upper.dart' show upperBound, binarySearchUpper;
