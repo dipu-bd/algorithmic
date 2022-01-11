@@ -4,7 +4,6 @@
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:benchmark/benchmark.dart';
 import 'package:edit_distance/edit_distance.dart' as edit_distance;
-import 'package:string_extensions/string_extensions.dart';
 
 void main() {
   group("Two lists of 5000 items", () {
@@ -25,9 +24,6 @@ void main() {
 
     benchmark('edit_distance.Levenshtein().distance()', () {
       edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
-    benchmark('string_extensions.getLevenshtein()', () {
-      source.getLevenshtein(target);
     }, iterations: times);
     benchmark('algorithmic.levenshtein()', () {
       algorithmic.levenshteinDistance(source, target);
@@ -52,9 +48,6 @@ void main() {
 
     benchmark('edit_distance.Levenshtein().distance()', () {
       edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
-    benchmark('string_extensions.getLevenshtein()', () {
-      source.getLevenshtein(target);
     }, iterations: times);
     benchmark('algorithmic.levenshtein()', () {
       algorithmic.levenshteinDistance(source, target);
@@ -81,9 +74,6 @@ void main() {
     benchmark('edit_distance.Levenshtein().distance()', () {
       edit_distance.Levenshtein().distance(source, target);
     }, iterations: times);
-    benchmark('string_extensions.getLevenshtein()', () {
-      source.getLevenshtein(target);
-    }, iterations: times);
     benchmark('algorithmic.levenshtein()', () {
       algorithmic.levenshteinDistance(source, target);
     }, iterations: times);
@@ -108,9 +98,6 @@ void main() {
 
     benchmark('edit_distance.Levenshtein().distance()', () {
       edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
-    benchmark('string_extensions.getLevenshtein()', () {
-      source.getLevenshtein(target);
     }, iterations: times);
     benchmark('algorithmic.levenshtein()', () {
       algorithmic.levenshteinDistance(source, target);
