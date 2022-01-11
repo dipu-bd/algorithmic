@@ -89,7 +89,8 @@ void radixSort(
   }
 
   int mask = (1 << p) - 1;
-  List<List<int>> bin = List.generate(mask + 1, (i) => <int>[]);
+  List<List<int>> bin =
+      List<List<int>>.generate(mask + 1, (i) => <int>[], growable: false);
 
   // Put items inside the bin
   for (k = 0; ((h - l) >> k) != 0; k += p) {
@@ -173,7 +174,8 @@ void radixSortOf<E>(
 
   // sorts range `[b, e)` with radix 2^p
   int l, h, i, j, k, m;
-  List<int> keys = List.generate(e, (i) => keyOf(list[i]));
+  List<int> keys =
+      List<int>.generate(e, (i) => keyOf(list[i]), growable: false);
 
   // Find the minimum and maximum numbers in range [b, e)
   l = keys[b];
@@ -188,8 +190,10 @@ void radixSortOf<E>(
   }
 
   int mask = (1 << p) - 1;
-  List<List<E>> valueBins = List.generate(mask + 1, (i) => <E>[]);
-  List<List<int>> keyBins = List.generate(mask + 1, (i) => <int>[]);
+  List<List<E>> valueBins =
+      List<List<E>>.generate(mask + 1, (i) => <E>[], growable: false);
+  List<List<int>> keyBins =
+      List<List<int>>.generate(mask + 1, (i) => <int>[], growable: false);
 
   // Put items inside the bin
   for (k = 0; ((h - l) >> k) != 0; k += p) {

@@ -20,6 +20,7 @@ You can also import these algorithms separately:
 | ----------------- | -------------------------------------- |
 | Search algorithms | `'package:algorithmic/searching.dart'` |
 | Sort algorithms   | `'package:algorithmic/sorting.dart'`   |
+| String algorithms | `'package:algorithmic/string.dart'`    |
 
 <!-- ⌛ ✔️ ❌ -->
 
@@ -150,6 +151,18 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 |   `radixSort()` |  _O_(_n_ `log_b` _n_)  |  ✔️   |    ✔️     | 0.0.9 |
 | `radixSortOf()` |  _O_(_n_ `log_b` _n_)  |  ✔️   |    ✔️     | 0.0.9 |
 |                 | Here, `b` is the radix |       |           |       |
+
+## String Metrics
+
+### Levenshtein Distance
+
+[Levenshtein's algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance) returns the minimum number of operations to transform one string (or array) to another. The permitted operations here are insertion, deletion, and substitution.
+
+|                 Functions |             Performance             | Tests | Benchmark | Since |
+| ------------------------: | :---------------------------------: | :---: | :-------: | :---: |
+|   `levenshteinDistance()` |            _O_(_n_ _m_)             |  ✔️   |    ✔️     | 0.0.9 |
+| `levenshteinDistanceOf()` |            _O_(_n_ _m_)             |  ✔️   |    ✔️     | 0.0.9 |
+|                           | Here, `n` and `m` are string length |       |           |       |
 
 ## Links
 

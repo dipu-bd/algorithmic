@@ -16,6 +16,7 @@
   - [x] Quicksort (Haore scheme)
   - [x] Quicksort (Lomuto scheme)
   - [ ] Quicksort (Dual pivot)
+  - [ ] Quicksort (Multi pivot)
 - Selection sorts
   - [x] Selection sort
   - [ ] Heapsort
@@ -42,9 +43,8 @@
 ## Strings
 
 - String metric
-  - [ ] Edit distance
   - [ ] Jaro-Winker distance
-  - [ ] Levenshtein distance
+  - [x] Levenshtein distance
   - [ ] Damerau-Levenshtein distance
   - [ ] Lee distance
   - [ ] Hamming distance

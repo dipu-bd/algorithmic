@@ -6,3 +6,4 @@ library algorithmic;
 
 export 'searching.dart';
 export 'sorting.dart';
+export 'string.dart';

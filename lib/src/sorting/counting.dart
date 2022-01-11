@@ -71,7 +71,7 @@ void countingSort(
   }
 
   m = h - l + 1;
-  List<int> count = List.filled(m, 0);
+  List<int> count = List<int>.filled(m, 0, growable: false);
 
   // Count frequencies of the numbers
   for (i = b; i < e; ++i) {
@@ -143,7 +143,8 @@ void countingSortOf<E>(
 
   /// sorts range `[b, e)`
   int l, h, m, i, j, k;
-  List<int> keys = List.generate(e, (i) => keyOf(list[i]));
+  List<int> keys =
+      List<int>.generate(e, (i) => keyOf(list[i]), growable: false);
 
   // Find the minimum and maximum numbers in range [b, e)
   l = keys[b];
@@ -158,8 +159,8 @@ void countingSortOf<E>(
   }
 
   m = h - l + 1;
-  List<int> count = List.filled(m, 0);
-  List<E> values = List.filled(m, list[b]);
+  List<int> count = List<int>.filled(m, 0, growable: false);
+  List<E> values = List<E>.filled(m, list[b], growable: false);
 
   // Count frequencies of the numbers
   for (i = b; i < e; ++i) {

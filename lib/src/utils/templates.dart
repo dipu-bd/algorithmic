@@ -9,6 +9,13 @@
 /// * positive integer if [left] is greater than [right]
 typedef EntryComparator<E, V> = int Function(E left, V right);
 
+/// A template for equality test function for two objects.
+///
+/// The return value of this function should be:
+/// * `true` if [left] is equal to [right],
+/// * `false` otherwise.
+typedef DualEqualityTest<E, V> = bool Function(E left, V right);
+
 /// A template for test function for an element.
 ///
 /// The return value of this function should be:

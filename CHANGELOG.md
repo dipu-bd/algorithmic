@@ -5,6 +5,8 @@
   - countingSortOf
   - radixSort
   - radixSortOf
+  - levenshteinDistance
+  - levenshteinDistanceOf
 
 ## 0.0.8
 
