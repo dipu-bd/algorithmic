@@ -1,12 +1,12 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import 'package:benchmark/benchmark.dart';
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
+import 'package:benchmark/benchmark.dart';
 
 void main() {
   final int size = 32;
-  final int times = 800;
+  final int times = 777;
 
   group("Benchmark sort algorithms with small list of integers", () {
     group("In a shuffled list of $size numbers", () {
@@ -126,10 +126,10 @@ void main() {
       }, iterations: times);
     });
 
-    group("In a list of $size numbers with 1000 repetead elements", () {
+    group("In a list of $size numbers with 4 repetead elements", () {
       List<int> list = [];
       setUpEach(() {
-        list = List<int>.generate(size, (i) => (i * 1000 / size).floor());
+        list = List<int>.generate(size, (i) => (i * 4 / size).floor());
       });
 
       benchmark('list.sort()', () {
