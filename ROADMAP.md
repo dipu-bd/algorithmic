@@ -43,12 +43,14 @@
 ## Strings
 
 - String metric
-  - [ ] Jaro-Winker distance
   - [x] Levenshtein distance
   - [x] Damerau-Levenshtein distance
   - [x] Optimal string alignment distance
   - [x] Lee distance
   - [x] Hamming distance
+  - [x] Longest Common Subsequence Length
+  - [ ] Longest Common Substring Size
+  - [ ] Jaro-Winker distance
   - [ ] Bitap algorithm
   - [ ] Gestalt pattern matching
   - [ ] Approximate string matching

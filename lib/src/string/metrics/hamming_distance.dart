@@ -51,6 +51,7 @@ int hammingDistanceCustom<E>(
 /// ## Parameters
 ///
 /// - [source] and [target] are two list of items.
+/// - [test] is an optional equality matcher.
 ///
 /// ## Details
 ///

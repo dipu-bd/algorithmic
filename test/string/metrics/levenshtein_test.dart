@@ -7,17 +7,17 @@ import 'package:trotter/trotter.dart';
 
 void main() {
   group("levenshteinDistanceOf()", () {
-    test("empty strings", () {
+    test("<empty> -> <empty>", () {
       final s = characters("");
       final t = characters("");
       expect(levenshteinDistanceOf(s, t), 0);
     });
-    test("abcd -> empty string", () {
+    test("abcd -> <empty>", () {
       final s = characters("abcd");
       final t = characters("");
       expect(levenshteinDistanceOf(s, t), 4);
     });
-    test("empty string -> abcd", () {
+    test("<empty> -> abcd", () {
       final s = characters("");
       final t = characters("abcd");
       expect(levenshteinDistanceOf(s, t), 4);
@@ -85,17 +85,17 @@ void main() {
   });
 
   group("levenshteinDistanceOf() with custom test", () {
-    test("empty strings", () {
+    test("<empty> -> <empty>", () {
       final s = characters("");
       final t = characters("");
       expect(levenshteinDistanceOf(s, t, test: (a, b) => a == b), 0);
     });
-    test("abcd -> empty string", () {
+    test("abcd -> <empty>", () {
       final s = characters("abcd");
       final t = characters("");
       expect(levenshteinDistanceOf(s, t, test: (a, b) => a == b), 4);
     });
-    test("empty string -> abcd", () {
+    test("<empty> -> abcd", () {
       final s = characters("");
       final t = characters("abcd");
       expect(levenshteinDistanceOf(s, t, test: (a, b) => a == b), 4);
@@ -163,17 +163,17 @@ void main() {
   });
 
   group("levenshteinDistance()", () {
-    test("empty strings", () {
+    test("<empty> -> <empty>", () {
       final s = "";
       final t = "";
       expect(levenshteinDistance(s, t), 0);
     });
-    test("abcd -> empty string", () {
+    test("abcd -> <empty>", () {
       final s = "abcd";
       final t = "";
       expect(levenshteinDistance(s, t), 4);
     });
-    test("empty string -> abcd", () {
+    test("<empty> -> abcd", () {
       final s = "";
       final t = "abcd";
       expect(levenshteinDistance(s, t), 4);
@@ -256,6 +256,11 @@ void main() {
     test("kitten -> sitting", () {
       final s = "kitten";
       final t = "sitting";
+      expect(levenshteinDistance(s, t), 3);
+    });
+    test("ABCD -> abCd", () {
+      final s = "ABCD";
+      final t = "abCd";
       expect(levenshteinDistance(s, t), 3);
     });
     test("ABCD -> abcd | ignoreCase", () {

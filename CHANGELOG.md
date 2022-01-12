@@ -9,6 +9,8 @@
   - hammingDistanceOf
   - leeDistance
   - leeDistanceOf
+  - longestCommonSubsequenceLength
+  - longestCommonSubsequenceLengthOf
 
 ## 0.0.9
 

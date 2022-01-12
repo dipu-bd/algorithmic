@@ -16,13 +16,13 @@ import 'package:algorithmic/algorithmic.dart';
 
 You can also import these algorithms separately:
 
-| Libraries         | Imported By                            |
-| ----------------- | -------------------------------------- |
-| Search algorithms | `'package:algorithmic/searching.dart'` |
-| Sort algorithms   | `'package:algorithmic/sorting.dart'`   |
-| String algorithms | `'package:algorithmic/string.dart'`    |
+| Libraries                                  | Imported By                            |
+| ------------------------------------------ | -------------------------------------- |
+| [Search algorithms](#searching-algorithms) | `'package:algorithmic/searching.dart'` |
+| [Sort algorithms](#sorting-algorithms)     | `'package:algorithmic/sorting.dart'`   |
+| [String algorithms](#string-algorithms)    | `'package:algorithmic/string.dart'`    |
 
-<!-- ⌛ ✔️ ❌ -->
+<!-- ⌛ ✔️ ❌ ➖ -->
 
 ## Benchmarks
 
@@ -154,9 +154,11 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 
 > Here, `b` is the radix
 
-## String Metrics
+## String Algorithms
 
-### Levenshtein Distance
+### String Metrics
+
+#### Levenshtein Distance
 
 [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) returns the minimum number of ediit operations to transform one string (or array) to another. The permitted operations here are _insertion_, _deletion_ and _substitution_. The Levenshtein distance between **ABCD** and **BED** is `2`.
 
@@ -167,7 +169,7 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 
 > Here, `n` and `m` are the length of first and second string respectively.
 
-### Damerau-Levenshtein Distance
+#### Damerau-Levenshtein Distance
 
 [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) is a variation of Lavenshtein distance which permits _transposition_ of two adjacent characters along with _insertion_, _deletion_ and _substitution_. e.g.: The Damerau-Levenshtein distance between **CA** and **ABC** is `2`.
 
@@ -178,7 +180,7 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 
 > Here, `n` and `m` are the length of first and second string respectively and `k` is number of unique characters appearing in both string.
 
-### Restricted Damerau-Levenshtein Distance / Optimal String Alignment Distance
+#### Restricted Damerau-Levenshtein Distance / Optimal String Alignment Distance
 
 The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) can be restricted with a condition that no substring can be edited more than once, which simplifies the implementation of transposition lookup. This distance is also known as _Optimal String Alignment_ distance. e.g.: The restricted Damerau-Levenshtein edit distance between **CA** and **ABC** is `3`.
 
@@ -187,9 +189,9 @@ The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80
 |   `restrictedDamerauDistance()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
 | `restrictedDamerauDistanceOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
 
-> Here, `n` and `m` are the length of first and second string respectively and `k` is number of unique characters appearing in both string.
+> Here, `n` and `m` are the length of first and second string respectively.
 
-### Hamming Distance
+#### Hamming Distance
 
 [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two equal-length strings is the number of positions at which the characters differs. In this implementation, if two strings are not equal, the shorter string is padded to match the longer ones.
 
@@ -198,7 +200,7 @@ The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80
 |   `hammingDistance()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
 | `hammingDistanceOf()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
 
-### Lee Distance
+#### Lee Distance
 
 [Lee distance](https://en.wikipedia.org/wiki/Lee_distance) can only be calculated between two equal-length strings.
 
@@ -206,6 +208,19 @@ The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80
 | ----------------: | :---------: | :---: | :-------: | :----: |
 |   `leeDistance()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
 | `leeDistanceOf()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
+
+#### Longest Common Subsequence Length
+
+[Longest Common Subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem) is the longest of the common subsequences of two strings.
+
+> Longest common substrings and longest common subsequences are not the same. Unlike substrings, subsequences are not required to occupy consecutive positions.
+
+|                            Functions | Performance  | Tests | Benchmark | Since  |
+| -----------------------------------: | :----------: | :---: | :-------: | :----: |
+|   `longestCommonSubsequenceLength()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+| `longestCommonSubsequenceLengthOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+
+> Here, `n` and `m` are the length of first and second string respectively.
 
 ## Links
 
