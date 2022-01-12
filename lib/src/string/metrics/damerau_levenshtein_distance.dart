@@ -3,7 +3,6 @@
 
 import 'dart:math' show min;
 
-import 'package:algorithmic/algorithmic.dart';
 import 'package:algorithmic/src/utils/string.dart';
 
 int damerauLevenshteinDistanceDefault<E>(List<E> source, List<E> target) {
@@ -87,11 +86,6 @@ int damerauLevenshteinDistanceDefault<E>(List<E> source, List<E> target) {
 /// This functions returns the _minimum_ number of these operations required to
 /// transform [source] into [target] without modifying their contents.
 ///
-/// The difference between Damerau-Levenshtein distance and [restrictedEditDistance],
-/// is that this implementation does not have the restriction to not edit a substring
-/// more than once. As a result, it becomes significantly more complex to calculate
-/// the Damerau-Levenshtein distance.
-///
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source], `m` is the length of [target], and `k` is
 /// the number of unique items appearing on the lists, <br/>
@@ -130,11 +124,6 @@ int damerauLevenshteinDistanceOf<E>(List<E> source, List<E> target) {
 ///
 /// This functions returns the _minimum_ number of these operations required to
 /// transform [source] into [target] without modifying their contents.
-///
-/// The difference between Damerau-Levenshtein distance and [restrictedEditDistance],
-/// is that this implementation does not have the restriction to not edit a substring
-/// more than once. As a result, it becomes significantly more complex to calculate
-/// the Damerau-Levenshtein distance.
 ///
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source], `m` is the length of [target], and `k` is

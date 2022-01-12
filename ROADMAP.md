@@ -47,9 +47,8 @@
   - [x] Levenshtein distance
   - [x] Damerau-Levenshtein distance
   - [x] Optimal string alignment distance
-  - [ ] Lee distance
-  - [ ] Hamming distance
-  - [ ] Wagner-fischer algorithm
+  - [x] Lee distance
+  - [x] Hamming distance
   - [ ] Bitap algorithm
   - [ ] Gestalt pattern matching
   - [ ] Approximate string matching

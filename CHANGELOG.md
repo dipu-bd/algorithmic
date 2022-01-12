@@ -1,10 +1,14 @@
 ## 0.0.10
 
 - New algorithms:
-  - restrictedEditDistance
-  - restrictedEditDistanceOf
+  - restrictedDamerauDistance
+  - restrictedDamerauDistanceOf
   - damerauLevenshteinDistance
   - damerauLevenshteinDistanceOf
+  - hammingDistance
+  - hammingDistanceOf
+  - leeDistance
+  - leeDistanceOf
 
 ## 0.0.9
 

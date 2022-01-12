@@ -253,6 +253,11 @@ void main() {
       final t = "saturday";
       expect(levenshteinDistance(s, t), 3);
     });
+    test("kitten -> sitting", () {
+      final s = "kitten";
+      final t = "sitting";
+      expect(levenshteinDistance(s, t), 3);
+    });
     test("ABCD -> abcd | ignoreCase", () {
       final s = "ABCD";
       final t = "abcd";

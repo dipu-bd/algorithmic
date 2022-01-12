@@ -3,6 +3,7 @@
 
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:benchmark/benchmark.dart';
+import 'package:edit_distance/edit_distance.dart' as edit_distance;
 
 void main() {
   group("Two lists of 1000 items each", () {
@@ -21,11 +22,11 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+    benchmark('edit_distance.Damerau().distance()', () {
+      edit_distance.Damerau().distance(source, target);
     }, iterations: times);
-    benchmark('algorithmic.restrictedEditDistance()', () {
-      algorithmic.restrictedEditDistance(source, target);
+    benchmark('algorithmic.restrictedDamerauDistance()', () {
+      algorithmic.restrictedDamerauDistance(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
       algorithmic.damerauLevenshteinDistance(source, target);
@@ -48,11 +49,11 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+    benchmark('edit_distance.Damerau().distance()', () {
+      edit_distance.Damerau().distance(source, target);
     }, iterations: times);
-    benchmark('algorithmic.restrictedEditDistance()', () {
-      algorithmic.restrictedEditDistance(source, target);
+    benchmark('algorithmic.restrictedDamerauDistance()', () {
+      algorithmic.restrictedDamerauDistance(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
       algorithmic.damerauLevenshteinDistance(source, target);
@@ -76,11 +77,11 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+    benchmark('edit_distance.Damerau().distance()', () {
+      edit_distance.Damerau().distance(source, target);
     }, iterations: times);
-    benchmark('algorithmic.restrictedEditDistance()', () {
-      algorithmic.restrictedEditDistance(source, target);
+    benchmark('algorithmic.restrictedDamerauDistance()', () {
+      algorithmic.restrictedDamerauDistance(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
       algorithmic.damerauLevenshteinDistance(source, target);
@@ -104,11 +105,11 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+    benchmark('edit_distance.Damerau().distance()', () {
+      edit_distance.Damerau().distance(source, target);
     }, iterations: times);
-    benchmark('algorithmic.restrictedEditDistance()', () {
-      algorithmic.restrictedEditDistance(source, target);
+    benchmark('algorithmic.restrictedDamerauDistance()', () {
+      algorithmic.restrictedDamerauDistance(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
       algorithmic.damerauLevenshteinDistance(source, target);

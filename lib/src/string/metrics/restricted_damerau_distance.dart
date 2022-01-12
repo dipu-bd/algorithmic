@@ -3,10 +3,11 @@
 
 import 'dart:math' show min;
 
+import 'package:algorithmic/algorithmic.dart';
 import 'package:algorithmic/src/utils/string.dart';
 import 'package:algorithmic/src/utils/templates.dart';
 
-int restrictedEditDistanceDefault<E>(List<E> source, List<E> target) {
+int restrictedDamerauDistanceDefault<E>(List<E> source, List<E> target) {
   int n = source.length;
   int m = target.length;
   if (n == 0) {
@@ -51,7 +52,7 @@ int restrictedEditDistanceDefault<E>(List<E> source, List<E> target) {
   return d1[m];
 }
 
-int restrictedEditDistanceCustom<E>(
+int restrictedDamerauDistanceCustom<E>(
     List<E> source, List<E> target, DualEqualityTest<E, E> test) {
   int n = source.length;
   int m = target.length;
@@ -97,7 +98,7 @@ int restrictedEditDistanceCustom<E>(
   return d1[m];
 }
 
-/// Finds the restricted edit distance between two lists using
+/// Finds the restricted Damerau-Levenshtein edit distance between two lists using
 /// [Wagner–Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm)
 ///
 /// ## Parameters
@@ -106,39 +107,26 @@ int restrictedEditDistanceCustom<E>(
 ///
 /// ## Details
 ///
-/// Edit distance is a way to quantify how dissimilar two list of items are to
-/// one another by counting minimum number of single-index operations required
-/// to transform one list to the other.
-///
-/// The _restricted edit distance_ or _optimal string alignment distance_ or computes
-/// the number of edit operations needed to make two lists equal under the
-/// condition that _no substring is edited more than once_.
-///
-/// This variation of edit distance algorithm allows 4 types of operations:
-/// - insertions: insert a single item anywhere in the [source] list
-/// - deletions: delete a single item from the [source]
-/// - substitutions: replace one item with another in the [source]
-/// - transposition: swap two adjacent items in the [source] under the condition that
-///   _no substring is edited more than once_
-///
 /// This functions returns the _minimum_ number of these operations required to
 /// transform [source] into [target] without modifying their contents.
+///
+/// Check [restrictedDamerauDistance] for further details.
 ///
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(3m)`
-int restrictedEditDistanceOf<E>(
+int restrictedDamerauDistanceOf<E>(
   List<E> source,
   List<E> target, {
   DualEqualityTest<E, E>? test,
 }) {
   if (test == null) {
-    return restrictedEditDistanceDefault(source, target);
+    return restrictedDamerauDistanceDefault(source, target);
   }
-  return restrictedEditDistanceCustom(source, target, test);
+  return restrictedDamerauDistanceCustom(source, target, test);
 }
 
-/// Finds the restricted edit distance between two strings using
+/// Finds the restricted Damerau-Levenshtein edit distance between two strings using
 /// [Wagner–Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm)
 ///
 /// ## Parameters
@@ -155,20 +143,20 @@ int restrictedEditDistanceOf<E>(
 ///
 /// ## Details
 ///
-/// Edit distance is a way to quantify how dissimilar two striings are to
-/// one another by counting minimum number of single-character operations required
-/// to transform one string to the other.
-///
 /// The _restricted edit distance_ or _optimal string alignment distance_ or computes
 /// the number of edit operations needed to make two strings equal under the
 /// condition that _no substring is edited more than once_.
 ///
-/// This variation of edit distance algorithm allows 4 types of operations:
-/// - insertions: insert a single character anywhere in the [source]
-/// - deletions: delete a single character from the [source]
-/// - substitutions: replace one character with another in the [source]
-/// - transposition: swap two adjacent characters in the [source] under the
-///   condition that _no substring is edited more than once_
+/// This is a variation of Damerau-Levenshtein distance implemented
+/// by [damerauLevenshteinDistanceOf]. It restricts the transposition operation
+/// so that the operation is only applied to unedited portion of the [source], not
+/// after changing it once.
+///
+/// For example, `CA` can be transformed into `ABC` in 2 steps using
+/// Damerau-Levenshtein method: CA -> AC -> ABC
+///
+/// But under the above mentioned condition, after CA -> AC, the substring AC can not
+/// be further modified. So, it requires 3 steps here: CA -> AA -> AB -> ABC
 ///
 /// This functions returns the _minimum_ number of these operations required to
 /// transform [source] into [target] without modifying their contents.
@@ -176,7 +164,7 @@ int restrictedEditDistanceOf<E>(
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(3m)`
-int restrictedEditDistance(
+int restrictedDamerauDistance(
   String source,
   String target, {
   bool ignoreCase = false,
@@ -198,5 +186,5 @@ int restrictedEditDistance(
     ignoreNumbers: ignoreNumbers,
     alphaNumericOnly: alphaNumericOnly,
   );
-  return restrictedEditDistanceDefault(source.codeUnits, target.codeUnits);
+  return restrictedDamerauDistanceDefault(source.codeUnits, target.codeUnits);
 }

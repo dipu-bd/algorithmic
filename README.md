@@ -178,16 +178,34 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 
 > Here, `n` and `m` are the length of first and second string respectively and `k` is number of unique characters appearing in both string.
 
-### Restricted Edit Distance / Optimal String Alignment Distance
+### Restricted Damerau-Levenshtein Distance / Optimal String Alignment Distance
 
-The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) can be simplified with a condition that no substring can be edited more than once. This distance is called optimal string alignment distance or restricted edit distance. e.g.: The restricted edit distance between **CA** and **ABC** is `3`.
+The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) can be restricted with a condition that no substring can be edited more than once, which simplifies the implementation of transposition lookup. This distance is also known as _Optimal String Alignment_ distance. e.g.: The restricted Damerau-Levenshtein edit distance between **CA** and **ABC** is `3`.
 
-|                    Functions | Performance  | Tests | Benchmark | Since  |
-| ---------------------------: | :----------: | :---: | :-------: | :----: |
-|   `restrictedEditDistance()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
-| `restrictedEditDistanceOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+|                       Functions | Performance  | Tests | Benchmark | Since  |
+| ------------------------------: | :----------: | :---: | :-------: | :----: |
+|   `restrictedDamerauDistance()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+| `restrictedDamerauDistanceOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
 
 > Here, `n` and `m` are the length of first and second string respectively and `k` is number of unique characters appearing in both string.
+
+### Hamming Distance
+
+[Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two equal-length strings is the number of positions at which the characters differs. In this implementation, if two strings are not equal, the shorter string is padded to match the longer ones.
+
+|             Functions | Performance | Tests | Benchmark | Since  |
+| --------------------: | :---------: | :---: | :-------: | :----: |
+|   `hammingDistance()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
+| `hammingDistanceOf()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
+
+### Lee Distance
+
+[Lee distance](https://en.wikipedia.org/wiki/Lee_distance) can only be calculated between two equal-length strings.
+
+|         Functions | Performance | Tests | Benchmark | Since  |
+| ----------------: | :---------: | :---: | :-------: | :----: |
+|   `leeDistance()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
+| `leeDistanceOf()` |  _O_(_n_)   |  ✔️   |    ➖     | 0.0.10 |
 
 ## Links
 
