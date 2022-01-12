@@ -3,11 +3,10 @@
 
 import 'package:algorithmic/algorithmic.dart' as algorithmic;
 import 'package:benchmark/benchmark.dart';
-import 'package:edit_distance/edit_distance.dart' as edit_distance;
 
 void main() {
-  group("Two lists of 5000 items each", () {
-    final size = 5000;
+  group("Two lists of 1000 items each", () {
+    final size = 1000;
     final times = 10;
 
     List<int> _source = [];
@@ -22,11 +21,14 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('edit_distance.Levenshtein().distance()', () {
-      edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
       algorithmic.levenshteinDistance(source, target);
+    }, iterations: times);
+    benchmark('algorithmic.restrictedEditDistance()', () {
+      algorithmic.restrictedEditDistance(source, target);
+    }, iterations: times);
+    benchmark('algorithmic.damerauLevenshteinDistance()', () {
+      algorithmic.damerauLevenshteinDistance(source, target);
     }, iterations: times);
   });
 
@@ -46,17 +48,20 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('edit_distance.Levenshtein().distance()', () {
-      edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
       algorithmic.levenshteinDistance(source, target);
     }, iterations: times);
+    benchmark('algorithmic.restrictedEditDistance()', () {
+      algorithmic.restrictedEditDistance(source, target);
+    }, iterations: times);
+    benchmark('algorithmic.damerauLevenshteinDistance()', () {
+      algorithmic.damerauLevenshteinDistance(source, target);
+    }, iterations: times);
   });
 
-  group("Two lists of 100 vs 10000 items", () {
+  group("Two lists of 100 vs 1000 items", () {
     final size1 = 100;
-    final size2 = 10000;
+    final size2 = 1000;
     final times = 100;
 
     List<int> _source = [];
@@ -71,16 +76,19 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('edit_distance.Levenshtein().distance()', () {
-      edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
       algorithmic.levenshteinDistance(source, target);
     }, iterations: times);
+    benchmark('algorithmic.restrictedEditDistance()', () {
+      algorithmic.restrictedEditDistance(source, target);
+    }, iterations: times);
+    benchmark('algorithmic.damerauLevenshteinDistance()', () {
+      algorithmic.damerauLevenshteinDistance(source, target);
+    }, iterations: times);
   });
 
-  group("Two lists of 10000 vs 100 items", () {
-    final size1 = 10000;
+  group("Two lists of 1000 vs 100 items", () {
+    final size1 = 1000;
     final size2 = 100;
     final times = 100;
 
@@ -96,11 +104,14 @@ void main() {
       target = String.fromCharCodes(_target);
     });
 
-    benchmark('edit_distance.Levenshtein().distance()', () {
-      edit_distance.Levenshtein().distance(source, target);
-    }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
       algorithmic.levenshteinDistance(source, target);
+    }, iterations: times);
+    benchmark('algorithmic.restrictedEditDistance()', () {
+      algorithmic.restrictedEditDistance(source, target);
+    }, iterations: times);
+    benchmark('algorithmic.damerauLevenshteinDistance()', () {
+      algorithmic.damerauLevenshteinDistance(source, target);
     }, iterations: times);
   });
 }

@@ -3,19 +3,83 @@
 
 import 'dart:math' show min;
 
+import 'package:algorithmic/src/utils/string.dart';
 import 'package:algorithmic/src/utils/templates.dart';
 
-Pattern _whitespaceAlphaNumericPattern =
-    RegExp(r'(\s)|(\d)|(\w)|(.)', unicode: true, multiLine: true);
+int levenshteinDistanceDefault<E>(List<E> source, List<E> target) {
+  int n = source.length;
+  int m = target.length;
+  if (n == 0) {
+    return m;
+  }
+  if (m == 0) {
+    return n;
+  }
 
-/// Find edit distance between two lists using
-/// [Levenshtein's algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance)
-/// which allows deletion, insertion and substitution.
+  // The edit distance `cost` array
+  List<int> cost = List<int>.generate(m + 1, (i) => i, growable: false);
+
+  int i, j, k, c;
+  for (i = 1; i <= n; i++) {
+    k = i - 1;
+    cost[0] = i;
+    for (j = 1; j <= m; j++) {
+      c = min(
+        min(
+          cost[j] + 1, // deletion
+          cost[j - 1] + 1, // insertion
+        ),
+        source[i - 1] == target[j - 1] ? k : k + 1, // substitution
+      );
+      k = cost[j];
+      cost[j] = c;
+    }
+  }
+
+  return cost[m];
+}
+
+int levenshteinDistanceCustom<E>(
+    List<E> source, List<E> target, DualEqualityTest<E, E> test) {
+  int n = source.length;
+  int m = target.length;
+  if (n == 0) {
+    return m;
+  }
+  if (m == 0) {
+    return n;
+  }
+
+  // The edit distance `cost` array
+  List<int> cost = List<int>.generate(m + 1, (i) => i, growable: false);
+
+  int i, j, k, c;
+  for (i = 1; i <= n; i++) {
+    k = i - 1;
+    cost[0] = i;
+    for (j = 1; j <= m; j++) {
+      c = min(
+        min(
+          cost[j] + 1, // deletion
+          cost[j - 1] + 1, // insertion
+        ),
+        test(source[i - 1], target[j - 1]) ? k : k + 1, // substitution
+      );
+      k = cost[j];
+      cost[j] = c;
+    }
+  }
+
+  return cost[m];
+}
+
+/// Finds the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
+/// between two lists which allows deletion, insertion and substitution using
+/// [Wagner–Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm)
 ///
 /// ## Parameters
 ///
 /// - [source] and [target] are two list of items.
-/// - pass [start] and [count] to consider only a portion from [source]
 ///
 /// ## Details
 ///
@@ -33,89 +97,27 @@ Pattern _whitespaceAlphaNumericPattern =
 ///
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
-/// Complexity: Time `O(n * m)` | Space `O(m)`
+/// Complexity: Time `O(nm)` | Space `O(n)`
 int levenshteinDistanceOf<E>(
   List<E> source,
   List<E> target, {
   DualEqualityTest<E, E>? test,
 }) {
-  if (source.length < target.length) {
-    // to reduce space complexity, the target should be smaller
+  if (source.length > target.length) {
+    // since this is symmetric, we can swap them to optimize the inner loop
     List<E> t = target;
     target = source;
     source = t;
   }
-
   if (test == null) {
-    return levenshteinDefault(source, target);
+    return levenshteinDistanceDefault(source, target);
   }
-  return levenshteinCustom(source, target, test);
+  return levenshteinDistanceCustom(source, target, test);
 }
 
-int levenshteinDefault<E>(List<E> source, List<E> target) {
-  int n = source.length;
-  int m = target.length;
-
-  if (n == 0) {
-    return m;
-  }
-
-  if (m == 0) {
-    return n;
-  }
-
-  // The edit distance `cost` array
-  List<int> cost = List<int>.generate(m + 1, (i) => i, growable: false);
-
-  int i, j, k, c;
-  for (i = 1; i <= n; i++) {
-    k = i - 1;
-    cost[0] = i;
-    for (j = 1; j <= m; j++) {
-      c = min(1 + min(cost[j], cost[j - 1]),
-          source[i - 1] == target[j - 1] ? k : k + 1);
-      k = cost[j];
-      cost[j] = c;
-    }
-  }
-
-  return cost[m];
-}
-
-int levenshteinCustom<E>(
-    List<E> source, List<E> target, DualEqualityTest<E, E> test) {
-  int n = source.length;
-  int m = target.length;
-
-  if (n == 0) {
-    return m;
-  }
-
-  if (m == 0) {
-    return n;
-  }
-
-  // The edit distance `cost` array
-  List<int> cost = List<int>.generate(m + 1, (i) => i, growable: false);
-
-  int i, j, k, c;
-  for (i = 1; i <= n; i++) {
-    k = i - 1;
-    cost[0] = i;
-    for (j = 1; j <= m; j++) {
-      c = min(1 + min(cost[j], cost[j - 1]),
-          test(source[i - 1], target[j - 1]) ? k : k + 1);
-      k = cost[j];
-      cost[j] = c;
-    }
-  }
-
-  return cost[m];
-}
-
-/// Find edit distance between two strings using
-/// [Levenshtein's algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance)
-/// which allows deletion, insertion and substitution.
+/// Finds the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
+/// between two strings which allows deletion, insertion and substitution using
+/// [Wagner–Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm)
 ///
 /// ## Parameters
 ///
@@ -149,7 +151,7 @@ int levenshteinCustom<E>(
 ///
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
-/// Complexity: Time `O(n * m)` | Space `O(m)`
+/// Complexity: Time `O(nm)` | Space `O(n)`
 int levenshteinDistance(
   String source,
   String target, {
@@ -158,24 +160,19 @@ int levenshteinDistance(
   bool ignoreNumbers = false,
   bool alphaNumericOnly = false,
 }) {
-  if (ignoreCase) {
-    source = source.toLowerCase();
-    target = target.toLowerCase();
-  }
-  if (ignoreNumbers || ignoreWhitespace || alphaNumericOnly) {
-    // ignore: prefer_function_declarations_over_variables
-    var replacer = (Match m) {
-      String? s = m.group(1);
-      String? d = m.group(2);
-      String? w = m.group(3);
-      if (w != null) return w; // match is alpha
-      if (d != null) return ignoreNumbers ? '' : d; // match is numeric
-      if (alphaNumericOnly) return '';
-      if (s != null) return ignoreWhitespace ? '' : s; // match is whitespace
-      return m.group(0) ?? '';
-    };
-    source = source.replaceAllMapped(_whitespaceAlphaNumericPattern, replacer);
-    target = target.replaceAllMapped(_whitespaceAlphaNumericPattern, replacer);
-  }
+  source = cleanupString(
+    source,
+    ignoreCase: ignoreCase,
+    ignoreWhitespace: ignoreWhitespace,
+    ignoreNumbers: ignoreNumbers,
+    alphaNumericOnly: alphaNumericOnly,
+  );
+  target = cleanupString(
+    target,
+    ignoreCase: ignoreCase,
+    ignoreWhitespace: ignoreWhitespace,
+    ignoreNumbers: ignoreNumbers,
+    alphaNumericOnly: alphaNumericOnly,
+  );
   return levenshteinDistanceOf(source.codeUnits, target.codeUnits);
 }

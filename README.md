@@ -136,33 +136,58 @@ This algorithm is known by many other names, e.g.: bidirectional bubble sort, co
 
 [Counting sort](https://en.wikipedia.org/wiki/Counting_sort) is a specialized sorting algorithm to sort integers of ranges in linear time. It counts the frequencies of the numbers appearing in an array, and uses it to reconstruct a sorted list.
 
-|          Functions |            Performance            | Tests | Benchmark | Since |
-| -----------------: | :-------------------------------: | :---: | :-------: | :---: |
-|   `countingSort()` |          _O_(_n_ + _k_)           |  ✔️   |    ✔️     | 0.0.9 |
-| `countingSortOf()` |          _O_(_n_ + _k_)           |  ✔️   |    ✔️     | 0.0.9 |
-|                    | Here, `k` is the range of numbers |       |           |       |
+|          Functions |  Performance   | Tests | Benchmark | Since |
+| -----------------: | :------------: | :---: | :-------: | :---: |
+|   `countingSort()` | _O_(_n_ + _k_) |  ✔️   |    ✔️     | 0.0.9 |
+| `countingSortOf()` | _O_(_n_ + _k_) |  ✔️   |    ✔️     | 0.0.9 |
+
+> Here, `k` is the range of numbers
 
 ### Radix Sort
 
 [Radix sort](https://en.wikipedia.org/wiki/Radix_sort) can sort a range of integers without using any comparisons. It is a special form of bucket sort, which distribute elements into buckets according to their radix.
 
-|       Functions |      Performance       | Tests | Benchmark | Since |
-| --------------: | :--------------------: | :---: | :-------: | :---: |
-|   `radixSort()` |  _O_(_n_ `log_b` _n_)  |  ✔️   |    ✔️     | 0.0.9 |
-| `radixSortOf()` |  _O_(_n_ `log_b` _n_)  |  ✔️   |    ✔️     | 0.0.9 |
-|                 | Here, `b` is the radix |       |           |       |
+|       Functions |     Performance      | Tests | Benchmark | Since |
+| --------------: | :------------------: | :---: | :-------: | :---: |
+|   `radixSort()` | _O_(_n_ `log_b` _n_) |  ✔️   |    ✔️     | 0.0.9 |
+| `radixSortOf()` | _O_(_n_ `log_b` _n_) |  ✔️   |    ✔️     | 0.0.9 |
+
+> Here, `b` is the radix
 
 ## String Metrics
 
 ### Levenshtein Distance
 
-[Levenshtein's algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance) returns the minimum number of operations to transform one string (or array) to another. The permitted operations here are insertion, deletion, and substitution.
+[Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) returns the minimum number of ediit operations to transform one string (or array) to another. The permitted operations here are _insertion_, _deletion_ and _substitution_. The Levenshtein distance between **ABCD** and **BED** is `2`.
 
-|                 Functions |             Performance             | Tests | Benchmark | Since |
-| ------------------------: | :---------------------------------: | :---: | :-------: | :---: |
-|   `levenshteinDistance()` |            _O_(_n_ _m_)             |  ✔️   |    ✔️     | 0.0.9 |
-| `levenshteinDistanceOf()` |            _O_(_n_ _m_)             |  ✔️   |    ✔️     | 0.0.9 |
-|                           | Here, `n` and `m` are string length |       |           |       |
+|                 Functions | Performance  | Tests | Benchmark | Since |
+| ------------------------: | :----------: | :---: | :-------: | :---: |
+|   `levenshteinDistance()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.9 |
+| `levenshteinDistanceOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.9 |
+
+> Here, `n` and `m` are the length of first and second string respectively.
+
+### Damerau-Levenshtein Distance
+
+[Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) is a variation of Lavenshtein distance which permits _transposition_ of two adjacent characters along with _insertion_, _deletion_ and _substitution_. e.g.: The Damerau-Levenshtein distance between **CA** and **ABC** is `2`.
+
+|                        Functions |     Performance      | Tests | Benchmark | Since  |
+| -------------------------------: | :------------------: | :---: | :-------: | :----: |
+|   `damerauLevenshteinDistance()` | _O_(_n_ _m_ `log` k) |  ✔️   |    ✔️     | 0.0.10 |
+| `damerauLevenshteinDistanceOf()` | _O_(_n_ _m_ `log` k) |  ✔️   |    ✔️     | 0.0.10 |
+
+> Here, `n` and `m` are the length of first and second string respectively and `k` is number of unique characters appearing in both string.
+
+### Restricted Edit Distance / Optimal String Alignment Distance
+
+The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) can be simplified with a condition that no substring can be edited more than once. This distance is called optimal string alignment distance or restricted edit distance. e.g.: The restricted edit distance between **CA** and **ABC** is `3`.
+
+|                    Functions | Performance  | Tests | Benchmark | Since  |
+| ---------------------------: | :----------: | :---: | :-------: | :----: |
+|   `restrictedEditDistance()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+| `restrictedEditDistanceOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+
+> Here, `n` and `m` are the length of first and second string respectively and `k` is number of unique characters appearing in both string.
 
 ## Links
 

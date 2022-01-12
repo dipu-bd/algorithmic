@@ -45,7 +45,8 @@
 - String metric
   - [ ] Jaro-Winker distance
   - [x] Levenshtein distance
-  - [ ] Damerau-Levenshtein distance
+  - [x] Damerau-Levenshtein distance
+  - [x] Optimal string alignment distance
   - [ ] Lee distance
   - [ ] Hamming distance
   - [ ] Wagner-fischer algorithm
