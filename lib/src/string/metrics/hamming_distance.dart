@@ -63,7 +63,7 @@ int hammingDistanceCustom<E>(
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
-int hammingDistanceOf<E>(
+int hammingDistance<E>(
   List<E> source,
   List<E> target, {
   DualEqualityTest<E, E>? test,
@@ -99,7 +99,7 @@ int hammingDistanceOf<E>(
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
-int hammingDistance(
+int hammingDistanceOf(
   String source,
   String target, {
   bool ignoreCase = false,
@@ -121,5 +121,5 @@ int hammingDistance(
     ignoreNumbers: ignoreNumbers,
     alphaNumericOnly: alphaNumericOnly,
   );
-  return hammingDistanceOf(source.codeUnits, target.codeUnits);
+  return hammingDistance(source.codeUnits, target.codeUnits);
 }

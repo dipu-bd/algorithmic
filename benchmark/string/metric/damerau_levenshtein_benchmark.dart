@@ -26,10 +26,10 @@ void main() {
       edit_distance.Damerau().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.restrictedDamerauDistance()', () {
-      algorithmic.restrictedDamerauDistance(source, target);
+      algorithmic.restrictedDamerauDistanceOf(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
-      algorithmic.damerauLevenshteinDistance(source, target);
+      algorithmic.damerauLevenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 
@@ -53,10 +53,10 @@ void main() {
       edit_distance.Damerau().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.restrictedDamerauDistance()', () {
-      algorithmic.restrictedDamerauDistance(source, target);
+      algorithmic.restrictedDamerauDistanceOf(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
-      algorithmic.damerauLevenshteinDistance(source, target);
+      algorithmic.damerauLevenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 
@@ -81,10 +81,10 @@ void main() {
       edit_distance.Damerau().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.restrictedDamerauDistance()', () {
-      algorithmic.restrictedDamerauDistance(source, target);
+      algorithmic.restrictedDamerauDistanceOf(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
-      algorithmic.damerauLevenshteinDistance(source, target);
+      algorithmic.damerauLevenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 
@@ -109,10 +109,10 @@ void main() {
       edit_distance.Damerau().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.restrictedDamerauDistance()', () {
-      algorithmic.restrictedDamerauDistance(source, target);
+      algorithmic.restrictedDamerauDistanceOf(source, target);
     }, iterations: times);
     benchmark('algorithmic.damerauLevenshteinDistance()', () {
-      algorithmic.damerauLevenshteinDistance(source, target);
+      algorithmic.damerauLevenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 }

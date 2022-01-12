@@ -26,7 +26,7 @@ void main() {
       edit_distance.Levenshtein().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+      algorithmic.levenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 
@@ -50,7 +50,7 @@ void main() {
       edit_distance.Levenshtein().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+      algorithmic.levenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 
@@ -75,7 +75,7 @@ void main() {
       edit_distance.Levenshtein().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+      algorithmic.levenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 
@@ -100,7 +100,7 @@ void main() {
       edit_distance.Levenshtein().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.levenshteinDistance()', () {
-      algorithmic.levenshteinDistance(source, target);
+      algorithmic.levenshteinDistanceOf(source, target);
     }, iterations: times);
   });
 }

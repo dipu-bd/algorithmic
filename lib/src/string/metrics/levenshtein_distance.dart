@@ -99,7 +99,7 @@ int levenshteinDistanceCustom<E>(
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(n)`
-int levenshteinDistanceOf<E>(
+int levenshteinDistance<E>(
   List<E> source,
   List<E> target, {
   DualEqualityTest<E, E>? test,
@@ -153,7 +153,7 @@ int levenshteinDistanceOf<E>(
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(n)`
-int levenshteinDistance(
+int levenshteinDistanceOf(
   String source,
   String target, {
   bool ignoreCase = false,
@@ -175,5 +175,5 @@ int levenshteinDistance(
     ignoreNumbers: ignoreNumbers,
     alphaNumericOnly: alphaNumericOnly,
   );
-  return levenshteinDistanceOf(source.codeUnits, target.codeUnits);
+  return levenshteinDistance(source.codeUnits, target.codeUnits);
 }

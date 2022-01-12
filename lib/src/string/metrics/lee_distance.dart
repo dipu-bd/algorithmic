@@ -27,7 +27,7 @@ import 'package:algorithmic/src/utils/templates.dart';
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
-int leeDistanceOf(List<int> source, List<int> target, int q) {
+int leeDistance(List<int> source, List<int> target, int q) {
   int n = source.length;
   int m = target.length;
   if (n != m) {
@@ -75,7 +75,7 @@ int leeDistanceOf(List<int> source, List<int> target, int q) {
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
-int leeDistance(
+int leeDistanceOf(
   String source,
   String target, {
   int q = 1 << 16,
@@ -109,7 +109,7 @@ int leeDistance(
     t = _extractKeys(target, keyOf);
   }
 
-  return leeDistanceOf(s, t, q);
+  return leeDistance(s, t, q);
 }
 
 List<int> _extractKeys(String value, KeyOf<String, int> keyOf) {

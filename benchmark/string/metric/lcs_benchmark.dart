@@ -26,7 +26,7 @@ void main() {
       edit_distance.LongestCommonSubsequence().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.longestCommonSubsequenceLength()', () {
-      algorithmic.longestCommonSubsequenceLength(source, target);
+      algorithmic.longestCommonSubsequenceLengthOf(source, target);
     }, iterations: times);
   });
 
@@ -50,7 +50,7 @@ void main() {
       edit_distance.LongestCommonSubsequence().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.longestCommonSubsequenceLength()', () {
-      algorithmic.longestCommonSubsequenceLength(source, target);
+      algorithmic.longestCommonSubsequenceLengthOf(source, target);
     }, iterations: times);
   });
 
@@ -75,7 +75,7 @@ void main() {
       edit_distance.LongestCommonSubsequence().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.longestCommonSubsequenceLength()', () {
-      algorithmic.longestCommonSubsequenceLength(source, target);
+      algorithmic.longestCommonSubsequenceLengthOf(source, target);
     }, iterations: times);
   });
 
@@ -100,7 +100,7 @@ void main() {
       edit_distance.LongestCommonSubsequence().distance(source, target);
     }, iterations: times);
     benchmark('algorithmic.longestCommonSubsequenceLength()', () {
-      algorithmic.longestCommonSubsequenceLength(source, target);
+      algorithmic.longestCommonSubsequenceLengthOf(source, target);
     }, iterations: times);
   });
 }

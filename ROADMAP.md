@@ -42,6 +42,10 @@
 
 ## Strings
 
+<!--
+https://anhaidgroup.github.io/py_stringmatching/v0.3.x/OverlapCoefficient.html
+-->
+
 - String metric
   - [x] Levenshtein distance
   - [x] Damerau-Levenshtein distance
@@ -50,10 +54,15 @@
   - [x] Hamming distance
   - [x] Longest Common Subsequence Length
   - [ ] Longest Common Substring Size
-  - [ ] Jaro-Winker distance
-  - [ ] Bitap algorithm
-  - [ ] Gestalt pattern matching
-  - [ ] Approximate string matching
+  - [ ] Longest Increasing Subsequence Length
+  - [x] Tversky index
+  - [x] Sorensen-Dice coefficient
+  - [x] Jaccard similary + distance
+  - [ ] Needleman Wunsch
+  - [ ] Monge Elkan
+  - [ ] Jaro-Winker similarity & distance
+  - [ ] Block Distance / L1 Distance / Manhattan distance
+  - [ ] Simple Matching Coefficient (SMC)
 - Subsequences
   - [ ] LCS (Longest common subsequence)
   - [ ] LIS (Longest increasing subsequence)
@@ -124,7 +133,7 @@
   - [ ] Binomial Heap
   - [ ] Fibonacci Heap
   - [ ] R-tree
-  - [ ] R* tree
+  - [ ] R\* tree
   - [ ] R+ tree
   - [ ] Hilbert R-tree
   - [ ] Ternary search tree
@@ -181,6 +190,7 @@
 - Matrix multiplication
 
 ## Greedy
+
 - [ ] Huffman coding
 - [ ] Job sequencing
 - MST (Minimum Spanning Tree)

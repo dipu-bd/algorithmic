@@ -90,7 +90,7 @@ int damerauLevenshteinDistanceDefault<E>(List<E> source, List<E> target) {
 /// If `n` is the length of [source], `m` is the length of [target], and `k` is
 /// the number of unique items appearing on the lists, <br/>
 /// Complexity: Time `O(nm log k)` | Space `O(nm + k)`
-int damerauLevenshteinDistanceOf<E>(List<E> source, List<E> target) {
+int damerauLevenshteinDistance<E>(List<E> source, List<E> target) {
   return damerauLevenshteinDistanceDefault(source, target);
 }
 
@@ -129,7 +129,7 @@ int damerauLevenshteinDistanceOf<E>(List<E> source, List<E> target) {
 /// If `n` is the length of [source], `m` is the length of [target], and `k` is
 /// the number of unique characters appearing on the string, <br/>
 /// Complexity: Time `O(nm log k)` | Space `O(nm + k)`
-int damerauLevenshteinDistance(
+int damerauLevenshteinDistanceOf(
   String source,
   String target, {
   bool ignoreCase = false,

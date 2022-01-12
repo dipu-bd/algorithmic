@@ -111,12 +111,12 @@ int restrictedDamerauDistanceCustom<E>(
 /// This functions returns the _minimum_ number of these operations required to
 /// transform [source] into [target] without modifying their contents.
 ///
-/// Check [restrictedDamerauDistance] for further details.
+/// Check [restrictedDamerauDistanceOf] for further details.
 ///
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(3m)`
-int restrictedDamerauDistanceOf<E>(
+int restrictedDamerauDistance<E>(
   List<E> source,
   List<E> target, {
   DualEqualityTest<E, E>? test,
@@ -149,7 +149,7 @@ int restrictedDamerauDistanceOf<E>(
 /// condition that _no substring is edited more than once_.
 ///
 /// This is a variation of Damerau-Levenshtein distance implemented
-/// by [damerauLevenshteinDistanceOf]. It restricts the transposition operation
+/// by [damerauLevenshteinDistance]. It restricts the transposition operation
 /// so that the operation is only applied to unedited portion of the [source], not
 /// after changing it once.
 ///
@@ -165,7 +165,7 @@ int restrictedDamerauDistanceOf<E>(
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(3m)`
-int restrictedDamerauDistance(
+int restrictedDamerauDistanceOf(
   String source,
   String target, {
   bool ignoreCase = false,

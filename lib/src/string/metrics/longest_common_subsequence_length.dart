@@ -81,7 +81,7 @@ int longestCommonSubsequenceLengthCustom<E>(
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(n)`
-int longestCommonSubsequenceLengthOf<E>(
+int longestCommonSubsequenceLength<E>(
   List<E> source,
   List<E> target, {
   DualEqualityTest<E, E>? test,
@@ -131,7 +131,7 @@ int longestCommonSubsequenceLengthOf<E>(
 /// ---------------------------------------------------------------------------
 /// If `n` is the length of [source] and `m` is the length of [target], <br/>
 /// Complexity: Time `O(nm)` | Space `O(n)`
-int longestCommonSubsequenceLength(
+int longestCommonSubsequenceLengthOf(
   String source,
   String target, {
   bool ignoreCase = false,
@@ -153,5 +153,5 @@ int longestCommonSubsequenceLength(
     ignoreNumbers: ignoreNumbers,
     alphaNumericOnly: alphaNumericOnly,
   );
-  return longestCommonSubsequenceLengthOf(source.codeUnits, target.codeUnits);
+  return longestCommonSubsequenceLength(source.codeUnits, target.codeUnits);
 }
