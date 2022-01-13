@@ -60,6 +60,7 @@ https://anhaidgroup.github.io/py_stringmatching/v0.3.x/OverlapCoefficient.html
   - [x] Jaccard similary + distance
   - [ ] Needleman Wunsch
   - [ ] Monge Elkan
+  - [ ] Jaro similarity & distance
   - [ ] Jaro-Winker similarity & distance
   - [ ] Block Distance / L1 Distance / Manhattan distance
   - [ ] Simple Matching Coefficient (SMC)

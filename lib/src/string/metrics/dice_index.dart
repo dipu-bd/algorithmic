@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import 'package:algorithmic/algorithmic.dart';
+import './tversky_index.dart';
 
 /// Finds the [Sørensen–Dice coefficient](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient)
 /// of two list of items.
@@ -19,6 +19,8 @@ import 'package:algorithmic/algorithmic.dart';
 /// - Sørensen index
 /// - Dice's coefficient
 /// - Dice similarity coefficient (DSC)
+///
+/// Tversky index is a generalization of Dice index when alpha = 0.5, and beta = 0.5
 ///
 /// See Also: [tverskyIndex]
 ///
@@ -55,6 +57,8 @@ double diceIndex<E>(List<E> source, List<E> target) {
 /// - Sørensen index
 /// - Dice's coefficient
 /// - Dice similarity coefficient (DSC)
+///
+/// Tversky index is a generalization of Dice index when alpha = 0.5, and beta = 0.5
 ///
 /// See Also: [tverskyIndex], [diceIndex]
 ///

@@ -39,7 +39,7 @@ void combSort<E>(
   List<E> list, {
   int? begin,
   int? end,
-  double shrinkFactor = 2.5,
+  double shrinkFactor = 2.2,
   Comparator<E>? compare,
 }) {
   int b, e;

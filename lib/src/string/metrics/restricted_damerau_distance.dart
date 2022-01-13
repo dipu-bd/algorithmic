@@ -3,7 +3,6 @@
 
 import 'dart:math' show min;
 
-import 'package:algorithmic/algorithmic.dart';
 import 'package:algorithmic/src/utils/string.dart';
 import 'package:algorithmic/src/utils/templates.dart';
 

@@ -222,6 +222,37 @@ The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80
 
 > Here, `n` and `m` are the length of first and second string respectively.
 
+#### Tversky Index
+
+[Tversky similarity index](https://en.wikipedia.org/wiki/Tversky_index) an asymmetric similarity measure between sets that compares a variant with a prototype.
+
+|          Functions |    Performance     | Tests | Benchmark | Since  |
+| -----------------: | :----------------: | :---: | :-------: | :----: |
+|   `tverskyIndex()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+| `tverskyIndexOf()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+
+#### Dice coefficient / Sørensen index
+
+[Sørensen–Dice coefficient](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient) is a metric used to measure similarity between two samples.
+
+|       Functions |    Performance     | Tests | Benchmark | Since  |
+| --------------: | :----------------: | :---: | :-------: | :----: |
+|   `diceIndex()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+| `diceIndexOf()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+
+#### Jaccard index / Tanimoto coefficient
+
+[Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index) is a metric used to measure similarity of two samples sets.
+
+The opposite of it is *Jaccard distance* which measures the total number of items that is present in one list but not the other.
+
+|             Functions |    Performance     | Tests | Benchmark | Since  |
+| --------------------: | :----------------: | :---: | :-------: | :----: |
+|      `jaccardIndex()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+|    `jaccardIndexOf()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+|   `jaccardDistance()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+| `jaccardDistanceOf()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+
 ## Links
 
 - [Benchmark](https://github.com/dipu-bd/algorithmic/blob/master/benchmark.log)

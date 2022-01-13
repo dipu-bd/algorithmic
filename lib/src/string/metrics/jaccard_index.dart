@@ -1,9 +1,10 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import 'package:algorithmic/algorithmic.dart';
 import 'package:algorithmic/src/utils/list.dart';
 import 'package:algorithmic/src/utils/string.dart';
+
+import './tversky_index.dart';
 
 /// Returns the [Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index)
 /// between two list of items.
@@ -58,6 +59,8 @@ double jaccardIndex<E>(List<E> source, List<E> target) {
 /// - Tanimoto index
 /// - Tanimoto coefficient
 ///
+/// Tversky index is a generalization of Jaccard index when alpha = 1, and beta = 1
+///
 /// See Also: [tverskyIndex], [jaccardIndex]
 ///
 /// ---------------------------------------------------------------------------
@@ -97,6 +100,8 @@ double jaccardIndexOf(
 /// Jaccard distance measures the total number of items that is present in one list
 /// but not the other. It is calculated by subtracting the length of intersection
 /// between the [source] and [target] set from their union.
+///
+/// Tversky index is a generalization of Jaccard index when alpha = 1, and beta = 1
 ///
 /// See Also: [tverskyIndex], [jaccardIndex]
 ///

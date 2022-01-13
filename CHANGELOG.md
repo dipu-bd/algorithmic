@@ -1,16 +1,25 @@
 ## 0.0.10
 
 - New algorithms:
-  - restrictedDamerauDistance
-  - restrictedDamerauDistanceOf
   - damerauLevenshteinDistance
   - damerauLevenshteinDistanceOf
+  - restrictedDamerauDistance
+  - restrictedDamerauDistanceOf
   - hammingDistance
   - hammingDistanceOf
   - leeDistance
   - leeDistanceOf
   - longestCommonSubsequenceLength
   - longestCommonSubsequenceLengthOf
+  - tverskyIndex
+  - tverskyIndexOf
+  - diceIndex
+  - diceIndexOf
+  - jaccardIndex
+  - jaccardIndexOf
+  - jaccardDistance
+  - jaccardDistanceOf
+- Update documentations, test and benchmarks.
 
 ## 0.0.9
 
