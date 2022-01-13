@@ -82,7 +82,7 @@ void main() {
       expect(jaccardDistanceOf(s, t), jaccard.distance(s, t));
     });
   });
-  
+
   group("jaccardDistance() | jaccardDistanceOf() | ngram = 3", () {
     final jaccard = Jaccard(ngram: 3);
     test("<empty> -> <empty>", () {

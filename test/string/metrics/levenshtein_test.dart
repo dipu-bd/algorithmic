@@ -85,80 +85,75 @@ void main() {
   });
 
   group("levenshteinDistance() with custom test", () {
+    // ignore: prefer_function_declarations_over_variables
+    final tester = (String a, String b) {
+      return (a.codeUnitAt(0) - b.codeUnitAt(0)).abs() == 1;
+    };
+
     test("<empty> -> <empty>", () {
       final s = characters("");
       final t = characters("");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 0);
+      expect(levenshteinDistance(s, t, test: tester), 0);
     });
     test("abcd -> <empty>", () {
       final s = characters("abcd");
       final t = characters("");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 4);
+      expect(levenshteinDistance(s, t, test: tester), 4);
     });
     test("<empty> -> abcd", () {
       final s = characters("");
       final t = characters("abcd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 4);
+      expect(levenshteinDistance(s, t, test: tester), 4);
     });
     test("a -> a", () {
       final s = characters("a");
-      final t = characters("a");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 0);
+      final t = characters("b");
+      expect(levenshteinDistance(s, t, test: tester), 0);
     });
     test("a -> b", () {
       final s = characters("a");
-      final t = characters("b");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
+      final t = characters("c");
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
     test("abcd -> abcd", () {
       final s = characters("abcd");
-      final t = characters("abcd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 0);
+      final t = characters("bcde");
+      expect(levenshteinDistance(s, t, test: tester), 0);
     });
     test("abcd -> abc", () {
       final s = characters("abcd");
-      final t = characters("abc");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
+      final t = characters("bcd");
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
     test("abcd -> abd", () {
       final s = characters("abcd");
-      final t = characters("abd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
+      final t = characters("bce");
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
     test("abcd -> abed", () {
       final s = characters("abcd");
-      final t = characters("abed");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
+      final t = characters("bcfe");
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
     test("abcd -> bcd", () {
       final s = characters("abcd");
       final t = characters("bcd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
     test("abcd -> bed", () {
       final s = characters("abcd");
-      final t = characters("bed");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 2);
+      final t = characters("cfe");
+      expect(levenshteinDistance(s, t, test: tester), 2);
     });
     test("abc -> abcd", () {
       final s = characters("abc");
-      final t = characters("abcd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
+      final t = characters("bcde");
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
     test("abd -> abcd", () {
       final s = characters("abd");
-      final t = characters("abcd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 1);
-    });
-    test("bed -> abcd", () {
-      final s = characters("bed");
-      final t = characters("abcd");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 2);
-    });
-    test("sunday -> saturday", () {
-      final s = characters("sunday");
-      final t = characters("saturday");
-      expect(levenshteinDistance(s, t, test: (a, b) => a == b), 3);
+      final t = characters("bcde");
+      expect(levenshteinDistance(s, t, test: tester), 1);
     });
   });
 

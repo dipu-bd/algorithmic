@@ -244,7 +244,7 @@ The [Damerau–Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80
 
 [Jaccard index](https://en.wikipedia.org/wiki/Jaccard_index) is a metric used to measure similarity of two samples sets.
 
-The opposite of it is *Jaccard distance* which measures the total number of items that is present in one list but not the other.
+The complement of it is _Jaccard distance_ which measures the total number of items that is present in one list but not the other.
 
 |             Functions |    Performance     | Tests | Benchmark | Since  |
 | --------------------: | :----------------: | :---: | :-------: | :----: |
@@ -252,6 +252,19 @@ The opposite of it is *Jaccard distance* which measures the total number of item
 |    `jaccardIndexOf()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
 |   `jaccardDistance()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
 | `jaccardDistanceOf()` | _O_(_n_ `log` _n_) |  ✔️   |    ✔️     | 0.0.10 |
+
+#### Jaro similarity & Jaro-Winkler distance
+
+The Jaro similarity between two strings is the weighted sum of percentage of matched characters from each string and transposed characters. Winkler increased this measure for matching initial characters.
+
+|                 Functions | Performance  | Tests | Benchmark | Since  |
+| ------------------------: | :----------: | :---: | :-------: | :----: |
+|        `jaroSimilarity()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+|      `jaroSimilarityOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+|   `jaroWinklerSimilarity()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+| `jaroWinklerSimilarityOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+
+> Here, `n` and `m` are the length of first and second string respectively.
 
 ## Links
 

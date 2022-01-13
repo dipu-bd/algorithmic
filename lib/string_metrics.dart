@@ -11,6 +11,9 @@ export 'src/string/metrics/hamming_distance.dart'
     show hammingDistanceOf, hammingDistance;
 export 'src/string/metrics/jaccard_index.dart'
     show jaccardIndex, jaccardDistance, jaccardDistanceOf, jaccardIndexOf;
+export 'src/string/metrics/jaro.dart' show jaroSimilarity, jaroSimilarityOf;
+export 'src/string/metrics/jaro_winkler.dart'
+    show jaroWinklerSimilarity, jaroWinklerSimilarityOf;
 export 'src/string/metrics/lee_distance.dart' show leeDistanceOf, leeDistance;
 export 'src/string/metrics/levenshtein_distance.dart'
     show levenshteinDistanceOf, levenshteinDistance;
