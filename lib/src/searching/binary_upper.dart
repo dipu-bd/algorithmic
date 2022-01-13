@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import '../utils/templates.dart';
+import 'package:algorithmic/src/utils/templates.dart';
 
 /// Returns the index of the _first_ item from a sorted [list] that is strictly
 /// greater than the [value], otherwise if all items are less than or equal to

@@ -7,6 +7,9 @@ import 'package:algorithmic/src/utils/templates.dart';
 int hammingDistanceDefault<E>(List<E> source, List<E> target) {
   int n = source.length;
   int m = target.length;
+  if (n != m) {
+    throw RangeError('source and target must have equal length');
+  }
 
   int i, d = 0;
   for (i = 0; i < n && i < m; i++) {
@@ -28,6 +31,9 @@ int hammingDistanceCustom<E>(
     List<E> source, List<E> target, DualEqualityTest<E, E> test) {
   int n = source.length;
   int m = target.length;
+  if (n != m) {
+    throw RangeError('source and target must have equal length');
+  }
 
   int i, d = 0;
   for (i = 0; i < n && i < m; i++) {
@@ -58,8 +64,7 @@ int hammingDistanceCustom<E>(
 /// Hamming distance is between two equal-length list of items is the number of
 /// positions at which the corresponding items are different.
 ///
-/// In this implementation, if two list are not equal, the length difference is
-/// added with the hamming distance between them.
+/// If length of the lists are not equal, a [RangeError] is thrown.
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`
@@ -94,8 +99,7 @@ int hammingDistance<E>(
 /// Hamming distance is between two equal-length strings is the number of
 /// positions at which the corresponding characters are different.
 ///
-/// In this implementation, if two strings are not equal, the length difference is
-/// added with the hamming distance between them.
+/// If length of the strings are not equal, a [RangeError] is thrown.
 ///
 /// ---------------------------------------------------------------------------
 /// Complexity: Time `O(n)` | Space `O(1)`

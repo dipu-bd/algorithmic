@@ -1,8 +1,8 @@
 // Copyright (c) 2021, Sudipto Chandra
 // All rights reserved. Check LICENSE file for details.
 
-import '../utils/list.dart';
-import '../utils/templates.dart';
+import 'package:algorithmic/src/utils/list.dart';
+import 'package:algorithmic/src/utils/templates.dart';
 
 /// Sorts a [list] of integer numbers of small range using the
 /// [counting sort](https://en.wikipedia.org/wiki/Counting_sort) algorithm.

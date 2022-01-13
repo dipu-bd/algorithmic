@@ -3,8 +3,8 @@
 
 import 'dart:math';
 
-import '../utils/templates.dart';
-import '../utils/list.dart';
+import 'package:algorithmic/src/utils/templates.dart';
+import 'package:algorithmic/src/utils/list.dart';
 
 /// Sorts a [list] of integer numbers using the
 /// [radix sort](https://en.wikipedia.org/wiki/Radix_sort) algorithm

@@ -14,7 +14,7 @@ void reverseList<E>(List<E> list, int b, int e) {
 }
 
 /// Split the list into ngrams
-List<String> ngramSplit(String str, int ngram) {
+List<String> splitString(String str, int ngram) {
   if (str.length <= ngram) {
     return [str];
   }
@@ -26,7 +26,7 @@ List<String> ngramSplit(String str, int ngram) {
 }
 
 /// Split the list into ngrams
-Set<String> ngramSplitSet(String str, int ngram) {
+Set<String> splitStringToSet(String str, int ngram) {
   Set<String> result = <String>{};
   if (str.length <= ngram) {
     result.add(str);

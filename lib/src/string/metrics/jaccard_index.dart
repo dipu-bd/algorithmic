@@ -173,15 +173,15 @@ int jaccardDistanceOf(
     ignoreNumbers: ignoreNumbers,
     alphaNumericOnly: alphaNumericOnly,
   );
-  if (ngram > 1) {
-    return jaccardDistance(
-      ngramSplitSet(source, ngram),
-      ngramSplitSet(target, ngram),
-    );
-  } else {
+  if (ngram < 2) {
     return jaccardDistance(
       source.codeUnits,
       target.codeUnits,
+    );
+  } else {
+    return jaccardDistance(
+      splitStringToSet(source, ngram),
+      splitStringToSet(target, ngram),
     );
   }
 }

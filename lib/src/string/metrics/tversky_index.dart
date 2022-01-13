@@ -114,17 +114,17 @@ double tverskyIndexOf(
     ignoreNumbers: ignoreNumbers,
     alphaNumericOnly: alphaNumericOnly,
   );
-  if (ngram > 1) {
+  if (ngram < 2) {
     return tverskyIndex(
-      ngramSplitSet(source, ngram),
-      ngramSplitSet(target, ngram),
+      source.codeUnits,
+      target.codeUnits,
       alpha: alpha,
       beta: beta,
     );
   } else {
     return tverskyIndex(
-      source.codeUnits,
-      target.codeUnits,
+      splitStringToSet(source, ngram),
+      splitStringToSet(target, ngram),
       alpha: alpha,
       beta: beta,
     );

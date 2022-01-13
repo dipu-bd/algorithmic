@@ -15,12 +15,12 @@ void main() {
     test("abcd -> <empty>", () {
       final s = "abcd";
       final t = "";
-      expect(hammingDistanceOf(s, t), 4);
+      expect(() => hammingDistanceOf(s, t), throwsA(TypeMatcher<RangeError>()));
     });
-    test("<empty> -> abcd", () {
-      final s = "";
+    test("ab -> abcd", () {
+      final s = "ab";
       final t = "abcd";
-      expect(hammingDistanceOf(s, t), 4);
+      expect(() => hammingDistanceOf(s, t), throwsA(TypeMatcher<RangeError>()));
     });
     test("a -> a", () {
       final s = "a";
@@ -32,35 +32,20 @@ void main() {
       final t = "b";
       expect(hammingDistanceOf(s, t), 1);
     });
-    test("a -> ab", () {
-      final s = "a";
-      final t = "ab";
-      expect(hammingDistanceOf(s, t), 1);
-    });
     test("ab -> ba", () {
       final s = "ab";
       final t = "ba";
       expect(hammingDistanceOf(s, t), 2);
     });
-    test("ac -> abc", () {
-      final s = "ac";
-      final t = "abc";
+    test("pappa -> pappa", () {
+      final s = "pappa";
+      final t = "pappa";
+      expect(hammingDistanceOf(s, t), 0);
+    });
+    test("ATCG -> ACCC", () {
+      final s = "ATCG";
+      final t = "ACCC";
       expect(hammingDistanceOf(s, t), 2);
-    });
-    test("abcd -> def", () {
-      final s = "abcd";
-      final t = "def";
-      expect(hammingDistanceOf(s, t), 4);
-    });
-    test("abcd -> defgh", () {
-      final s = "abcd";
-      final t = "defgh";
-      expect(hammingDistanceOf(s, t), 5);
-    });
-    test("sunday -> saturday", () {
-      final s = "sunday";
-      final t = "saturday";
-      expect(hammingDistanceOf(s, t), 7);
     });
     test("karolin -> kathrin", () {
       final s = "karolin";
@@ -71,6 +56,11 @@ void main() {
       final s = "2173896";
       final t = "2233796";
       expect(hammingDistanceOf(s, t), 3);
+    });
+    test("1011101 -> 1011111", () {
+      final s = characters("1011101");
+      final t = characters("1011111");
+      expect(hammingDistance(s, t), 1);
     });
     test("ABCD -> abcd | ignoreCase", () {
       final s = "ABCD";
@@ -111,16 +101,6 @@ void main() {
       final t = characters("");
       expect(hammingDistance(s, t, test: (a, b) => a == b), 0);
     });
-    test("abcd -> ", () {
-      final s = characters("abcd");
-      final t = characters("");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 4);
-    });
-    test(" -> abcd", () {
-      final s = characters("");
-      final t = characters("abcd");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 4);
-    });
     test("a -> a", () {
       final s = characters("a");
       final t = characters("a");
@@ -131,35 +111,10 @@ void main() {
       final t = characters("b");
       expect(hammingDistance(s, t, test: (a, b) => a == b), 1);
     });
-    test("a -> ab", () {
-      final s = characters("a");
-      final t = characters("ab");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 1);
-    });
     test("ab -> ba", () {
       final s = characters("ab");
       final t = characters("ba");
       expect(hammingDistance(s, t, test: (a, b) => a == b), 2);
-    });
-    test("ac -> abc", () {
-      final s = characters("ac");
-      final t = characters("abc");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 2);
-    });
-    test("abcd -> def", () {
-      final s = characters("abcd");
-      final t = characters("def");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 4);
-    });
-    test("abcd -> defgh", () {
-      final s = characters("abcd");
-      final t = characters("defgh");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 5);
-    });
-    test("sunday -> saturday", () {
-      final s = characters("sunday");
-      final t = characters("saturday");
-      expect(hammingDistance(s, t, test: (a, b) => a == b), 7);
     });
     test("karolin -> kathrin", () {
       final s = characters("karolin");
