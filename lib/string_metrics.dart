@@ -2,7 +2,7 @@
 // All rights reserved. Check LICENSE file for details.
 
 /// A collection of algorithms for strings or similar data structures.
-library algorithmic.string;
+library algorithmic.string.metrics;
 
 export 'src/string/metrics/damerau_levenshtein_distance.dart'
     show damerauLevenshteinDistanceOf, damerauLevenshteinDistance;

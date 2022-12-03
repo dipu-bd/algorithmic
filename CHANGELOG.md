@@ -1,3 +1,8 @@
+## 0.0.11
+
+- Fixes dartdoc issues
+- Move string metrics to `algorithmic.string.metrics` library
+
 ## 0.0.10
 
 - New algorithms:

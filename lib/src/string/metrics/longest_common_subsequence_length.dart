@@ -58,8 +58,6 @@ int longestCommonSubsequenceLengthCustom<E>(
 /// Returns the length of the [longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem)
 /// of two list of items.
 ///
-/// > WARN: Not to be confused with [longestCommonSubstringSizeOf].
-///
 /// ## Parameters
 ///
 /// - [source] and [target] are two list of items.
@@ -100,8 +98,6 @@ int longestCommonSubsequenceLength<E>(
 
 /// Returns the length of the [longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence_problem)
 /// of two strings.
-///
-/// > WARN: Not to be confused with [longestCommonSubstringSize].
 ///
 /// ## Parameters
 ///
