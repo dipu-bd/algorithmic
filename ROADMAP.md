@@ -138,6 +138,7 @@ https://anhaidgroup.github.io/py_stringmatching/v0.3.x/OverlapCoefficient.html
   - [ ] R+ tree
   - [ ] Hilbert R-tree
   - [ ] Ternary search tree
+  - [ ] Interval tree
 
 ## Mathematics
 

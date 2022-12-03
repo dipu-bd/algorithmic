@@ -257,10 +257,10 @@ The complement of it is _Jaccard distance_ which measures the total number of it
 
 The Jaro similarity between two strings is the weighted sum of percentage of matched characters from each string and transposed characters. Winkler increased this measure for matching initial characters.
 
-|                 Functions | Performance  | Tests | Benchmark | Since  |
-| ------------------------: | :----------: | :---: | :-------: | :----: |
-|        `jaroSimilarity()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
-|      `jaroSimilarityOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+|                   Functions | Performance  | Tests | Benchmark | Since  |
+| --------------------------: | :----------: | :---: | :-------: | :----: |
+|          `jaroSimilarity()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
+|        `jaroSimilarityOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
 |   `jaroWinklerSimilarity()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
 | `jaroWinklerSimilarityOf()` | _O_(_n_ _m_) |  ✔️   |    ✔️     | 0.0.10 |
 
